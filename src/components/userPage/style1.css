@@ -1,5 +1,6 @@
 .App {
     height: 100vh;
+    display: flex;
 }
 
 body{
@@ -75,4 +76,39 @@ body{
     float: right;
     margin-right: 10px;
 
+}
+.main-book{
+    height: 300px;
+    width: 1100px;
+    border: 1px solid black;
+}
+
+.content{
+    margin-left: 20px;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.library-header{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
+.fav-book{
+    display: flex;
+}
+.book{
+    height: 370px;
+    width: 238px;
+    border: 1px solid black;
+    margin-right: 50px;
+}
+.view-all{
+    background-color: rgb(191, 188, 188);
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

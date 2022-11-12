@@ -36,6 +36,27 @@ function UserPage() {
                     </ul>
                     
                 </div>
+                <div className="content">
+                    <div className="main-book">
+
+                    </div>
+                    <div className="library">
+                        <div className="library-header">
+                            <div className="title">My Library</div>
+                            <button type="button" class="btn btn-light view-all">View all &gt; </button>
+
+                        </div>
+                        <div className="fav-book">
+                            <div className="book"></div>
+                            <div className="book"></div>
+
+                            <div className="book"></div>
+
+                            <div className="book"></div>
+
+                        </div>
+                    </div>
+                </div>
               
             </div>
         </>
