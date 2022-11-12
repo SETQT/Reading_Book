@@ -1,4 +1,7 @@
 import React from 'react'
+import user from './user.jfif';
+import notification from './notification.png'
+import chat from './chat.png'
 import { Component } from 'react'
 import "./style1.css"
 // import "../../style/styleGlobal.js/index.js"
@@ -9,7 +12,14 @@ function UserPage() {
     return (
         <>
             <div className="App">
+                
                 <div className="Sidebar">
+                    <div className="above-user">
+                        <img src={notification} alt="" height={20} width={20} className="notification"/>
+                        <img src={chat} alt="" height={20} width={20} className="chat"/>
+
+                    </div>
+                    <img src={user} alt="" height="80" width="80" className='user-img'/>
                     <ul className='SidebarList'>
                     {SideBarData.map((val, key)=>{
                         return <li  
