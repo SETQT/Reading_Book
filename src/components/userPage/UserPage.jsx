@@ -3,7 +3,8 @@ import user from './user.jfif';
 import notification from './notification.png'
 import chat from './chat.png'
 import { Component } from 'react'
-import "./style1.css"
+import style from "./style1.module.css"
+import "./style1.module.css"
 // import "../../style/styleGlobal.js/index.js"
 import { SideBarData } from './SideBarData';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,23 +12,23 @@ import 'bootstrap/dist/js/bootstrap.js';
 function UserPage() {
     return (
         <>
-            <div className="App">
+            <div className={style.App}>
                 
-                <div className="Sidebar">
-                    <div className="above-user">
-                        <img src={notification} alt="" height={20} width={20} className="notification"/>
-                        <img src={chat} alt="" height={20} width={20} className="chat"/>
+                <div className={style.Sidebar}>
+                    <div className={style.above-user}>
+                        <img src={notification} alt="" height={20} width={20} className={style.notification}/>
+                        <img src={chat} alt="" height={20} width={20} className={style.chat}/>
 
                     </div>
-                    <img src={user} alt="" height="80" width="80" className='user-img'/>
-                    <ul className='SidebarList'>
+                    <img src={user} alt="" height="80" width="80" className={style.userimg}/>
+                    <ul className={style.SidebarList}>
                     {SideBarData.map((val, key)=>{
                         return <li  
-                                id={window.location.pathname == val.link ? "active" : ""}
-                                className='row'
+                                id={window.location.pathname == val.link ? style.active : ""}
+                                className={style.row}
                                 key={key} onClick={()=>{window.location.pathname = val.link}} >
-                                <div id="icon">{val.icon}</div>{""}
-                                <div id="title">
+                                <div id={style.icon}>{val.icon}</div>{""}
+                                <div id={style.title}>
                                     {val.title}
                                 </div>
                             </li>
@@ -36,23 +37,23 @@ function UserPage() {
                     </ul>
                     
                 </div>
-                <div className="content">
-                    <div className="main-book">
+                <div className={style.content}>
+                    <div className={style.mainbook}>
 
                     </div>
-                    <div className="library">
-                        <div className="library-header">
-                            <div className="title">My Library</div>
-                            <button type="button" class="btn btn-light view-all">View all &gt; </button>
+                    <div className={style.library}>
+                        <div className={style.libraryheader}>
+                            <div className={style.title}>My Library</div>
+                            <button type="button"  className={style.viewall}>View all &gt; </button>
 
                         </div>
-                        <div className="fav-book">
-                            <div className="book"></div>
-                            <div className="book"></div>
+                        <div className={style.favbook}>
+                            <div className={style.book}></div>
+                            <div className={style.book}></div>
 
-                            <div className="book"></div>
+                            <div className={style.book}></div>
 
-                            <div className="book"></div>
+                            <div className={style.book}></div>
 
                         </div>
                     </div>

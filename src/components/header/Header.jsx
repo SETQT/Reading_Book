@@ -36,7 +36,7 @@ function header() {
                                     <a className="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Company
                                     </a>
-                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <ul className="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
                                         <li><a className="dropdown-item" href="#">Blog</a></li>
                                         <li><a className="dropdown-item" href="#">About Us</a></li>
                                         <li><a className="dropdown-item" href="#">Contact us</a></li>
