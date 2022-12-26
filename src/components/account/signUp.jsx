@@ -8,8 +8,51 @@ import headerUser from "../header/HeaderUser";
 import book from "../../assets/imgs/book.png";
 import "./account.css";
 import { borderRadius } from "@mui/system";
+import { useCallback, useState, useEffect } from "react";
 
-function signup() {
+import { useHref, useNavigate } from "react-router-dom";
+
+function Signup() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const [userName, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPass, setConfPass] = useState("");
+  const [birthday, setBirthday] = useState("");
+
+  async function register() {
+    console.log(userName, password);
+
+    let item = {
+      username: userName,
+      password: password,
+      email: email,
+      retypePassword: confPass,
+      fullname: name,
+      dateOfBirth: birthday,
+    };
+    // let item = { email, name, userName, password, confPass, birthday };
+    fetch("https://ebook4u-server.onrender.com/auth/register", {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(item),
+    })
+    .then((Response) => Response.json())
+        .then((result) => {
+          console.log(result);
+          if (result.success)
+            navigate("/home");
+          else
+            console.log(result.message);
+    })
+}
+
   return (
     <>
       <div class="bg_image">
@@ -95,6 +138,7 @@ function signup() {
                   }}
                   name="name"
                   placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="col_half">
@@ -107,6 +151,7 @@ function signup() {
                     height: "40px",
                   }}
                   placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
@@ -122,6 +167,7 @@ function signup() {
                   }}
                   name="name"
                   placeholder="Username"
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="col_half">
@@ -141,7 +187,7 @@ function signup() {
             <div className="row">
               <div className="col_half">
                 <input
-                  type="text"
+                  type="password"
                   style={{
                     width: "200px",
                     borderRadius: "5%",
@@ -149,11 +195,12 @@ function signup() {
                   }}
                   name="name"
                   placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="col_half">
                 <input
-                  type="text"
+                  type="password"
                   name="name"
                   style={{
                     width: "200px",
@@ -161,6 +208,7 @@ function signup() {
                     height: "40px",
                   }}
                   placeholder="Confirm password"
+                  onChange={(e) => setConfPass(e.target.value)}
                   required
                 />
               </div>
@@ -177,6 +225,7 @@ function signup() {
                   }}
                   name="name"
                   placeholder="Day of birth"
+                  onChange={(e) => setBirthday(e.target.value)}
                 />
               </div>
               <div className="col_half">
@@ -201,6 +250,7 @@ function signup() {
               type="button"
               class="btn btn-success"
               style={{ marginTop: "30px" }}
+              onClick={register}
             >
               SUBMIT
             </button>
@@ -209,7 +259,7 @@ function signup() {
                 marginTop: "20px",
               }}
             >
-              <a href="/login/SignIn">Have an account? Sign In?</a>
+              <a href="/login/signin">Have an account? Sign In?</a>
             </div>
           </center>
         </div>
@@ -218,4 +268,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

@@ -12,10 +12,19 @@ import "./account.css";
 import { borderRadius } from "@mui/system";
 import { useCallback, useState, useEffect } from "react";
 
+import { useHref, useNavigate } from "react-router-dom";
+
 function SignIn() {
   const [userName, setUsername] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (localStorage.getItem("user-info")) {
+  //     navigate("/home");
+  //   }
+  // }, []);
 
   const onUsernameChange = useCallback((e) => {
     setUsername(e.target.value);
@@ -24,6 +33,36 @@ function SignIn() {
   const onPasswordChange = useCallback((e) => {
     setPassword(e.target.value);
   }, []);
+
+  async function login() {
+    console.log(userName, password);
+
+    let item = { username:userName, password:password};
+    fetch("https://ebook4u-server.onrender.com/auth/login", {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(item),
+    })
+      .then((Response) => Response.json())
+            .then((result) => {
+                console.log(result);
+                if (result.success)
+                {
+                    console.log("Login Successful");
+                    navigate("/home");
+                }
+                else
+                    console.log(result.message);
+            })
+    }
+
+    // result = await result.json();
+    // localStorage.setItem("user-info", JSON.stringify(result));
+  
+
   return (
     <>
       <div class="bg_image">
@@ -101,6 +140,7 @@ function SignIn() {
               <input
                 id="inputLogin"
                 placeholder="Username"
+                type="text"
                 name="name"
                 style={{
                   marginTop: "30px",
@@ -115,6 +155,7 @@ function SignIn() {
             <div>
               <input
                 id="inputLogin"
+                type="password"
                 style={{
                   marginTop: "30px",
                   width: "250px",
@@ -146,6 +187,7 @@ function SignIn() {
               type="button"
               class="btn btn-success"
               style={{ marginTop: "20px" }}
+              onClick={login}
             >
               SUBMIT
             </button>
