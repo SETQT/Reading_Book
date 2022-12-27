@@ -14,6 +14,11 @@ class BookService {
         return axios.delete(API + `api/book/${id}`, { headers: authHeader() })
 
     }
+
+    deleteComment(id) {
+        return axios.delete(API + `admin/comment/${id}`, { headers: authHeader() })
+
+    }
     updateBook(id) {
         // AuthAdmin()
 

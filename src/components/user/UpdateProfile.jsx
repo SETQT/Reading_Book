@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-
-
+import moment from 'moment/moment';
+import UserService from '../../service/UserService';
 import UserPage from '../userPage/UserPage';
 import Replace from '../../assets/imgs/replace.png'
 import style from '../userPage/style1.module.css'
@@ -16,6 +16,7 @@ const user = localStorage.getItem('user');
 
 function Content() {
   const [avatar, setAvatar] = useState();
+  const imageAvatar = localStorage.getItem('idToAddFav');
 
   useEffect(() => {
     return () => avatar && URL.revokeObjectURL(avatar.preview);
@@ -42,7 +43,7 @@ function Content() {
       <div
         style={{marginLeft:"10px"  }}
       >
-        <input type="file" onChange={handlePreviewAvatar} id="contentPDF"/>
+        <input type="file" onChange={handlePreviewAvatar} id="avatarProfile" />
 
         
       </div>
@@ -52,6 +53,24 @@ function Content() {
 
 
 function UpdateProfile() {
+  const [listAccount, setList] = useState([]);
+
+
+  useEffect(() => {
+
+
+    UserService.getProfileUser().
+      then(response => {
+        console.log(response.data.data);
+        setList(response.data.data)
+        localStorage.setItem("imageToUpdate", listAccount?.avatar);
+
+      }).catch(err => {
+        console.log(err);
+      })
+
+
+  }, [])
     return (
         <div>
             <div className="cardInfo">
@@ -70,7 +89,7 @@ function UpdateProfile() {
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Username: 
                                     </span>
-                                    <input type="text" id='un' name='un' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} />
+                                    <input type="text" id='un' name='un' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}}  defaultValue={listAccount.fullname}/>
 
                                     <br />
                                     
@@ -79,7 +98,7 @@ function UpdateProfile() {
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Address: 
                                     </span>
-                                    <input type="text" id='adr' name='adr' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} />
+                                    <input type="text" id='adr' name='adr' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={listAccount.address}/>
 
                                     <br />
                                     
@@ -89,7 +108,7 @@ function UpdateProfile() {
                                       Email: 
 
                                     </span>
-                                    <input type="email" id='email' name='email' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}}/>
+                                    <input type="email" id='email' name='email' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={listAccount.email}/>
 
                                     <br />
                                     
@@ -99,7 +118,7 @@ function UpdateProfile() {
                                     <span className=" text-sm font-weight-bolder .text-dark">
                                       Date of birth:
                                     </span>
-                                    <input type="date" id='dob' name='dob' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}}/>
+                                    <input type="date" id='dob' name='dob' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={moment.utc(listAccount.dateOfBirth).format("yyyy-MM-dd")}/>
 
                                     <br />
                                     
@@ -108,7 +127,7 @@ function UpdateProfile() {
                                     <span className=" text-sm font-weight-bolder .text-dark" style={{paddingBottom:"10px"}}>
                                       Phone:
                                     </span>
-                                    <input type="number" id='phone' name='phone' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}}/>
+                                    <input type="number" id='phone' name='phone' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={listAccount.phone}/>
 
                                     <br />
                                     
@@ -116,7 +135,7 @@ function UpdateProfile() {
 
                                   {/* <AlertDialogSlide/> */}
                                   <div className='submitFormBook' style={{marginTop:"30px"}}>
-                                    <span id='submitUser' onClick={submitUpdateUser}>SUBMIT</span>
+                                    <span id='submitUser' onClick={submitUpdateUser} style={{cursor:"pointer"}}>SUBMIT</span>
                                   </div>
                                     </form>
                                   
@@ -135,34 +154,34 @@ const submitUpdateUser = async () => {
   let email = $('#email').val();
   let dob = $('#dob').val();
   let phone = $('#phone').val();
+  let content = $('#avatarProfile').prop('files')[0];
+  let formData = new FormData();
 
-  let content = $('#contentPDF').prop('files')[0];
-  const formData = new FormData();
-
-  formData.append("avatar", content);
   formData.append("fullname", un);
-  formData.append("address", address);
-  formData.append("email", email);
-  formData.append("dateOfBirth", dob);
   formData.append("phone", phone);
-
+  formData.append("email", email);
+  formData.append("address", address);
+  formData.append("dateOfBirth", dob);
+  formData.append("file", content);
+  for (const value of formData.values()) {
+    console.log(value);
+  }
   await fetch(
       'https://ebook4u-server.onrender.com/api/user/me',
       {
-          method: 'POST',
+          method: 'PUT',
           body: formData,
           headers: {
-
               'Authorization': `Bearer ${user}`
           },
+          
 
       }
   )
       // .then((response) => console.log(response))
       .then((result) => {
           // window.location.href("http://localhost:3000/admin/book/all")
-          window.location.reload(false)
-          // console.log('Success:', result);
+          console.log('Success:', result);
       })
       .catch((error) => {
 

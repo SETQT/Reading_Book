@@ -12,14 +12,14 @@ import { jwt, logout } from '../../service/authHeader';
 
 const LogoutAccount = () => {
     logout()
-    window.location.href = "http://localhost:3000/login"
+    window.location.href = "/login"
 }
 
 const profile = () => {
     // logout()
     let jwts = jwt()
-    if (jwts == "{}") window.location.href = "http://localhost:3000/login"
-    else window.location.href = "http://localhost:3000/user"
+    if (jwts == "{}") window.location.href = "/login"
+    else window.location.href = "/user"
 }
 function header() {
     return (
@@ -52,7 +52,7 @@ function header() {
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                                        <li><a className="dropdown-item" href="http://localhost:3000/login">Login</a></li>
+                                        <li><a className="dropdown-item" href="/login">Login</a></li>
                                         <li><a className="dropdown-item" onClick={LogoutAccount}>Logout</a></li>
                                     </ul>
                                 </li>

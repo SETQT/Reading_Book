@@ -27,8 +27,37 @@ const url = 'https://ebook4u-server.onrender.com/user/me/favorite-book'
 
 
 
-const deleteFavorite = () => {
-    alert("delete");
+const deleteFavorite = async () => {
+    const id = localStorage.getItem('idToDeleteFav');
+  let idBook = {idBook:id} ;
+  // console.log(idBook);
+  const user = localStorage.getItem('user');
+
+  await fetch(
+      'https://ebook4u-server.onrender.com/user/me/favorite-book',
+      {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json',
+
+            'Authorization': `Bearer ${user}`,
+          },
+          body: JSON.stringify(idBook),
+         
+
+      }
+  )
+      // .then((response) => console.log(response))
+      .then((result) => {
+          // window.location.href("http://localhost:3000/admin/book/all")
+          // console.log('Success:', result);
+          window.location.reload(false)
+      })
+      .catch((error) => {
+
+      });
+
 }
 
 // Start App
@@ -45,7 +74,6 @@ class Main extends React.Component {
 
         UserService.getFavBook().
             then(response => {
-                console.log(response.data.data);
                 this.setState({
                     posts: response.data.data
                 });
@@ -119,16 +147,15 @@ class CardBookBody extends React.Component {
     render() {
         return (
             <div className="CardBook-body">
-                <p className="date">March 20 2015</p>
 
-                <h5>{this.props.title}</h5>
+                <h5 className="body-content" style={{textAlign:"center"}}>{this.props.title}</h5>
 
-                <p className="body-content">{this.props.text}</p>
-
-                <Button link={this.props.link} />
                 <br />
                 <div style={{ display: "block", marginLeft: "auto", marginRight: "auto", width: "20%", marginBottom: 10 }}>
-                    <img src={Close} alt="" height={40} width={40} onClick={deleteFavorite} style={{ cursor: "pointer" }} />
+                    <img src={Close} alt="" height={40} width={40} onClick={()=>{
+                        localStorage.setItem("idToDeleteFav", this.props.link);
+                        deleteFavorite();
+                        }} style={{ cursor: "pointer" }} />
                 </div>
 
 
@@ -158,7 +185,7 @@ function CardBook(props) {
 
                 <article className="CardBook" onClick={change}  >
                     <CardBookHeader category={props.details.category} image={props.details.image} />
-                    <CardBookBody title={props.details.title} text={props.details.description} link={id} />
+                    <CardBookBody title={props.details.name} text={props.details.description} link={id} />
                 </article >
             </>
         </div>

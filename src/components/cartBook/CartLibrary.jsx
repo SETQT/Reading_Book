@@ -113,13 +113,10 @@ class CardBookBody extends React.Component {
     render() {
         return (
             <div className="CardBook-body">
-                <p className="date">March 20 2015</p>
 
-                <h5>{this.props.title}</h5>
+                <h5 className="body-content" style={{textAlign:"center"}}>{this.props.title}</h5>
 
-                <p className="body-content">{this.props.text}</p>
 
-                <Button />
                 
                 
 

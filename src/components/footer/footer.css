@@ -84,7 +84,6 @@
     .site-footer {
         padding-bottom: 0
     }
-
     .site-footer .copyright-text,
     .site-footer .social-icons {
         text-align: center
@@ -162,4 +161,17 @@
         margin-right: 0;
         font-weight: 600
     }
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.icon1 {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    color: #fff;
 }

@@ -318,7 +318,11 @@ function Content(props) {
                                     <td className='optionAdmin'>
 
 
-                                        <img className='icon' src={chat} alt="" onClick={handleOnClick2} type={"chat"} />
+                                        <img className='icon' src={chat} alt="" onClick={() => {
+                                                // alert(item._id)
+                                                localStorage.setItem("bookComment", item._id);
+                                                handleOnClick2()}
+                                            } type={"chat"} />
                                         <img className='icon' src={updateIcon} alt=""
                                             onClick={() => {
                                                 // alert(item._id)

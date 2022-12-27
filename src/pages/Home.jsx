@@ -55,6 +55,7 @@ function AllBook() {
       
       {/* </MyContext.Provider> */}
       {/* <Footer /> */}
+      <Footer/>
     </div>
   );
 }
