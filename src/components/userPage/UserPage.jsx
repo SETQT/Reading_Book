@@ -1,17 +1,17 @@
 import user from "./user.png";
 import React, { useState } from "react";
-import ContentUser from "../content/ContentUser";
-import DescribeContentUser from "../content/DescribeContentUser";
+// import ContentUser from "../content/ContentUser";
+// import DescribeContentUser from "../content/DescribeContentUser";
 import { Link } from "react-router-dom";
 import notification from "./notification.png";
 import chat from "./chat.png";
-import { Component } from "react";
+// import { Component } from "react";
 import style from "./style1.module.css";
 import "./style1.module.css";
 // import "../../style/styleGlobal.js/index.js"
 import { SideBarData } from "./SideBarData";
 import { SideBarDataOption } from "./SideBarDataOption";
-import { jwt, logout } from "../../service/authHeader";
+import { logout } from "../../service/authHeader";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
@@ -22,7 +22,7 @@ const LogoutAccount = () => {
 };
 
 function UserPage() {
-  const [book, setBook] = useState(10);
+//   const [book, setBook] = useState(10);
 
   return (
     <>

@@ -33,7 +33,6 @@ function BookDetails() {
           },
         }
       );
-      console.log(data);
       setBook(data.data.book);
     } catch (error) {
       console.log(error.response);
@@ -95,7 +94,12 @@ function BookDetails() {
             <div className={Style.bookDetailsItem}>
               <span>Lượt xem: {book?.view}</span>
             </div>
+            <button type="button" class="btn btn-danger" onClick={() => {
+                            // localStorage.setItem("idToAddFav", book?._id);
+              window.location.href="http://localhost:3000/read"
+              // addToFavorite();
 
+              }}>Đọc sách</button>
           </div>
 
         </div>

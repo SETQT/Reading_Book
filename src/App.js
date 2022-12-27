@@ -7,6 +7,7 @@ import SidebarAdmin from './components/sidebar/SidebarAdmin';
 import BookDetail from "./pages/BookDetail";
 import Comment from "./components/comment/Comment"
 import ReadBook from './components/readBook/readbook';
+import SearchBook from './components/searchBook/searchbook';
 import "./style/GlobalStyle.js"
 import { StoreContext } from "./utils/Store";
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/admin/*' element={<Admin />} />
         <Route path='/read' element={<ReadBook />} />
         <Route path="/login/*" element={<Login />} />{" "}
+        <Route path='/search' element={<SearchBook />} />
 
       </Routes>
     </>

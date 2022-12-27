@@ -1,0 +1,15 @@
+.container-Search{
+    width: 100%;
+    height: 100vh;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.search-content{
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 5%;
+}
