@@ -33,9 +33,10 @@ function BookDetails() {
           },
         }
       );
+
       setBook(data.data.book);
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
     }
   };
   //   if(loading) return <Loading />;
@@ -44,6 +45,8 @@ function BookDetails() {
     <div>
       <Header />
       <section className={Style.bookDetails}>
+
+
       <div className="container">
         <div className={Style.bookDetailsContent}>
           <div className={Style.bookDetailsImg}>
@@ -81,18 +84,43 @@ function BookDetails() {
             </div>
             <div className={Style.bookDetailsItem}>
               <span>Nội dung: <p dangerouslySetInnerHTML={{__html: `${book?.description}`}}/></span>
+
             </div>
-            <div className={Style.bookDetailsItem}>
-              <span>Nước sản xuất: {book?.country?.name}</span>
-            </div>
-            <div className={Style.bookDetailsItem}>
-              <span>
-                Lần cuối cập nhật:{" "}
-                {moment.utc(book?.updateAt).format("DD/MM/YYYY")}
-              </span>
-            </div>
-            <div className={Style.bookDetailsItem}>
-              <span>Lượt xem: {book?.view}</span>
+            <div className={Style.bookDetailsInfo}>
+              <div className={Style.bookDetailsItem}>
+                <span
+                  className="fw-6 fs-24"
+                  style={{ fontWeight: "bold", fontSize: "30px" }}
+                >
+                  {book?.name}
+                </span>
+              </div>
+              <div className={Style.bookDetailsItem}>
+                <span className="fw-6 fs-24">Tác giả: {book?.author}</span>
+              </div>
+              <div className={Style.bookDetailsItem}>
+                <span className="fw-6 fs-24">
+                  Thể loại:{" "}
+                  {book?.category?.map((item, index) => {
+                    return <span key={index + 1}>{item.name},</span>;
+                  })}
+                </span>
+              </div>
+              <div className={Style.bookDetailsItem}>
+                <span>Nội dung: <p dangerouslySetInnerHTML={{ __html: `${book?.description}` }} /></span>
+              </div>
+              <div className={Style.bookDetailsItem}>
+                <span>Nước sản xuất: {book?.country?.name}</span>
+              </div>
+              <div className={Style.bookDetailsItem}>
+                <span>
+                  Lần cuối cập nhật:{" "}
+                  {moment.utc(book?.updateAt).format("DD/MM/YYYY")}
+                </span>
+              </div>
+              <div className={Style.bookDetailsItem}>
+                <span>Lượt xem: {book?.view}</span>
+              </div>
             </div>
             <button type="button" class="btn btn-danger" onClick={() => {
                             // localStorage.setItem("idToAddFav", book?._id);
@@ -104,11 +132,13 @@ function BookDetails() {
 
         </div>
 
+
       </div>
     </section>
     <Comment/>
+
     </div>
-    
+
   );
 }
 
