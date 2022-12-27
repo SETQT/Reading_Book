@@ -45,32 +45,32 @@ class Main extends React.Component {
 
     fetchData = async () => {
         UserService.getAllBook().
-          then(response => {
-            //   console.log((response.data.data.length/8+1).toFixed());
-              localStorage.setItem("totalPage", (response.data.data.length/8+1).toFixed());
-              localStorage.setItem("totalBook", (response.data.data.length));
-              localStorage.setItem("bookPerPage", 8);
+            then(response => {
+                //   console.log((response.data.data.length/8+1).toFixed());
+                localStorage.setItem("totalPage", (response.data.data.length / 8 + 1).toFixed());
+                localStorage.setItem("totalBook", (response.data.data.length));
+                localStorage.setItem("bookPerPage", 8);
 
-          }).catch(err => {
-              console.log(err);
-          })
-        
-          bookService.getPage().
-          then(response => {
-            //   console.log((response.data.data.length/8+1).toFixed());
-              this.setState({
-                posts: response.data.data
-            });
+            }).catch(err => {
+                console.log(err);
+            })
 
-          }).catch(err => {
-              console.log(err);
-          })
-        
-        
+        bookService.getPage().
+            then(response => {
+                //   console.log((response.data.data.length/8+1).toFixed());
+                this.setState({
+                    posts: response.data.data
+                });
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
     }
-        componentDidMount(){
-            this.fetchData()
-        }
+    componentDidMount() {
+        this.fetchData()
+    }
 
 
     render() {
@@ -83,12 +83,12 @@ class Main extends React.Component {
                         .keys(this.state.posts)
                         // .map(key => <div>asd</div>)
                         .map(key => <CardBook key={key} index={key} details={this.state.posts[key]} />)
-                        
+
                 }
-                                        
+
 
             </div>
-            <Pagination/>
+            <Pagination />
         </div>
     }
 }
@@ -100,7 +100,7 @@ class Button extends React.Component {
     render() {
         return (
             <button className="button button-primary">
-                
+
             </button>
         )
     }
@@ -117,11 +117,11 @@ class CardBookHeader extends React.Component {
     // }
     render() {
         const { image, category } = this.props;
-        
+
         return (
-            <header  className="CardBook-favorite-header">
+            <header className="CardBook-favorite-header">
                 {/* <h5 className="CardBook-header--title">{category}</h5> */}
-                <img src={image} alt="" height={300} width={246} style={{borderTopLeftRadius: "20px",borderTopRightRadius: "20px"}}/>
+                <img src={image} alt="" height={300} width={246} style={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }} />
             </header>
         )
     }
@@ -133,12 +133,12 @@ class CardBookBody extends React.Component {
         return (
             <div className="CardBook-body">
 
-                <h5 className="body-content" style={{textAlign:"center"}}>{this.props.title}</h5>
+                <h5 className="body-content" style={{ textAlign: "center" }}>{this.props.title}</h5>
 
                 {/* <p className="body-content">{this.props.text}</p> */}
 
-                
-                
+
+
 
             </div>
         )
@@ -153,23 +153,23 @@ const MyContext = React.createContext();
 function CardBook(props) {
     const [state, update] = useStore()
     const id = props.details._id
+
     // const { id, setID } = state
     // const [state, update] = useContext(Context)
     // console.log(state);
     const change = () => {
         // update(updateBook(id))
-        
+
         // alert(state.id)
     }
     return (
         <div>
             <>
-            <Link to={`/book/${id}`}>              
-    
-                <div className="CardBook"  style={{cursor:"pointer"}} >
-                    <CardBookHeader category={props.details.category} image={props.details.image} />
-                    <CardBookBody title={props.details.name} text={props.details.description} link={props.details._id}/>
-                </div >
+                <Link to={`/book/${id}`}>
+                    <div className="CardBook" style={{ cursor: "pointer" }} onClick={() => window.localStorage.setItem("idBookForRead", id)}>
+                        <CardBookHeader category={props.details.category} image={props.details.image} />
+                        <CardBookBody title={props.details.name} text={props.details.description} link={props.details._id} />
+                    </div >
                 </Link>
             </>
         </div>

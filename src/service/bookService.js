@@ -29,6 +29,10 @@ class BookService {
         return axios.get(API + `api/book/${id}`, { headers: authHeader() })
 
     }
+    getPerChapterBook(id) {
+        return axios.get(API + `api/chapter/${id}`, { headers: authHeader() })
+
+    }
 
     getPage() {
         return axios.get(API + `api/book/page/pagination?per=8&page=${currentPage}`, { headers: authHeader() })

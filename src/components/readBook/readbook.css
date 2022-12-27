@@ -9,6 +9,58 @@
     flex: 1;
 }
 
+.nameBook {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.commentLine {
+    margin-top: 30px;
+    align-items: center;
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.commentLine img {
+
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    border-radius: 30px;
+}
+
+
+.nameChapter {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 200;
+    color: rgb(219, 145, 33);
+    margin-bottom: 40px;
+}
+
+
+.nameUserRead {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.commentReadBook {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+    /* height: 50px; */
+    margin-left: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+
+    font-weight: 400;
+    /* margin-top: 20px; */
+    background-color: antiquewhite;
+}
+
 .afterMain {
     flex: 1;
     display: grid;
@@ -22,21 +74,33 @@
 
     /* grid-row-gap: 10px; */
     /* grid-row: 10px; */
-    grid-template-rows: repeat(2, auto) repeat(3, 1fr);
+    grid-template-rows: repeat(1, auto) repeat(10, 1fr);
     grid-gap: 10px;
     height: calc(100vh - 10px);
 }
 
 .chapterOfBook {
     /* height: 20px; */
+    cursor: pointer;
+
+}
+
+.chapterOfBook :hover {
+    /* height: 20px; */
+    /* cursor: pointer; */
+    color: #727EC1;
+    /* background-color: aqua; */
+
 }
 
 .contentRead {
+
     flex: 3;
     background-color: #727EC1;
     padding: 30px;
     margin: 0 10px 0 10px;
-    height: 700px;
+    /* height: 700px; */
+    height: 100%;
 }
 
 
@@ -55,10 +119,17 @@
     /* width: 50px; */
 }
 
+.story {
+    height: 500px;
+    /* height: 100%; */
+    overflow-y: scroll;
+}
+
 .outContent {
     padding: 30px;
-    background-color: white;
-    height: 200px;
+    background-color: rgb(224, 226, 215);
+    height: 700px;
+    height: 100%;
     padding: 30px;
     border-radius: 10px;
 }
