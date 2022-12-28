@@ -8,15 +8,39 @@ import { useNavigate } from "react-router-dom";
 import Style from "../../components/userPage/style1.module.css";
 import moment from "moment";
 import Header from '../../components/header/HeaderDetailBook'
-
+import bookService from "../../service/bookService";
 
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
 
+ 
+  const [comment, setComment] = useState([])
+  let ids = window.localStorage.getItem("idBookForRead")
+     
+
+
+
   useEffect(() => {
     fetchData();
+    fetch();
   }, []);
+
+  const fetch = async () => {
+
+    await bookService.getBookById(ids).
+        then(response => {
+
+            
+            
+            setComment(response.data.data.comments)
+            
+            // setCurrenChapter(response.data.data.chapters[0])
+            // console.log(book);
+        }).catch(err => {
+            console.log(err);
+        })
+}
 
   const fetchData = async () => {
     try {
@@ -52,7 +76,7 @@ function BookDetails() {
           <div className={Style.bookDetailsImg}>
             <img src={book?.image} alt="cover img" />
           </div>
-          <div className={Style.bookDetailsInfo}>
+          <div >
             <div style={{display:"flex",justifyContent:"space-between"}}>
             <div className={Style.bookDetailsItem}>
               <span
@@ -62,7 +86,7 @@ function BookDetails() {
                 {book?.name}
               </span>
             </div>
-            <button type="button" class="btn btn-danger" onClick={() => {
+            <button type="button" class="btn btn-danger" style={{marginRight:"20px", marginTop:"20px"}} onClick={() => {
                             localStorage.setItem("idToAddFav", book?._id);
 
               addToFavorite();
@@ -82,33 +106,12 @@ function BookDetails() {
                 })}
               </span>
             </div>
-            <div className={Style.bookDetailsItem}>
-              <span>Nội dung: <p dangerouslySetInnerHTML={{__html: `${book?.description}`}}/></span>
+            <div className={Style.bookDetailsInfo}>
+              <span><p dangerouslySetInnerHTML={{__html: `${book?.description}`}}/></span>
 
             </div>
-            <div className={Style.bookDetailsInfo}>
-              <div className={Style.bookDetailsItem}>
-                <span
-                  className="fw-6 fs-24"
-                  style={{ fontWeight: "bold", fontSize: "30px" }}
-                >
-                  {book?.name}
-                </span>
-              </div>
-              <div className={Style.bookDetailsItem}>
-                <span className="fw-6 fs-24">Tác giả: {book?.author}</span>
-              </div>
-              <div className={Style.bookDetailsItem}>
-                <span className="fw-6 fs-24">
-                  Thể loại:{" "}
-                  {book?.category?.map((item, index) => {
-                    return <span key={index + 1}>{item.name},</span>;
-                  })}
-                </span>
-              </div>
-              <div className={Style.bookDetailsItem}>
-                <span>Nội dung: <p dangerouslySetInnerHTML={{ __html: `${book?.description}` }} /></span>
-              </div>
+            
+              
               <div className={Style.bookDetailsItem}>
                 <span>Nước sản xuất: {book?.country?.name}</span>
               </div>
@@ -121,21 +124,34 @@ function BookDetails() {
               <div className={Style.bookDetailsItem}>
                 <span>Lượt xem: {book?.view}</span>
               </div>
-            </div>
-            <button type="button" class="btn btn-danger" onClick={() => {
+              <button type="button" class="btn btn-danger" style={{marginLeft:"20px", marginBottom:"20px"}} onClick={() => {
                             // localStorage.setItem("idToAddFav", book?._id);
               window.location.href="http://localhost:3000/read"
               // addToFavorite();
 
               }}>Đọc sách</button>
+            </div>
+            
           </div>
 
         </div>
 
 
-      </div>
+      
     </section>
-    <Comment/>
+    <div style={{flex: "3",backgroundColor: "#727EC1", padding: "30px", margin: "0 10px 0 10px"}}>
+    {comment?.map((item, index) =>
+                            <div className="commentLine" key={index}>
+                                <img src={item.user.avatar}></img>
+                                <div className='commentReadBook'>
+                                    <div className='nameUserRead'>{item.user.username} </div>
+                                    <div> {item.content}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+    </div>
+    
 
     </div>
 

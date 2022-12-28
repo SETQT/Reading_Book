@@ -184,6 +184,7 @@ body{
 }
 .bookDetailsItem{
     margin-bottom: 1.4rem;
+    margin-left: 20px;
 }
 .bookDetailsItem.description{
     opacity: 0.8;
