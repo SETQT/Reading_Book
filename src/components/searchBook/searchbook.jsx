@@ -1,10 +1,30 @@
 import React, { useState, useEffect } from "react";
 import bookService from "../../service/bookService";
+import { Route, Routes } from "react-router-dom";
 import Style from "../../style/content.module.css";
 import { Main, StoreContext } from "../cartBook/CartSearch";
 import Header from '../header/HeaderDetailBook'
 import "./searchbook.css";
 import $ from "jquery"
+
+function Search() {
+  // const [state, update] = useStore()
+
+  
+  return (
+    <>
+      <Routes>
+        {/* <Route path='/'> */}
+
+        <Route path="/" element={<SearchBook />} />
+        <Route path="book/page/:id" element={<SearchBook />} />
+
+        {/* </Route> */}
+      </Routes>
+    </>
+  );
+}
+
 
 function SearchBook() {
   //   if(loading) return <Loading />;
@@ -60,6 +80,7 @@ function SearchBook() {
                         localStorage.setItem("searchName", result);
                         localStorage.setItem("searchCategoryPage", category);
                         localStorage.setItem("searchCountryPage", country);
+                        
                         window.location.reload(false);
 
                 }}>
@@ -116,4 +137,4 @@ function SearchBook() {
   );
 }
 
-export default SearchBook;
+export default Search;

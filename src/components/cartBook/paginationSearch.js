@@ -19,7 +19,7 @@ const Pagination = () => {
                 
                 pages.map((page, index) => {
 
-                    return <a href={`search/book/page/${page}`}>
+                    return <a href={`/search/book/page/${page}`}>
                     <button key={index} onClick={() => {
                         localStorage.setItem("currentPageSearch", page);
                         setCurrentPage(page)}}

@@ -352,13 +352,23 @@ function Content(props) {
 function ContentComment(props) {
     const [listAccount, setList] = useState([]);
 
+    const id = localStorage.getItem('bookComment');
+
+
     useEffect(() => {
-
-
-        setList(props.data)
-        // console.log(listAccount);
-
-    }, [props.data])
+  
+  
+      bookService.getBookById(id).
+        then(response => {
+          console.log(response.data.data);
+          setList(response.data.data.comments)
+  
+        }).catch(err => {
+          console.log(err);
+        })
+  
+  
+    }, [])
 
 
 

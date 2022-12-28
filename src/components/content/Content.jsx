@@ -19,13 +19,13 @@ function Content(props) {
               <span className={Style.title}>Postcasts</span>
             </div>
             <div style={{ flex: 1 }}> </div>
-            <div class="main-search-input-wrap">
+            <div class="main-search-input-wrap" >
               <div
                 class="main-search-input fl-wrap"
-                style={{ display: "flex" }}
+                style={{ display: "flex",marginRight:"20px" }}
               >
                 <div class="main-search-input-item">
-                  <input type="text" defaultValue="" placeholder="Search..." id="searchHome" />
+                  <input type="text" defaultValue="" placeholder="Search..." id="searchHome"/>
                 </div>
 
                 <button class="main-search-button" onClick={()=>{
