@@ -25,3 +25,17 @@ code {
   height: 1000px;
   /* padding-bottom: 30px; */
 }
+
+.bodyHome1 {
+  /* font-size: 50px; */
+  display: flex;
+  /* padding: 10px; */
+  /* height: 600px; */
+  /* padding-top: 35px; */
+
+  /* padding-bottom: 50px; */
+  /* border: 2px solid coral; */
+  border-radius: 10px;
+  height: 850px;
+  /* padding-bottom: 30px; */
+}
