@@ -32,7 +32,14 @@ function header() {
 
                 <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="/">Home</a>
+                        <a className="navbar-brand" href="/" onClick={()=>{
+                            localStorage.setItem("searchName", "");
+                            localStorage.setItem("searchCategoryPage", "");
+                            localStorage.setItem("searchCountryPage", "");
+                            localStorage.setItem("currentPage", "");
+                            localStorage.setItem("currentPageSearch", "");
+
+                        }}>Home</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

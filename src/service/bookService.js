@@ -8,6 +8,13 @@ const API = 'https://ebook4u-server.onrender.com/'
 
 const currentPage = localStorage.getItem('currentPage');
 
+const searchName = localStorage.getItem('searchName');
+
+const searchCategory = localStorage.getItem('searchCategoryPage');
+
+const searchCountry = localStorage.getItem('searchCountryPage');
+
+
 class BookService {
 
     deleteBook(id) {
@@ -34,6 +41,12 @@ class BookService {
         return axios.get(API + `api/book/${id}`, { headers: authHeader() })
 
     }
+
+    getSearchBook(name) {
+        return axios.get(API + `search?q=${name}&category=${searchCategory}&country=${searchCountry}`, { headers: authHeader() })
+
+    }
+
     getPerChapterBook(id) {
         return axios.get(API + `api/chapter/${id}`, { headers: authHeader() })
 
@@ -41,6 +54,11 @@ class BookService {
 
     getPage() {
         return axios.get(API + `api/book/page/pagination?per=8&page=${currentPage}`, { headers: authHeader() })
+
+    }
+
+    getPageSearch() {
+        return axios.get(API + `api/book/page/pagination?per=8&page=${currentPage}&q=${searchName}&category=${searchCategory}&country=${searchCountry}`, { headers: authHeader() })
 
     }
 
