@@ -5,40 +5,6 @@ import { UserData } from "../content/Data";
 import AuthAdmin from "../../service/auth";
 import bookService from "../../service/bookService";
 
-const dataTop = [
-  {
-    Name: "The Hike",
-    View: "50k",
-  },
-  {
-    Name: "The Sailor's Tale",
-    View: "40k",
-  },
-  {
-    Name: "A Runaway Tale",
-    View: "30k",
-  },
-];
-
-const dataSummary = [
-  {
-    Name: "New users",
-    count: "1456",
-  },
-  {
-    Name: "Total users",
-    count: "20000",
-  },
-  {
-    Name: "New books",
-    count: "2000",
-  },
-  {
-    Name: "Total books",
-    count: "12000",
-  },
-];
-
 function Dashboard() {
   const [userData, setUserData] = useState(null);
   const [mode, setMode] = useState(1);
@@ -60,25 +26,12 @@ function Dashboard() {
 
   useEffect(() => {
     let data = getData("thisWeek");
-    console.log(data);
+
     setUserData(data);
   }, [listAccount]);
 
   const callAPI = async () => {
-    // const res = await bookService.getChart(type1, type2);
-    // if(res) {
-    //   setList(res.data.data);
-    // }
 
-    // const res1 = await bookService.getChart("week", 1);
-    // if(res1) {
-    //   setList1(res1.data.data);
-    // }
-
-    // const res2 = await bookService.getChart("month", 1);
-    // if(res2) {
-    //   setList2(res2.data.data);
-    // }
     const [res, res1, res2] = await Promise.all([
       bookService.getChart(type1, type2),
       bookService.getChart("week", 1),
@@ -153,11 +106,11 @@ function Dashboard() {
       bookService
         .getTopBook()
         .then((response) => {
-          // console.log(response);
+
           setList(response.data.data);
         })
         .catch((err) => {
-          console.log(err);
+
         });
     }, []);
 
@@ -209,11 +162,11 @@ function Dashboard() {
       bookService
         .getSummary()
         .then((response) => {
-          // console.log(response);
+
           setList(response.data.data);
         })
         .catch((err) => {
-          console.log(err);
+
         });
     }, []);
 
@@ -321,9 +274,8 @@ function Dashboard() {
             <div className="btnSelect">
               <button
                 type="button"
-                className={`btn ${
-                  mode === 1 ? "btn-secondary" : "btn-outline-secondary"
-                }`}
+                className={`btn ${mode === 1 ? "btn-secondary" : "btn-outline-secondary"
+                  }`}
                 disabled={mode === 1}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToThisWeek}
@@ -332,9 +284,8 @@ function Dashboard() {
               </button>
               <button
                 type="button"
-                className={`btn ${
-                  mode === 2 ? "btn-secondary" : "btn-outline-secondary"
-                }`}
+                className={`btn ${mode === 2 ? "btn-secondary" : "btn-outline-secondary"
+                  }`}
                 disabled={mode === 2}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToLastWeek}
@@ -343,9 +294,8 @@ function Dashboard() {
               </button>
               <button
                 type="button"
-                className={`btn ${
-                  mode === 3 ? "btn-secondary" : "btn-outline-secondary"
-                }`}
+                className={`btn ${mode === 3 ? "btn-secondary" : "btn-outline-secondary"
+                  }`}
                 disabled={mode === 3}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToLastMonth}
@@ -357,14 +307,14 @@ function Dashboard() {
           </div>
         </div>
         <div className="mainContent1">
-          <Content data={dataTop} />
+          <Content />
         </div>
 
-        <div className="mainContent1" style={{ marginTop: "225px" }}>
-          <ContentSummary data={dataSummary} />
+        <div className="mainContent3" >
+          <ContentSummary />
         </div>
       </div>
-      <div className="contentDashboard" style={{ marginLeft: "50px" }}></div>
+      <div className="contentDashboard"></div>
     </>
   );
 }

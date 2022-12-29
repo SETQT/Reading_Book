@@ -3,8 +3,8 @@ import { Component } from 'react'
 import style from "../../style/header.css"
 // import "../../style/styleGlobal.js/index.js"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.js';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.js';
 import bell from "../../assets/imgs/bell-solid.svg"
 import chat from "../../assets/imgs/chat.svg"
 import book from "../../assets/imgs/book.png"
@@ -29,18 +29,18 @@ function headerUser() {
 
                         <div className=" collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ms-auto ">
-                                <li className="nav-item" style={{marginLeft:"20px",fontWeight:"bold", fontSize: "20px"}}>
+                                <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
                                     Donate
                                     {/* <a className="nav-link mx-2 active" aria-current="page" href="/user">My Book</a> */}
                                 </li>
-                                <li className="nav-item" style={{marginLeft:"20px",fontWeight:"bold", fontSize: "20px"}}>
+                                <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
                                     My Library
                                 </li>
-                                <li className="nav-item" style={{marginLeft:"20px",fontWeight:"bold", fontSize: "20px"}}>
+                                <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
                                     Write
 
                                 </li>
-                                <li className="nav-item" style={{marginLeft:"20px",fontWeight:"bold", fontSize: "20px"}}>
+                                <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
                                     Company
 
                                 </li>

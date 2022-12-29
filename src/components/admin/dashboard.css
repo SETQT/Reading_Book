@@ -26,7 +26,7 @@
     height: 190px;
     border-radius: 10px;
     width: 100%;
-    
+
 
 }
 
@@ -39,27 +39,29 @@
 
 }
 
-.btnSelect{
+.btnSelect {
     display: flex;
 }
 
 .bg-salmon {
     background-color: salmon;
     color: white;
-  }
+}
 
-  .mainTittle1 {
+.mainTittle1 {
     background-color: #64ECB3;
     padding: 10px;
     padding-bottom: 50px;
     position: relative;
     /* border-radius: 20px; */
 }
+
 .mainTitleMgb {
     font-size: 40px;
     color: white;
     /* background-color: #141414; */
 }
+
 .mainContent2 {
     /* display: ; */
     position: absolute;
@@ -71,10 +73,11 @@
     display: flex;
     padding-top: 10px;
 }
+
 .mainContent1 {
     /* display: ; */
     position: absolute;
-    width: 27%;
+    /* width: 27%; */
     top: 120px;
     left: 800px;
     background-color: white;
@@ -82,6 +85,20 @@
     display: flex;
 
 }
+
+.mainContent3 {
+    /* display: ; */
+    position: absolute;
+    width: 250px;
+    top: 360px;
+
+    left: 800px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+
+}
+
 .titleDashboard {
     /* color: rgb(219, 195, 195); */
     font-size: 25px;

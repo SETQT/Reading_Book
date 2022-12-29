@@ -19,16 +19,16 @@ function Content(props) {
               <span className={Style.title}>Postcasts</span>
             </div>
             <div style={{ flex: 1 }}> </div>
-            <div class="main-search-input-wrap" >
+            <div className="main-search-input-wrap" >
               <div
-                class="main-search-input fl-wrap"
+                className="main-search-input fl-wrap"
                 style={{ display: "flex", marginRight: "20px" }}
               >
-                <div class="main-search-input-item">
+                <div className="main-search-input-item">
                   <input type="text" defaultValue="" placeholder="Search..." id="searchHome" />
                 </div>
 
-                <button class="main-search-button" onClick={() => {
+                <button className="main-search-button" onClick={() => {
                   let name = $('#searchHome').val();
                   let result = name.toLowerCase();
                   localStorage.setItem("searchName", result);
