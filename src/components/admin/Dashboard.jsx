@@ -31,7 +31,6 @@ function Dashboard() {
   }, [listAccount]);
 
   const callAPI = async () => {
-
     const [res, res1, res2] = await Promise.all([
       bookService.getChart(type1, type2),
       bookService.getChart("week", 1),
@@ -106,12 +105,9 @@ function Dashboard() {
       bookService
         .getTopBook()
         .then((response) => {
-
           setList(response.data.data);
         })
-        .catch((err) => {
-
-        });
+        .catch((err) => {});
     }, []);
 
     return (
@@ -162,12 +158,9 @@ function Dashboard() {
       bookService
         .getSummary()
         .then((response) => {
-
           setList(response.data.data);
         })
-        .catch((err) => {
-
-        });
+        .catch((err) => {});
     }, []);
 
     return (
@@ -274,8 +267,9 @@ function Dashboard() {
             <div className="btnSelect">
               <button
                 type="button"
-                className={`btn ${mode === 1 ? "btn-secondary" : "btn-outline-secondary"
-                  }`}
+                className={`btn ${
+                  mode === 1 ? "btn-secondary" : "btn-outline-secondary"
+                }`}
                 disabled={mode === 1}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToThisWeek}
@@ -284,8 +278,9 @@ function Dashboard() {
               </button>
               <button
                 type="button"
-                className={`btn ${mode === 2 ? "btn-secondary" : "btn-outline-secondary"
-                  }`}
+                className={`btn ${
+                  mode === 2 ? "btn-secondary" : "btn-outline-secondary"
+                }`}
                 disabled={mode === 2}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToLastWeek}
@@ -294,8 +289,9 @@ function Dashboard() {
               </button>
               <button
                 type="button"
-                className={`btn ${mode === 3 ? "btn-secondary" : "btn-outline-secondary"
-                  }`}
+                className={`btn ${
+                  mode === 3 ? "btn-secondary" : "btn-outline-secondary"
+                }`}
                 disabled={mode === 3}
                 style={{ marginLeft: "5px" }}
                 onClick={changeToLastMonth}
@@ -310,7 +306,7 @@ function Dashboard() {
           <Content />
         </div>
 
-        <div className="mainContent3" >
+        <div className="mainContent3">
           <ContentSummary />
         </div>
       </div>

@@ -23,12 +23,6 @@ function User() {
 
     </Routes>
   )
-
-
 }
 
-
-
-// bodyHome
-// }
 export default User

@@ -23,11 +23,9 @@ function Content(props) {
 
     UserService.getProfileUser().
       then(response => {
-        console.log(response.data.data);
         setList(response.data.data)
 
       }).catch(err => {
-        console.log(err);
       })
 
 

@@ -7,14 +7,6 @@ import HeaderUser from '../../components/header/HeaderUser'
 
 import { Outlet } from 'react-router-dom'
 
-const data = {
-    Avatar: "https://static01.nyt.com/images/2022/11/22/multimedia/22world-cup-argentina-saudi-arabia-gamer-1-b19a/22world-cup-argentina-saudi-arabia-gamer-1-b19a-superJumbo.jpg?quality=75&auto=webp",
-    Username: "messi1987",
-    Name: "Lionel Messi",
-    Email: "sati@gmail.com",
-    TypeOfUser: "Reader",
-    DateOfBirth: "24/06/1987"
-}
 
 function Content(props) {
     const [listAccount, setList] = useState([]);
@@ -22,7 +14,6 @@ function Content(props) {
     useEffect(() => {
 
         setList(props.data)
-        console.log(listAccount);
 
     }, [props.data])
 

@@ -30,7 +30,6 @@ class BookService {
 
     }
     updateBook(id) {
-        // AuthAdmin()
 
         return axios.put(API + `api/book/${id}`, { headers: authHeader() })
 
@@ -100,11 +99,7 @@ class BookService {
         return axios.get(API + 'api/country/all', { headers: authHeader() })
     }
 
-    // getReport() {
-    //     return axios.get(API + 'admin/report/all', { headers: authHeader() })
-
-    // }
-
+    
 }
 
 export default new BookService();

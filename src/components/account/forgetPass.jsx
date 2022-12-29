@@ -21,7 +21,6 @@ function ForgetPass() {
                 <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
                     <div className="container-fluid">
                         <img className="book" src={book} alt="" />
-                        {/* <i className="fa-solid fa-bell"></i> */}
                         <a className="navbar-brand" href="/home">
                             EBoo4U
                         </a>
@@ -48,7 +47,6 @@ function ForgetPass() {
                                     }}
                                 >
                                     Donate
-                                    {/* <a className="nav-link mx-2 active" aria-current="page" href="/user">My Book</a> */}
                                 </li>
                                 <li
                                     className="nav-item"

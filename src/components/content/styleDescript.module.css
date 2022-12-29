@@ -1,12 +1,10 @@
 .container {
 
 
-    /* height: 100%; */
     background-color: #26303f;
     font-size: 30px;
     padding-top: 20px;
     text-align: center;
-    /* padding-bottom: 20px; */
     border-radius: 0px 40px 40px 0px;
     color: blanchedalmond;
 }
@@ -14,12 +12,10 @@
 .containerUser {
 
     margin-left: 10%;
-    /* height: 100%; */
     background-color: #26303f;
     font-size: 30px;
     padding-top: 20px;
     text-align: center;
-    /* padding-bottom: 20px; */
     border-radius: 40px 40px 40px 40px;
     color: blanchedalmond;
 }

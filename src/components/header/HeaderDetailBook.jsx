@@ -10,7 +10,6 @@ function header() {
         <>
             <div >
 
-                {/* <div className='navbar__header'> dwd</div> */}
 
 
 

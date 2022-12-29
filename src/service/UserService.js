@@ -8,19 +8,16 @@ const API = 'https://ebook4u-server.onrender.com/'
 class UserService {
 
     async getAllAccount() {
-        // await AuthAdmin()
         return axios.get(API + 'api/user/all', { headers: authHeader() })
 
     }
 
 
     banAccount(id) {
-        // return axios.put(API + `admin/user/${id}/banned`, { headers: authHeader() })
         return fetch(
             `https://ebook4u-server.onrender.com/admin/user/${id}/banned`,
             {
                 method: 'PUT',
-                // body: formData,
                 headers: {
 
                     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'
@@ -35,12 +32,10 @@ class UserService {
 
     }
     unbanAccount(id) {
-        // return axios.put(API + `admin/user/${id}/unbanned`, { headers: authHeader() })
         return fetch(
             `https://ebook4u-server.onrender.com/admin/user/${id}/unbanned`,
             {
                 method: 'PUT',
-                // body: formData,
                 headers: {
 
                     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MzlkNmNlOTFiYTU3MTI4OTdkZDE5MjYiLCJpYXQiOjE2NzE4NTU0MjcsImV4cCI6MTcwMzM5MTQyN30.hpWdcirkiXTiR5WqzjEuoihCbx5mOBjMkr5qVjgj-yY'

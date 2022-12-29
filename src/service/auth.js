@@ -7,7 +7,6 @@ export default function AuthAdmin() {
 
     const authen = async () => {
         await axios.get(API + 'auth/checkAdmin', { headers: authHeader() }).then((res) => {
-            // console.log(res.data.success);
             if (!res.data.success) window.location.href = "http://localhost:3000/login"
 
         }).catch((e) => {

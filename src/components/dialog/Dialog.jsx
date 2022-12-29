@@ -16,8 +16,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const agree = (type, user) => {
-  // alert(type);
-  // alert(user)
+  
 
   switch (type) {
     case "ban":
@@ -85,7 +84,6 @@ export default function AlertDialogSlide(props) {
           keepMounted
           onClose={handleClose}
           aria-describedby="alert-dialog-slide-description"
-          // fullWidth="true"
         >
           <DialogTitle>{"Comfirm Dialog"}</DialogTitle>
           <DialogContent>

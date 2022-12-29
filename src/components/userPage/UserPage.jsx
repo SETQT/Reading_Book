@@ -22,7 +22,6 @@ const LogoutAccount = () => {
 };
 
 function UserPage() {
-  //   const [book, setBook] = useState(10);
   const [listAccount, setList] = useState([]);
 
 
@@ -31,11 +30,9 @@ function UserPage() {
 
     UserService.getProfileUser().
       then(response => {
-        console.log(response.data.data);
         setList(response.data.data)
 
       }).catch(err => {
-        console.log(err);
       })
 
 

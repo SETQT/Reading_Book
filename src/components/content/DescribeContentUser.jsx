@@ -10,7 +10,6 @@ function DescribeContent(props) {
     const id = state.id
     return (
         <>
-            {/* <div style={props.style}> */}
             <div className={Style.containerUser} style={props.style}>
                 <div>
                     <div>

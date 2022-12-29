@@ -23,7 +23,6 @@ function Signup() {
     const [birthday, setBirthday] = useState("");
 
     async function register() {
-        console.log(userName, password);
         let item = {
             username: userName,
             password: password,
@@ -32,7 +31,6 @@ function Signup() {
             fullname: name,
             dateOfBirth: birthday,
         };
-        // let item = { email, name, userName, password, confPass, birthday };
         fetch("https://ebook4u-server.onrender.com/auth/register", {
             method: 'post',
             headers: {
@@ -44,11 +42,9 @@ function Signup() {
         })
             .then((Response) => Response.json())
             .then((result) => {
-                console.log(result);
                 if (result.success)
                     navigate("/home");
-                else
-                    console.log(result.message);
+                
             })
     }
 
@@ -58,7 +54,6 @@ function Signup() {
                 <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
                     <div className="container-fluid">
                         <img className="book" src={book} alt="" />
-                        {/* <i className="fa-solid fa-bell"></i> */}
                         <a className="navbar-brand" href="/home">
                             EBooK4U
                         </a>
@@ -85,7 +80,6 @@ function Signup() {
                                     }}
                                 >
                                     Donate
-                                    {/* <a className="nav-link mx-2 active" aria-current="page" href="/user">My Book</a> */}
                                 </li>
                                 <li
                                     className="nav-item"
