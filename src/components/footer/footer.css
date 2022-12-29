@@ -1,9 +1,9 @@
 .site-footer {
-    /* background-color: #8b9a9e; */
+
     padding: 45px 0 20px;
     font-size: 15px;
     line-height: 24px;
-    /* color: #85c43c; */
+
 }
 
 .site-footer hr {
@@ -84,6 +84,7 @@
     .site-footer {
         padding-bottom: 0
     }
+
     .site-footer .copyright-text,
     .site-footer .social-icons {
         text-align: center

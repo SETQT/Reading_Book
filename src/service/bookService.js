@@ -59,6 +59,11 @@ class BookService {
         return axios.get(API + `api/book/page/pagination?per=8&page=${currentPage}`, { headers: authHeader() })
 
     }
+    search(name, type, country) {
+        return axios.get(API + `api/book/page/pagination?per=8&page=${currentPage}&q=${name}&category=${type}
+        &country=${country}`, { headers: authHeader() })
+
+    }
 
     getPageSearch() {
         return axios.get(API + `api/book/page/pagination?per=8&page=${currentPageSearch}&q=${searchName}&category=${searchCategory}&country=${searchCountry}`, { headers: authHeader() })
