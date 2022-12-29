@@ -29,7 +29,7 @@ function App() {
         <Route path='/admin/*' element={<Admin />} />
         <Route path='/read' element={<ReadBook />} />
         <Route path="/login/*" element={<Login />} />{" "}
-        <Route path='/search' element={<SearchBook />} />
+        <Route path='/search/*' element={<SearchBook />} />
 
       </Routes>
     </>

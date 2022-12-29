@@ -4,9 +4,9 @@ import './style.css'
 
 const Pagination = () => {
     let pages = [];
-    const currentPageNum = localStorage.getItem('currentPage');
+    const currentPageNum = localStorage.getItem('currentPageSearch');
 
-    const totalPage = localStorage.getItem('totalPage');
+    const totalPage = localStorage.getItem('totalPageSearch');
     const [currentPage, setCurrentPage] = useState(parseInt(currentPageNum));
     for(var i = 1; i <= parseInt(totalPage); i++){
         pages.push(i);
@@ -19,9 +19,9 @@ const Pagination = () => {
                 
                 pages.map((page, index) => {
 
-                    return <a href={`/book/page/${page}`}>
+                    return <a href={`/search/book/page/${page}`}>
                     <button key={index} onClick={() => {
-                        localStorage.setItem("currentPage", page);
+                        localStorage.setItem("currentPageSearch", page);
                         setCurrentPage(page)}}
                     className={page === currentPage ? "active" : ""}>{page}</button>
                     </a>

@@ -1,21 +1,44 @@
 import React, { useState, useEffect } from "react";
 import bookService from "../../service/bookService";
+import { Route, Routes } from "react-router-dom";
 import Style from "../../style/content.module.css";
-import { Main, StoreContext } from "../cartBook/CartBook";
+import { Main, StoreContext } from "../cartBook/CartSearch";
 import Header from '../header/HeaderDetailBook'
 import "./searchbook.css";
+import $ from "jquery"
+
+function Search() {
+  // const [state, update] = useStore()
+
+  
+  return (
+    <>
+      <Routes>
+        {/* <Route path='/'> */}
+
+        <Route path="/" element={<SearchBook />} />
+        <Route path="book/page/:id" element={<SearchBook />} />
+
+        {/* </Route> */}
+      </Routes>
+    </>
+  );
+}
+
 
 
 function SearchBook() {
   //   if(loading) return <Loading />;
+  let searchContent = localStorage.getItem('searchName');
+
   const [listCategory, setListCategory] = useState([]);
   const [listCountry, setListCountry] = useState([]);
 
   useEffect(() => {
+
     bookService
       .getAllCategory()
       .then((response) => {
-        console.log(response.data.data);
         setListCategory(response.data.data);
       })
       .catch((err) => {
@@ -25,7 +48,6 @@ function SearchBook() {
     bookService
       .getAllCountry()
       .then((response) => {
-        console.log(response.data.data);
         setListCountry(response.data.data);
       })
       .catch((err) => {
@@ -45,9 +67,24 @@ function SearchBook() {
               className="form-control"
               aria-label="Text input with segmented dropdown button"
               placeholder="Nhập tên truyện"
+              defaultValue={`${searchContent}`} id="searchBookPage"
             />
             <div className="input-group-append">
-              <button type="button" className="btn btn-outline-secondary">
+              <button type="button" className="btn btn-outline-secondary" onClick={()=>{
+                        let name = $('#searchBookPage').val();
+                        let category = $('#categorySearch option:selected').val();
+                        console.log(category);
+                        let country = $('#countrySearch option:selected').val();
+                        console.log(country);
+
+                        let result = name.toLowerCase();
+                        localStorage.setItem("searchName", result);
+                        localStorage.setItem("searchCategoryPage", category);
+                        localStorage.setItem("searchCountryPage", country);
+                        
+                        window.location.reload(false);
+
+                }}>
                 Search
               </button>
             </div>
@@ -60,9 +97,12 @@ function SearchBook() {
               Thể loại:
             </label>
             <br />
-            <select name="category" id="category">
+            <select name="category" id="categorySearch" defaultValue="">
+
+            <option defaultValue={true}></option>
+
               {listCategory.map((item, index) => {
-                return <option key={index}>{item.name}</option>;
+                return <option key={index} id={item.name}>{item.name}</option>;
               })}
             </select>
           </div>
@@ -74,9 +114,11 @@ function SearchBook() {
               Đất nước:
             </label>
             <br />
-            <select name="country" id="country">
+            <select name="country" id="countrySearch" defaultValue={""}>
+            <option defaultValue={true}></option>
+
               {listCountry.map((item, index) => {
-                return <option key={index}>{item.name}</option>;
+                return <option key={index} id={item.name}>{item.name}</option>;
               })}
             </select>
           </div>
@@ -96,4 +138,4 @@ function SearchBook() {
   );
 }
 
-export default SearchBook;
+export default Search;

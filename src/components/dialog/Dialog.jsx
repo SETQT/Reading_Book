@@ -59,6 +59,7 @@ const agree = (type, user) => {
         })
         .catch((error) => {});
       break;
+      
     default:
       break;
   }
