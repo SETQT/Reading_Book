@@ -5,6 +5,7 @@ import moment from 'moment';
 import UserService from '../../service/UserService';
 
 import "../sidebar/sidebar.css"
+import "./styleUser.css"
 import HeaderUser from '../../components/header/HeaderUser'
 
 import { Outlet } from 'react-router-dom'

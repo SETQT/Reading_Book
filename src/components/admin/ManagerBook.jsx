@@ -26,13 +26,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import bookService from '../../service/bookService';
 import Select from 'react-select'
-
 import makeAnimated from 'react-select/animated';
 import { Category } from '@mui/icons-material';
 import { useStore } from '../store/hook';
 import { updateBook } from '../store/action';
 import { jwt } from '../../service/authHeader';
 import AuthAdmin from '../../service/auth';
+import AnimatedMulti from './Selecter';
+const animatedComponents = makeAnimated();
 
 
 
@@ -106,7 +107,6 @@ function ManagerBook() {
 
                 <Route index element={<Navigate to="all" replace />} />
                 <Route path='all' element={<AllBook />} />
-                <Route path='add' element={<AddBook />} />
                 <Route path='comment' element={<CommentBook />} />
 
                 <Route path='update' element={<UpdateBook />} />
@@ -180,6 +180,18 @@ function AddBook() {
 }
 
 function UpdateBook() {
+    // const id = localStorage.getItem("bookUpdate");
+    // const [list, setList] = useState([])
+    // useEffect(() => {
+    //     const data = async () => {
+    //         let a = await initData(id);
+    //         return a
+
+    //     }
+    //     setList(data());
+    // }, [])
+    // const list = initData(id)
+    // us
     return (
         <div>
 
@@ -319,10 +331,11 @@ function Content(props) {
 
 
                                         <img className='icon' src={chat} alt="" onClick={() => {
-                                                // alert(item._id)
-                                                localStorage.setItem("bookComment", item._id);
-                                                handleOnClick2()}
-                                            } type={"chat"} />
+                                            // alert(item._id)
+                                            localStorage.setItem("bookComment", item._id);
+                                            handleOnClick2()
+                                        }
+                                        } type={"chat"} />
                                         <img className='icon' src={updateIcon} alt=""
                                             onClick={() => {
                                                 // alert(item._id)
@@ -586,26 +599,81 @@ async function initData(id) {
     const response = await bookService.getBookById(id);
     let data = response.data.data.book;
     if (!data) return
-    console.log(data);
+    // console.log(data);
     $('#nameBook2').val(data.name)
     $('#author2').val(data.author)
     $('#country2').val(data.country);
 
     $('#descriptionFormBook2').val(data.description);
+    let op = []
+    data.category.map((index, item) => op.push({ label: index.name, value: index._id }));
+    console.log("---");
+    console.log(op);
+    // localStorage.location.setItem("typeOld", op)
+    return op
+
+}
+{
+    // op.map((item.index)=>{
+    //     <>sd</>
+    // })
+}
+function asd() {
+    $('#chkveg').multiselect({
+
+        includeSelectAllOption: true
+    });
+
+    $('#btnget').click(function () {
+
+        alert($('#chkveg').val());
+    });
+}
+function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
 }
 function ContentUpdate(props) {
     const [listCountry, setCountry] = useState([]);
     const [options, setOption] = useState([]);
     const [state, update] = useStore()
+    const [op, setOp] = useState(null);
     const id = localStorage.getItem("bookUpdate");
     // const id = state.id
+    // asd()
     useEffect(() => {
+        console.log(props);
 
 
-        initData(id)
         // console.log(state);
 
+
+
         const load = async () => {
+            // const dataNew =  initData(id)
+            // setOp(initData(id))
+
+            bookService.getBookById(id).then((response) => {
+                let data = response.data.data.book;
+                if (!data) return
+                // console.log(data);
+
+                let options = []
+                data.category.map((index, item) => options.push({ label: index.name, value: index._id }));
+                console.log("---");
+                console.log(options);
+                setOp(options)
+                $('#nameBook2').val(data.name)
+                $('#author2').val(data.author)
+                // $('#country2').val(data.country);
+
+                $('#descriptionFormBook2').val(data.description);
+                selectElement('country2', data.country._id);
+                // localStorage.location.setItem("typeOld", op)
+
+            });
+
+            // initData(id)
             const result = await bookService.getAllCategory();
 
             let list = [];
@@ -662,6 +730,9 @@ function ContentUpdate(props) {
                     <div>
 
                         <label htmlFor="category2">Category:</label>
+
+
+                        {/* 
                         <Select closeMenuOnSelect={false}
 
                             components={animatedComponents}
@@ -669,11 +740,16 @@ function ContentUpdate(props) {
                             classNamePrefix="react-select"
                             options={options} isMulti
                             maxMenuHeight={250}
-
+                            value={op}
+                            // defaultValue={props.list}
+                            // defaultValue={op}
+                            // defaultValue={initData(id)}
                             menuPlacement="auto"
                             id="category2"
 
-                        />
+                        /> */}
+                        {op && <AnimatedMulti list={options} default={op} />}
+
 
                     </div>
                     <div>
@@ -714,22 +790,22 @@ function ContentUpdate(props) {
     )
 }
 const submitUpdateBook = async () => {
-    let name = $('#nameBook').val();
-    let author = $('#author').val();
+    let name = $('#nameBook2').val();
+    let author = $('#author2').val();
 
-    let category = $('#category').val();
+    let category = $('#category2').val();
     var ek = [];
     $('.react-select__multi-value__label').each(function () {
         let labels = ($(this).html());
-        console.log(labels);
+        // console.log(labels);
         const result = getByValue(CategoryListFromSV, labels)
 
         ek.push(result.value)
     });
 
-    let country = $('#country').val();
+    let country = $('#country2').val();
 
-    let descript = $('#descriptionFormBook').val();
+    let descript = $('#descriptionFormBook2').val();
     let content = $('#contentPDF').prop('files')[0];
     const formData = new FormData();
 
@@ -740,12 +816,21 @@ const submitUpdateBook = async () => {
     ek.forEach(element => {
         formData.append("category[]", element);
     });
+
     formData.append("country", country);
     let jwts = jwt()
+    let id = localStorage.getItem("bookUpdate");
+    console.log("--------");
+
+    for (let [key, value] of formData) {
+        console.log(`${key}: ${value}`)
+    }
+    console.log("--------");
+    console.log(id);
     await fetch(
-        'https://ebook4u-server.onrender.com/api/book',
+        `https://ebook4u-server.onrender.com/api/book/${id}`,
         {
-            method: 'POST',
+            method: 'PUT',
             body: formData,
             headers: {
 
@@ -757,8 +842,8 @@ const submitUpdateBook = async () => {
         // .then((response) => console.log(response))
         .then((result) => {
             // window.location.href("http://localhost:3000/admin/book/all")
-            window.location.reload(false)
-            // console.log('Success:', result);
+            // window.location.reload(false)
+            console.log(':', result);
         })
         .catch((error) => {
 
@@ -798,12 +883,14 @@ const submitBook = async () => {
     formData.append("name", name);
     formData.append("description", descript);
     formData.append("author", author);
+
     ek.forEach(element => {
 
         formData.append("category[]", element);
     });
     formData.append("country", country);
     let jwts = jwt()
+
     await fetch(
         'https://ebook4u-server.onrender.com/api/book',
         {

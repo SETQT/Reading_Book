@@ -5,6 +5,7 @@ import { Main, StoreContext } from "../cartBook/CartBook";
 import Header from '../header/HeaderDetailBook'
 import "./searchbook.css";
 
+
 function SearchBook() {
   //   if(loading) return <Loading />;
   const [listCategory, setListCategory] = useState([]);
@@ -34,10 +35,10 @@ function SearchBook() {
 
   return (
     <>
-          <Header />
+      <Header />
 
       <div className="container-Search">
-        <div className="search-content" style={{marginTop:"20px"}}>
+        <div className="search-content" style={{ marginTop: "20px" }}>
           <div className="input-group">
             <input
               type="text"
@@ -80,16 +81,16 @@ function SearchBook() {
             </select>
           </div>
         </div>
-        <div className="bodyHome1" style={{marginTop:"20px"}}>
-        <div className={Style.content} >
-          <div className={Style.forYou }>
-            <div className={Style.contentForYou} style={{marginLeft:"30px"}}>
-              <Main />
+        <div className="bodyHome1" style={{ marginTop: "20px" }}>
+          <div className={Style.content} >
+            <div className={Style.forYou}>
+              <div className={Style.contentForYou} style={{ marginLeft: "30px" }}>
+                <Main />
+              </div>
             </div>
           </div>
         </div>
-        </div>
-        
+
       </div>
     </>
   );

@@ -15,12 +15,13 @@
 
 .contentUser {
     background-color: rgb(199, 198, 175);
-    flex: 3.5;
+    /* flex: 3.5; */
     width: 100%;
     /* width: 20px; */
     /* font-size: 40px; */
     /* text-align: center; */
     display: flex;
+    justify-content: center;
     /* justify-content: center; */
 }
 
@@ -42,6 +43,6 @@
     height: 400px;
 }
 
-.contentUserMain{
+.contentUserMain {
     display: flex;
 }

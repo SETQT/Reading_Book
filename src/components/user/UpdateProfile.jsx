@@ -31,26 +31,37 @@ function Content() {
 
   return (
     <>
-    {avatar && (
-          <img
-            style={{ marginTop: 8,marginLeft:"10px", height:"290px" ,marginBottom:"10px" }}
-            src={avatar.preview}
-            alt=""
-            width="80%"
-            
-          />
-        )}
+      {avatar && (
+        <img
+          style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}
+          src={avatar.preview}
+          alt=""
+          width="80%"
+
+        />
+      )}
       <div
-        style={{marginLeft:"10px"  }}
+        style={{ marginLeft: "10px" }}
       >
         <input type="file" onChange={handlePreviewAvatar} id="avatarProfile" />
 
-        
+
       </div>
     </>
   );
 }
+// async function initData(id) {
 
+//   const response = await bookService.getBookById(id);
+//   let data = response.data.data.book;
+//   if (!data) return
+//   console.log(data);
+//   $('#nameBook2').val(data.name)
+//   $('#author2').val(data.author)
+//   $('#country2').val(data.country);
+
+//   $('#descriptionFormBook2').val(data.description);
+// }
 
 function UpdateProfile() {
   const [listAccount, setList] = useState([]);
@@ -64,96 +75,99 @@ function UpdateProfile() {
         console.log(response.data.data);
         setList(response.data.data)
         localStorage.setItem("imageToUpdate", listAccount?.avatar);
-
+        let dob = response.data.data.dateOfBirth.slice(0, 10)
+        // alert(dob)
+        $('#dobUser').val(dob);
+        // $('#phoneUser').val(phone);
       }).catch(err => {
         console.log(err);
       })
 
 
   }, [])
-    return (
-        <div>
-            <div className="cardInfo">
-                                <div className="mainContentUser"  >
-                                  <p className="text-sm mb-0 text-capitalize font-weight-bold text-center " style={{marginLeft:"10px",fontSize:"30px",fontWeight:"bold"}}>
-                                    Update Profile
-                                  </p>
-                                  <div className="contentUserMain">
-                                    <div >
-                                      <Content/>
-                                    {/* <img src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" alt='' style={{marginTop: "5px", marginLeft:"50px",marginRight:"60px", height:"250px", width:"200px", backgroundColor:"gray"}}/> */}
-                                    </div>
-                                    
-                                    <form action="" method='' style={{marginTop:"10px"}}>
-                                    <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"10px"}}>
-                                    <span className=" text-sm font-weight-bolder .text-dark">
-                                      Username: 
-                                    </span>
-                                    <input type="text" id='un' name='un' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}}  defaultValue={listAccount.fullname}/>
-
-                                    <br />
-                                    
-                                  </h5>
-                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"10px"}}>
-                                    <span className=" text-sm font-weight-bolder .text-dark">
-                                      Address: 
-                                    </span>
-                                    <input type="text" id='adr' name='adr' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={listAccount.address}/>
-
-                                    <br />
-                                    
-                                  </h5>
-                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"10px"}} >
-                                    <span className=" text-sm font-weight-bolder .text-dark">
-                                      Email: 
-
-                                    </span>
-                                    <input type="email" id='email' name='email' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={listAccount.email}/>
-
-                                    <br />
-                                    
-                                  </h5>
-                                  
-                                  <h5 className="font-weight-bolder mb-0" style={{paddingBottom:"10px"}}>
-                                    <span className=" text-sm font-weight-bolder .text-dark">
-                                      Date of birth:
-                                    </span>
-                                    <input type="date" id='dob' name='dob' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={moment.utc(listAccount.dateOfBirth).format("yyyy-MM-dd")}/>
-
-                                    <br />
-                                    
-                                  </h5>
-                                  <h5 className="font-weight-bolder mb-0" >
-                                    <span className=" text-sm font-weight-bolder .text-dark" style={{paddingBottom:"10px"}}>
-                                      Phone:
-                                    </span>
-                                    <input type="number" id='phone' name='phone' style={{borderRadius:"10px", marginLeft:"10px",textIndent:"10px",width:"300px"}} defaultValue={listAccount.phone}/>
-
-                                    <br />
-                                    
-                                  </h5>
-
-                                  {/* <AlertDialogSlide/> */}
-                                  <div className='submitFormBook' style={{marginTop:"30px"}}>
-                                    <span id='submitUser' onClick={submitUpdateUser} style={{cursor:"pointer"}}>SUBMIT</span>
-                                  </div>
-                                    </form>
-                                  
-                                  </div>
-                    
-
-                        </div>
-                    </div>
+  return (
+    <div>
+      <div className="cardInfo">
+        <div className="mainContentUser"  >
+          <p className="text-sm mb-0 text-capitalize font-weight-bold text-center " style={{ marginLeft: "10px", fontSize: "30px", fontWeight: "bold" }}>
+            Update Profile
+          </p>
+          <div className="contentUserMain">
+            <div >
+              <Content />
+              {/* <img src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" alt='' style={{marginTop: "5px", marginLeft:"50px",marginRight:"60px", height:"250px", width:"200px", backgroundColor:"gray"}}/> */}
             </div>
-    )
+
+            <form action="" method='' style={{ marginTop: "10px" }}>
+              <h5 className="font-weight-bolder mb-0" style={{ paddingBottom: "10px" }}>
+                <span className=" text-sm font-weight-bolder .text-dark">
+                  Username:
+                </span>
+                <input type="text" id='un' name='un' style={{ borderRadius: "10px", marginLeft: "10px", textIndent: "10px", width: "300px" }} defaultValue={listAccount.fullname} />
+
+                <br />
+
+              </h5>
+              <h5 className="font-weight-bolder mb-0" style={{ paddingBottom: "10px" }}>
+                <span className=" text-sm font-weight-bolder .text-dark">
+                  Address:
+                </span>
+                <input type="text" id='adr' name='adr' style={{ borderRadius: "10px", marginLeft: "10px", textIndent: "10px", width: "300px" }} defaultValue={listAccount.address} />
+
+                <br />
+
+              </h5>
+              <h5 className="font-weight-bolder mb-0" style={{ paddingBottom: "10px" }} >
+                <span className=" text-sm font-weight-bolder .text-dark">
+                  Email:
+
+                </span>
+                <input type="email" id='emailUser' name='email' style={{ borderRadius: "10px", marginLeft: "10px", textIndent: "10px", width: "300px" }} defaultValue={listAccount.email} />
+
+                <br />
+
+              </h5>
+
+              <h5 className="font-weight-bolder mb-0" style={{ paddingBottom: "10px" }}>
+                <span className=" text-sm font-weight-bolder .text-dark">
+                  Date of birth:
+                </span>
+                <input type="date" id='dobUser' name='dob' style={{ borderRadius: "10px", marginLeft: "10px", textIndent: "10px", width: "300px" }} defaultValue={moment.utc(listAccount.dateOfBirth).format("yyyy-MM-dd")} />
+
+                <br />
+
+              </h5>
+              <h5 className="font-weight-bolder mb-0" >
+                <span className=" text-sm font-weight-bolder .text-dark" style={{ paddingBottom: "10px" }}>
+                  Phone:
+                </span>
+                <input type="number" id='phoneUser' name='phone' style={{ borderRadius: "10px", marginLeft: "10px", textIndent: "10px", width: "300px" }} defaultValue={listAccount.phone} />
+
+                <br />
+
+              </h5>
+
+              {/* <AlertDialogSlide/> */}
+              <div className='submitFormBook' style={{ marginTop: "30px" }}>
+                <span id='submitUser' onClick={submitUpdateUser} style={{ cursor: "pointer" }}>SUBMIT</span>
+              </div>
+            </form>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  )
 }
 
 const submitUpdateUser = async () => {
   let un = $('#un').val();
   let address = $('#adr').val();
-  let email = $('#email').val();
-  let dob = $('#dob').val();
-  let phone = $('#phone').val();
+  let email = $('#emailUser').val();
+  let dob = $('#dobUser').val();
+  let phone = $('#phoneUser').val();
   let content = $('#avatarProfile').prop('files')[0];
   let formData = new FormData();
 
@@ -163,29 +177,31 @@ const submitUpdateUser = async () => {
   formData.append("address", address);
   formData.append("dateOfBirth", dob);
   formData.append("file", content);
-  for (const value of formData.values()) {
-    console.log(value);
+  for (let [key, value] of formData) {
+    console.log(`${key}: ${value}`)
   }
   await fetch(
-      'https://ebook4u-server.onrender.com/api/user/me',
-      {
-          method: 'PUT',
-          body: formData,
-          headers: {
-              'Authorization': `Bearer ${user}`
-          },
-          
+    'https://ebook4u-server.onrender.com/user/me',
+    {
 
-      }
+      headers: {
+        'Authorization': `Bearer ${user}`
+      },
+      method: 'PUT',
+      body: formData,
+
+
+    }
   )
-      // .then((response) => console.log(response))
-      .then((result) => {
-          // window.location.href("http://localhost:3000/admin/book/all")
-          console.log('Success:', result);
-      })
-      .catch((error) => {
 
-      });
+    .then((result) => {
+
+      window.location.href = "http://localhost:3000/user/profile"
+
+    })
+    .catch((error) => {
+
+    });
 
 }
 
