@@ -1,0 +1,17 @@
+.mainContentUser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* width: 80%; */
+
+}
+
+.cardInfo {
+    display: flex;
+    justify-content: centers;
+}
+
+.contentUserMain {
+    margin-top: 15px;
+}
