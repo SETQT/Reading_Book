@@ -16,7 +16,7 @@ function User() {
       <Route path='/' element={<HomeUser />}>
         <Route index element={<Navigate to="profile" replace />} />
         <Route path="/profile" element={<MyProfile />} />
-        <Route path="/library" element={<MyLibrary />} />
+        <Route path="/history" element={<MyLibrary />} />
         <Route path='/favorite' element={<FavoriteBook />} />
         <Route path="/update" element={<UpdateProfile />} />
       </Route>

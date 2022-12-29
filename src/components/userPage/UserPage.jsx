@@ -1,5 +1,5 @@
 import user from "./user.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import ContentUser from "../content/ContentUser";
 // import DescribeContentUser from "../content/DescribeContentUser";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ import "./style1.module.css";
 import { SideBarData } from "./SideBarData";
 import { SideBarDataOption } from "./SideBarDataOption";
 import { logout } from "../../service/authHeader";
-
+import UserService from "../../service/UserService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 
@@ -23,29 +23,30 @@ const LogoutAccount = () => {
 
 function UserPage() {
 //   const [book, setBook] = useState(10);
+const [listAccount, setList] = useState([]);
 
+
+useEffect(() => {
+
+
+  UserService.getProfileUser().
+    then(response => {
+      console.log(response.data.data);
+      setList(response.data.data)
+
+    }).catch(err => {
+      console.log(err);
+    })
+
+
+}, [])
   return (
     <>
       <div className={style.App}>
         <div className={style.Sidebar}>
-          <div>
-            <img
-              src={notification}
-              alt=""
-              height={20}
-              width={20}
-              className={style.notification}
-            />
-            <img
-              src={chat}
-              alt=""
-              height={20}
-              width={20}
-              className={style.chat}
-            />
-          </div>
+          
           <img
-            src={user}
+            src={listAccount.avatar}
             alt=""
             height="80"
             width="80"

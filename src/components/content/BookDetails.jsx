@@ -125,7 +125,12 @@ function BookDetails() {
                 <span>Lượt xem: {book?.view}</span>
               </div>
               <button type="button" class="btn btn-danger" style={{marginLeft:"20px", marginBottom:"20px"}} onClick={() => {
-                            // localStorage.setItem("idToAddFav", book?._id);
+              var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary")); 
+              if(arrayLibrary ==null){
+                arrayLibrary = [];
+              } 
+              arrayLibrary.push(book?._id);
+              window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
               window.location.href="http://localhost:3000/read"
               // addToFavorite();
 
