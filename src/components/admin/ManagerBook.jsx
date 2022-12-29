@@ -432,7 +432,7 @@ function ContentComment(props) {
                             <th>ID</th>
                             <th>Username</th>
                             <th>Content</th>
-                            <th>Reply to</th>
+                            <th>Created At</th>
                             <th>Action</th>
 
                         </tr>
@@ -445,9 +445,9 @@ function ContentComment(props) {
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
-                                    <th>{item.Username}</th>
-                                    <td>{item.Content}</td>
-                                    <td>{item.Reply_to}</td>
+                                    <th>{item.user.username}</th>
+                                    <td>{item.content}</td>
+                                    <td>{item.createdAt.slice(0,10)}</td>
 
 
                                     <td className='optionAdmin' >
@@ -641,7 +641,7 @@ function ContentBan(props) {
                     <div className="descriptionFormBook">
                         <label htmlFor="descriptionFormBook">Description:</label>
 
-                        <input id='descriptionFormBook' type="text" name="descriptionFormBook" />
+                        <textarea id='descriptionFormBook' type="text" name="descriptionFormBook" />
                     </div>
 
                     <label>Add cover image
@@ -653,7 +653,7 @@ function ContentBan(props) {
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitBook}>SUBMIT</span>
+                    <span id='submitBook' onClick={submitBook} style={{cursor:"pointer"}}>SUBMIT</span>
                 </div>
             </div>
         </>
@@ -668,7 +668,7 @@ async function initData(id) {
     $('#nameBook2').val(data.name)
     $('#author2').val(data.author)
     $('#country2').val(data.country);
-
+   
     $('#descriptionFormBook2').val(data.description);
     let op = []
     data.category.map((index, item) => op.push({ label: index.name, value: index._id }));
@@ -732,7 +732,9 @@ function ContentUpdate(props) {
                 $('#author2').val(data.author)
                 // $('#country2').val(data.country);
 
-                $('#descriptionFormBook2').val(data.description);
+                // $('#descriptionFormBook2').val(data.description);
+                $('#descriptionFormBook2').html(data.description);
+
                 selectElement('country2', data.country._id);
                 // localStorage.location.setItem("typeOld", op)
 
@@ -835,8 +837,8 @@ function ContentUpdate(props) {
                     </div>
                     <div className="descriptionFormBook">
                         <label htmlFor="descriptionFormBook">Description:</label>
-
-                        <input id='descriptionFormBook2' type="text" name="descriptionFormBook" />
+                        
+                        <textarea id='descriptionFormBook2' type="text" name="descriptionFormBook"  /> 
                     </div>
 
                     <label>Add cover image
@@ -848,7 +850,7 @@ function ContentUpdate(props) {
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitUpdateBook}>SUBMIT</span>
+                    <span id='submitBook' onClick={submitUpdateBook} style={{cursor:"pointer"}}>SUBMIT</span>
                 </div>
             </div>
         </>
