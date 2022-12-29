@@ -5,6 +5,7 @@ import StyleHome from '../../style/content.module.css'
 import chat from "../../assets/imgs/chat.png";
 import updateIcon from "../../assets/imgs/update.png";
 import del from "../../assets/imgs/delete.png";
+import add from "../../assets/imgs/addChapter.png";
 import { Link, Navigate, Route, Routes, useHref, useNavigate } from 'react-router-dom';
 
 
@@ -109,6 +110,8 @@ function ManagerBook() {
                 <Route path='all' element={<AllBook />} />
                 <Route path='search' element={<SearchBookAdmin />} />
                 <Route path='comment' element={<CommentBook />} />
+                <Route path='add' element={<AddBook />} />
+                <Route path='addChapter' element={<AddChapter />} />
 
                 <Route path='update' element={<UpdateBook />} />
 
@@ -191,6 +194,25 @@ function AddBook() {
                 <div className='mainContent'>
 
                     <ContentBan data={data} />
+                </div>
+            </div>
+
+        </div >
+    )
+}
+
+function AddChapter() {
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Add new chapter</div>
+                <Title title={"Admin > Book Management > Add new chapter "} />
+                <div className='mainContent'>
+
+                    <ContentAddChapter data={data} />
                 </div>
             </div>
 
@@ -432,6 +454,8 @@ function ContentSearch(props) {
     const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
     const handleOnClick3 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
 
+    const handleOnClick4 = useCallback(() => navigate('../addChapter', { replace: true }), [navigate]);
+
     return (
         <>
             <div>
@@ -504,7 +528,7 @@ function ContentSearch(props) {
                                             localStorage.setItem("bookComment", item._id);
                                             handleOnClick2()
                                         }
-                                        } type={"chat"} />
+                                        } type={"chat"} style={{ cursor: "pointer" }} />
                                         <img className='icon' src={updateIcon} alt=""
                                             onClick={() => {
                                                 // alert(item._id)
@@ -512,9 +536,14 @@ function ContentSearch(props) {
                                                 update(updateBook(item._id))
                                                 handleOnClick1()
                                             }
-                                            } type={"update"} />
-                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} />
-
+                                            } type={"update"} style={{ cursor: "pointer" }} />
+                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} style={{ cursor: "pointer" }} />
+                                        <img className='icon' src={add} alt="" onClick={() => {
+                                            // alert(item._id)
+                                            localStorage.setItem("bookAddChapter", item._id);
+                                            handleOnClick4()
+                                        }
+                                        } type={"addChapter"} style={{ cursor: "pointer" }} />
                                     </td>
 
                                 </tr>
@@ -572,7 +601,7 @@ function ContentComment(props) {
                             <th>ID</th>
                             <th>Username</th>
                             <th>Content</th>
-                            <th>Reply to</th>
+                            <th>Created At</th>
                             <th>Action</th>
 
                         </tr>
@@ -585,9 +614,9 @@ function ContentComment(props) {
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
-                                    <th>{item.Username}</th>
-                                    <td>{item.Content}</td>
-                                    <td>{item.Reply_to}</td>
+                                    <th>{item.user.username}</th>
+                                    <td>{item.content}</td>
+                                    <td>{item.createdAt.slice(0, 10)}</td>
 
 
                                     <td className='optionAdmin' >
@@ -613,6 +642,24 @@ function ContentComment(props) {
 
 function ContentPreview() {
     const [avatar, setAvatar] = useState();
+    const id = localStorage.getItem("bookUpdate");
+    const [listAccount, setList] = useState([]);
+
+
+    useEffect(() => {
+
+
+        bookService.getBookById(id).
+            then(response => {
+                //   console.log(response.data.data);
+                setList(response.data.data.book)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+    }, [])
 
     useEffect(() => {
         return () => avatar && URL.revokeObjectURL(avatar.preview);
@@ -627,6 +674,14 @@ function ContentPreview() {
 
     return (
         <>
+            {!avatar && (<img
+                style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}
+                src={listAccount.image}
+                alt=""
+                width="80%"
+
+            />)}
+
             {avatar && (
                 <img
                     style={{ marginTop: 8, marginLeft: "10px", height: "140px", marginBottom: "10px" }}
@@ -755,7 +810,7 @@ function ContentBan(props) {
                     <div className="descriptionFormBook">
                         <label htmlFor="descriptionFormBook">Description:</label>
 
-                        <input id='descriptionFormBook' type="text" name="descriptionFormBook" />
+                        <textarea id='descriptionFormBook' type="text" name="descriptionFormBook" />
                     </div>
 
                     <label>Add cover image
@@ -767,7 +822,7 @@ function ContentBan(props) {
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitBook}>SUBMIT</span>
+                    <span id='submitBook' onClick={submitBook} style={{ cursor: "pointer" }}>SUBMIT</span>
                 </div>
             </div>
         </>
@@ -846,7 +901,9 @@ function ContentUpdate(props) {
                 $('#author2').val(data.author)
                 // $('#country2').val(data.country);
 
-                $('#descriptionFormBook2').val(data.description);
+                // $('#descriptionFormBook2').val(data.description);
+                $('#descriptionFormBook2').html(data.description);
+
                 selectElement('country2', data.country._id);
                 // localStorage.location.setItem("typeOld", op)
 
@@ -950,7 +1007,7 @@ function ContentUpdate(props) {
                     <div className="descriptionFormBook">
                         <label htmlFor="descriptionFormBook">Description:</label>
 
-                        <input id='descriptionFormBook2' type="text" name="descriptionFormBook" />
+                        <textarea id='descriptionFormBook2' type="text" name="descriptionFormBook" />
                     </div>
 
                     <label>Add cover image
@@ -962,12 +1019,15 @@ function ContentUpdate(props) {
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitUpdateBook}>SUBMIT</span>
+                    <span id='submitBook' onClick={submitUpdateBook} style={{ cursor: "pointer" }}>SUBMIT</span>
                 </div>
             </div>
         </>
     )
 }
+
+
+
 const submitUpdateBook = async () => {
     let name = $('#nameBook2').val();
     let author = $('#author2').val();
@@ -1028,6 +1088,142 @@ const submitUpdateBook = async () => {
 
         });
 
+}
+
+const submitNewChapter = async () => {
+    let name = $('#nameChapter').val();
+    let descript = $('#descriptionFormChapter').val();
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("contentText", descript);
+    let jwts = jwt()
+    let id = localStorage.getItem("bookAddChapter");
+
+    await fetch(
+        `https://ebook4u-server.onrender.com/api/chapter/${id}`,
+        {
+            method: 'POST',
+            body: formData,
+            headers: {
+
+                'Authorization': jwts,
+            },
+
+        }
+    )
+        // .then((response) => console.log(response))
+        .then((result) => {
+            // window.location.href("http://localhost:3000/admin/book/all")
+            // window.location.reload(false)
+            console.log(':', result);
+        })
+        .catch((error) => {
+
+        });
+}
+
+function ContentAddChapter(props) {
+    // const [listCountry, setCountry] = useState([]);
+    // const [options, setOption] = useState([]);
+    // const [state, update] = useStore()
+    // const [op, setOp] = useState(null);
+    const id = localStorage.getItem("bookUpdate");
+    // const id = state.id
+    // asd()
+    useEffect(() => {
+        console.log(props);
+
+        // const load = async () => {
+        // const dataNew =  initData(id)
+        // setOp(initData(id))
+
+        // bookService.getBookById(id).then((response) => {
+        //     let data = response.data.data.book;
+        //     if (!data) return
+        //     // console.log(data);
+
+        //     let options = []
+        //     data.category.map((index, item) => options.push({ label: index.name, value: index._id }));
+        //     console.log("---");
+        //     console.log(options);
+        //     // setOp(options)
+        //     $('#nameBook2').val(data.name)
+        //     $('#author2').val(data.author)
+        //     // $('#country2').val(data.country);
+
+        //     $('#descriptionFormBook2').val(data.description);
+        //     selectElement('country2', data.country._id);
+        //     // localStorage.location.setItem("typeOld", op)
+
+        // });
+
+        // // initData(id)
+        // const result = await bookService.getAllCategory();
+
+        // let list = [];
+        // result.data.data.map((item) => {
+        //     list.push({ value: item._id, label: item.name });
+        // });
+
+        // setOption(list);
+        // CategoryListFromSV = list
+
+        // };
+
+        // load()
+
+        // bookService.getAllCountry().
+        //     then(response => {
+
+        //         setCountry(response.data.data);
+
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
+
+
+    }, [])
+
+
+    const [selectedFile, setSelectedFile] = useState();
+    const [isFilePicked, setIsFilePicked] = useState(false);
+
+    const changeHandler = (event) => {
+        setSelectedFile(event.target.files[0]);
+        setIsFilePicked(true);
+    };
+
+    const handleSubmission = () => {
+    };
+    const animatedComponents = makeAnimated();
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
+    return (
+        <>
+            <div>
+                <div className='formBook'>
+                    <div>
+                        <label htmlFor="nameChapter">Name of Chapter:</label>
+                        <br />
+                        <input id="nameChapter" placeholder='Name' name='nameChapter' />
+                    </div>
+                    <div className="descriptionFormBook">
+                        <label htmlFor="descriptionFormChapter">Description:</label>
+
+                        <input id='descriptionFormChapter' type="text" name="descriptionFormChapter" placeholder='Content' />
+                    </div>
+
+
+
+                </div>
+                <div className='submitFormBook'>
+                    <span id='submitChapter' onClick={submitNewChapter}>SUBMIT</span>
+                </div>
+            </div>
+        </>
+    )
 }
 
 function getByValue(arr, value) {

@@ -22,7 +22,7 @@ function headerAdmin() {
                     <div className="container-fluid">
                         <img className='book' src={book} alt="" />
                         {/* <i className="fa-solid fa-bell"></i> */}
-                        <a className="navbar-brand" href="/home">EBoo4U</a>
+                        <a className="navbar-brand" href="/home">EBook4U</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

@@ -126,6 +126,7 @@ function BookDetails() {
               <div className={Style.bookDetailsItem}>
                 <span>Lượt xem: {book?.view}</span>
               </div>
+
               <button type="button" class="btn btn-danger" style={{ marginLeft: "20px", marginBottom: "20px" }} onClick={() => {
                 // localStorage.setItem("idToAddFav", book?._id);
                 window.location.href = "http://localhost:3000/read"

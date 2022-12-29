@@ -17,7 +17,7 @@ function DescribeContent(props) {
     const [state, update] = useStore()
     const [top, setTop] = useState([])
     useEffect(() => {
-        bookService.getTopBook(3).then((res) => {
+        bookService.getTopBookAdmin(3).then((res) => {
             setTop(res.data.data)
             console.log(res.data.data);
         }).catch((e) => {

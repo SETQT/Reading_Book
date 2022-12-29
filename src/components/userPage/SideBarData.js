@@ -17,9 +17,9 @@ export const SideBarData = [
     },
 
     {
-        title: "My Library",
+        title: "History",
         icon: <LibraryBooksIcon />,
-        link: "/user/library"
+        link: "/user/history"
     },
     {
         title: "Update Profile",

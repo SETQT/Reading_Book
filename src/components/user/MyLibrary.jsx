@@ -17,7 +17,7 @@ function MyLibrary() {
     return (
          
             <div>
-                    <DescribeContentUser style={{ flex: 3 }} book={book} />    
+                    {/* <DescribeContentUser style={{ flex: 3 }} book={book} />     */}
                     <ContentUser style={{ flex: 1 }} setBook={setBook} />         
             </div>
                     

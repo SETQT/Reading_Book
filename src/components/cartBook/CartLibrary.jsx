@@ -3,6 +3,8 @@ import "./style.css"
 import Close from '../../assets/imgs/close.png'
 import axios from 'axios';
 import UserService from '../../service/UserService';
+import bookService from '../../service/bookService';
+import { Link } from 'react-router-dom';
 // function CartBook() {
 //     return (
 //         <div>CartBook</div>
@@ -24,7 +26,8 @@ const url = 'https://ebook4u-server.onrender.com/user/me/history'
 
 
 
-
+var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary"));  
+console.log(arrayLibrary);
 
 const deleteFavorite = () => {
     alert("delete");
@@ -41,17 +44,23 @@ class Main extends React.Component {
     }
 
     fetchData = async () => {
-        UserService.getLibrary().
+        let array = [];
+        for (var i = 0; i < arrayLibrary.length; i++) {
+            bookService.getBookById(arrayLibrary[i]).
           then(response => {
-              console.log(response.data.data);
-              this.setState({
-                posts: response.data.data
+            //  console.log(response.data.data)
+              array.push(response.data.data)
+            //   window.localStorage.setItem("arrayLibraryBook", JSON.stringify(array));
+            this.setState({
+                posts: array
             });
 
+                // console.log(this.state.posts);
           }).catch(err => {
               console.log(err);
           })
-        
+          }
+         
     }
         componentDidMount(){
             this.fetchData()
@@ -62,12 +71,12 @@ class Main extends React.Component {
         return <div>
             {/* <header className="app-header"></header> */}
 
-            <div className="app-card-list" id="app-CardBook-list">
+            <div className="app-card-list1" id="app-CardBook-list">
                 {
                     Object
                         .keys(this.state.posts)
                         // .map(key => <div>asd</div>)
-                        .map(key => <CardBook key={key} index={key} details={this.state.posts[key]} />)
+                        .map(key => <CardBook key={key} index={key} details={this.state?.posts[key]} />)
                 }
             </div>
         </div>
@@ -132,7 +141,7 @@ const MyContext = React.createContext();
 // data-aos={"flip-left"}
 function CardBook(props) {
     const [state, update] = useStore()
-    const id = props.details.id
+    const id = props.details.book._id
     // const { id, setID } = state
     // const [state, update] = useContext(Context)
     // console.log(state);
@@ -144,10 +153,12 @@ function CardBook(props) {
         <div>
             <>
 
-                <article article className="CardBook" onClick={change}  >
-                    <CardBookHeader category={props.details.category} image={props.details.image} />
-                    <CardBookBody title={props.details.title} text={props.details.description} />
+            <Link to={`/book/${id}`}>
+            <article article className="CardBook"   >
+                    <CardBookHeader category={props.details.category} image={props.details.book.image} />
+                    <CardBookBody title={props.details.book.name} text={props.details.description} />
                 </article >
+                </Link>
             </>
         </div>
     )

@@ -13,7 +13,9 @@ import BookDetails from "../components/content/BookDetails";
 // import GlobalStyle from '../style/GlobalStyle'
 function Home() {
   // const [state, update] = useStore()
+  var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary"));  
 
+  window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
   function test() {
     alert("sd");
   }

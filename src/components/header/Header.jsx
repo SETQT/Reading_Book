@@ -36,8 +36,8 @@ function header() {
                             localStorage.setItem("searchName", "");
                             localStorage.setItem("searchCategoryPage", "");
                             localStorage.setItem("searchCountryPage", "");
-                            localStorage.setItem("currentPage", "");
-                            localStorage.setItem("currentPageSearch", "");
+                            localStorage.setItem("currentPage", "1");
+                            localStorage.setItem("currentPageSearch", "1");
 
                         }}>Home</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@ function header() {
                         <div className=" collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ms-auto ">
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 active" aria-current="page" onClick={profile}>Profile</a>
+                                    <a className="nav-link mx-2 active" aria-current="page" onClick={profile} style={{cursor:"pointer"}}>Profile</a>
                                 </li>
 
                                 <li className="nav-item">

@@ -45,8 +45,22 @@ class BookService {
 
     }
 
-    getTopBook(num) {
+
+    getTopBookAdmin(num) {
         return axios.get(API + `api/book/top/viewed?per=${num}`, { headers: authHeader() })
+    }
+    getTopBook() {
+        return axios.get(API + `api/book/top/viewed?per=3`, { headers: authHeader() })
+    }
+
+    getSummary() {
+        return axios.get(API + `api/summary`, { headers: authHeader() })
+
+    }
+
+    getChart(type1, type2) {
+        return axios.get(API + `api/view?type=${type1}&number=${type2}`, { headers: authHeader() })
+
 
     }
 
