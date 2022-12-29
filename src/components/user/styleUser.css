@@ -9,8 +9,9 @@
 
 .cardInfo {
     display: flex;
-    justify-content: centers;
+    justify-content: center;
 }
+
 
 .contentUserMain {
     margin-top: 15px;
