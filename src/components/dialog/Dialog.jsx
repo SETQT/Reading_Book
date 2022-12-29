@@ -77,7 +77,7 @@ export default function AlertDialogSlide(props) {
 
   return (
     <div>
-      <img className="icon" src={props.icon} alt="" onClick={handleClickOpen} />
+      <img className="icon" src={props.icon} alt="" onClick={handleClickOpen} style={{cursor:"pointer"}}/>
       <div>
         <Dialog
           open={open}

@@ -5,6 +5,7 @@ import StyleHome from '../../style/content.module.css'
 import chat from "../../assets/imgs/chat.png";
 import updateIcon from "../../assets/imgs/update.png";
 import del from "../../assets/imgs/delete.png";
+import add from "../../assets/imgs/addChapter.png";
 import { Link, Navigate, Route, Routes, useHref, useNavigate } from 'react-router-dom';
 
 
@@ -108,6 +109,8 @@ function ManagerBook() {
                 <Route index element={<Navigate to="all" replace />} />
                 <Route path='all' element={<AllBook />} />
                 <Route path='comment' element={<CommentBook />} />
+                <Route path='add' element={<AddBook />} />
+                <Route path='addChapter' element={<AddChapter />} />
 
                 <Route path='update' element={<UpdateBook />} />
 
@@ -172,6 +175,25 @@ function AddBook() {
                 <div className='mainContent'>
 
                     <ContentBan data={data} />
+                </div>
+            </div>
+
+        </div >
+    )
+}
+
+function AddChapter() {
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Add new chapter</div>
+                <Title title={"Admin > Book Management > Add new chapter "} />
+                <div className='mainContent'>
+
+                    <ContentAddChapter data={data} />
                 </div>
             </div>
 
@@ -286,6 +308,8 @@ function Content(props) {
 
     const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
 
+    const handleOnClick3 = useCallback(() => navigate('../addChapter', { replace: true }), [navigate]);
+
     return (
         <>
             <div>
@@ -335,7 +359,7 @@ function Content(props) {
                                             localStorage.setItem("bookComment", item._id);
                                             handleOnClick2()
                                         }
-                                        } type={"chat"} />
+                                        } type={"chat"} style={{cursor:"pointer"}}/>
                                         <img className='icon' src={updateIcon} alt=""
                                             onClick={() => {
                                                 // alert(item._id)
@@ -343,9 +367,14 @@ function Content(props) {
                                                 update(updateBook(item._id))
                                                 handleOnClick1()
                                             }
-                                            } type={"update"} />
-                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} />
-
+                                            } type={"update"} style={{cursor:"pointer"}}/>
+                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} style={{cursor:"pointer"}}/>
+                                        <img className='icon' src={add} alt="" onClick={() => {
+                                            // alert(item._id)
+                                            localStorage.setItem("bookAddChapter", item._id);
+                                            handleOnClick3()
+                                        }
+                                        } type={"addChapter"} style={{cursor:"pointer"}}/>
                                     </td>
 
                                 </tr>
@@ -825,6 +854,9 @@ function ContentUpdate(props) {
         </>
     )
 }
+
+
+
 const submitUpdateBook = async () => {
     let name = $('#nameBook2').val();
     let author = $('#author2').val();
@@ -885,6 +917,142 @@ const submitUpdateBook = async () => {
 
         });
 
+}
+
+const submitNewChapter = async () => {
+    let name = $('#nameChapter').val();
+    let descript = $('#descriptionFormChapter').val();
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("contentText", descript);
+    let jwts = jwt()
+    let id = localStorage.getItem("bookAddChapter");
+   
+    await fetch(
+        `https://ebook4u-server.onrender.com/api/chapter/${id}`,
+        {
+            method: 'POST',
+            body: formData,
+            headers: {
+
+                'Authorization': jwts,
+            },
+
+        }
+    )
+        // .then((response) => console.log(response))
+        .then((result) => {
+            // window.location.href("http://localhost:3000/admin/book/all")
+            // window.location.reload(false)
+            console.log(':', result);
+        })
+        .catch((error) => {
+
+        });
+}
+
+function ContentAddChapter(props) {
+    // const [listCountry, setCountry] = useState([]);
+    // const [options, setOption] = useState([]);
+    // const [state, update] = useStore()
+    // const [op, setOp] = useState(null);
+    const id = localStorage.getItem("bookUpdate");
+    // const id = state.id
+    // asd()
+    useEffect(() => {
+        console.log(props);
+
+        // const load = async () => {
+            // const dataNew =  initData(id)
+            // setOp(initData(id))
+
+            // bookService.getBookById(id).then((response) => {
+            //     let data = response.data.data.book;
+            //     if (!data) return
+            //     // console.log(data);
+
+            //     let options = []
+            //     data.category.map((index, item) => options.push({ label: index.name, value: index._id }));
+            //     console.log("---");
+            //     console.log(options);
+            //     // setOp(options)
+            //     $('#nameBook2').val(data.name)
+            //     $('#author2').val(data.author)
+            //     // $('#country2').val(data.country);
+
+            //     $('#descriptionFormBook2').val(data.description);
+            //     selectElement('country2', data.country._id);
+            //     // localStorage.location.setItem("typeOld", op)
+
+            // });
+
+            // // initData(id)
+            // const result = await bookService.getAllCategory();
+
+            // let list = [];
+            // result.data.data.map((item) => {
+            //     list.push({ value: item._id, label: item.name });
+            // });
+
+            // setOption(list);
+            // CategoryListFromSV = list
+
+        // };
+
+        // load()
+
+        // bookService.getAllCountry().
+        //     then(response => {
+
+        //         setCountry(response.data.data);
+
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
+
+
+    }, [])
+
+
+    const [selectedFile, setSelectedFile] = useState();
+    const [isFilePicked, setIsFilePicked] = useState(false);
+
+    const changeHandler = (event) => {
+        setSelectedFile(event.target.files[0]);
+        setIsFilePicked(true);
+    };
+
+    const handleSubmission = () => {
+    };
+    const animatedComponents = makeAnimated();
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
+    return (
+        <>
+            <div>
+                <div className='formBook'>
+                    <div>
+                        <label htmlFor="nameChapter">Name of Chapter:</label>
+                        <br />
+                        <input id="nameChapter" placeholder='Name' name='nameChapter' />
+                    </div>
+                    <div className="descriptionFormBook">
+                        <label htmlFor="descriptionFormChapter">Description:</label>
+
+                        <input id='descriptionFormChapter' type="text" name="descriptionFormChapter" placeholder='Content'/>
+                    </div>
+
+
+
+                </div>
+                <div className='submitFormBook'>
+                    <span id='submitChapter' onClick={submitNewChapter}>SUBMIT</span>
+                </div>
+            </div>
+        </>
+    )
 }
 
 function getByValue(arr, value) {
