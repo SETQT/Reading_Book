@@ -18,6 +18,24 @@ function Content() {
   const [avatar, setAvatar] = useState();
   const imageAvatar = localStorage.getItem('idToAddFav');
 
+  const [listAccount, setList] = useState([]);
+
+
+  useEffect(() => {
+
+
+    UserService.getProfileUser().
+      then(response => {
+        console.log(response.data.data);
+        setList(response.data.data)
+
+      }).catch(err => {
+        console.log(err);
+      })
+
+
+  }, [])
+
   useEffect(() => {
     return () => avatar && URL.revokeObjectURL(avatar.preview);
   }, [avatar]);
@@ -31,6 +49,14 @@ function Content() {
 
   return (
     <>
+      {!avatar && (<img
+          style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}
+          src={listAccount.avatar}
+          alt=""
+          width="80%"
+
+        />)}
+
       {avatar && (
         <img
           style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}

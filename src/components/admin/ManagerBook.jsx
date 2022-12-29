@@ -444,7 +444,25 @@ function ContentComment(props) {
 
 function ContentPreview() {
     const [avatar, setAvatar] = useState();
+    const id = localStorage.getItem("bookUpdate");
+    const [listAccount, setList] = useState([]);
 
+
+    useEffect(() => {
+  
+  
+      bookService.getBookById(id).
+        then(response => {
+        //   console.log(response.data.data);
+          setList(response.data.data.book)
+  
+        }).catch(err => {
+          console.log(err);
+        })
+  
+  
+    }, [])
+  
     useEffect(() => {
         return () => avatar && URL.revokeObjectURL(avatar.preview);
     }, [avatar]);
@@ -458,6 +476,14 @@ function ContentPreview() {
 
     return (
         <>
+            {!avatar && (<img
+          style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}
+          src={listAccount.image}
+          alt=""
+          width="80%"
+
+        />)}
+
             {avatar && (
                 <img
                     style={{ marginTop: 8, marginLeft: "10px", height: "140px", marginBottom: "10px" }}
