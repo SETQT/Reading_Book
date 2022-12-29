@@ -11,6 +11,9 @@ import right from "../../assets/imgs/right.png"
 import redirect from "../../assets/imgs/next.png"
 import volume from "../../assets/imgs/volume.png"
 import bookService from '../../service/bookService';
+import UserService from '../../service/UserService';
+import { jwt } from '../../service/authHeader';
+import $ from "jquery"
 const data =
 {
     "id": "2220",
@@ -42,6 +45,63 @@ function ContentAB(props) {
     // && props.book && props.currentChapter
     // let cur =
     if (props.chapter) return <ContentRead chapter={props.chapter[props.currentChapter]} book={props.book.name} />
+}
+
+
+const upComment = async () => {
+    // alert("Asd")
+    let ids = window.localStorage.getItem("idBookForRead")
+
+    // let formData = new FormData();
+    let content = $('#CommentRead').val();
+    $('#CommentRead').val("");
+
+    // formData.append("contentComment", content);
+
+    // for (let [key, value] of formData) {
+    //     console.log(`${key}: ${value}`)
+    // }
+    let jwts = jwt()
+
+    await fetch(
+        `https://ebook4u-server.onrender.com/user/comment/${ids}`,
+        {
+
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': jwts
+            },
+            method: 'POST',
+            body: JSON.stringify({ "contentComment": content })
+
+
+        }
+    )
+
+        .then((result) => {
+            // <div className='nameUserRead'>{item.user.username} </div>
+
+            const load = async () => {
+                const datas = await UserService.getProfileUser();
+                let user = datas.data.data;
+                let a = `
+                <div class="commentLine">
+                <img class ="imgAdd" src=${user.avatar}></img>
+                                <div class='commentReadBook'>
+                                     <div class='nameUserRead'>${user.username} </div>
+                                <div> ${content}</div>
+                                </div>
+                                </div>`
+                $(".footerComment").prepend(a)
+
+            }
+            load()
+            // window.location.href = "http://localhost:3000/read"
+
+        })
+        .catch((error) => {
+
+        });
 }
 const ReadBook = () => {
 
@@ -78,6 +138,7 @@ const ReadBook = () => {
                     setbook(response.data.data.book)
                     setComment(response.data.data.comments)
                     window.localStorage.setItem("maxChapter", response.data.data.chapters.length)
+
                     // setCurrenChapter(response.data.data.chapters[0])
                     // console.log(book);
                 }).catch(err => {
@@ -107,16 +168,7 @@ const ReadBook = () => {
                         {/* contentAB(chapter, book, currentChapter) */}
                         <ContentAB chapter={chapter} book={book} currentChapter={currentChapter} />
                         {/* {(chapter != null) && (<ContentRead id={chapter[currentChapter]?._id} book={book.name} />)} */}
-                        {comment?.map((item, index) =>
-                            <div className="commentLine" key={index}>
-                                <img src={item.user.avatar}></img>
-                                <div className='commentReadBook'>
-                                    <div className='nameUserRead'>{item.user.username} </div>
-                                    <div> {item.content}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+
                     </div>
                     <div className="afterMain">
                         <div className="titleAfterMain">Chapter List</div>
@@ -129,6 +181,39 @@ const ReadBook = () => {
                                 }}> Chapter {count + 1}</span>
                             </div>
                         )} </div>
+                </div>
+                <div className="enterComment" >
+
+
+                    <div class="form__group field">
+                        <input type="input" class="form__field" placeholder="Comment" name="name" id='CommentRead' required />
+                        <label for="name" class="form__label">Comment</label>
+                    </div>
+                    <div className='sendding'>
+                        <button className='buttonSend' onClick={upComment}>
+                            <div class="svg-wrapper-1">
+                                <div class="svg-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <span>Send</span>
+                        </button>
+                    </div>
+                </div>
+                <div className='footerComment'>
+                    {comment?.map((item, index) =>
+                        <div className="commentLine" key={index}>
+                            <img className='imgAdd' src={item.user.avatar}></img>
+                            <div className='commentReadBook'>
+                                <div className='nameUserRead'>{item.user.username} </div>
+                                <div> {item.content}
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 

@@ -108,6 +108,7 @@ function ManagerBook() {
 
                 <Route index element={<Navigate to="all" replace />} />
                 <Route path='all' element={<AllBook />} />
+                <Route path='search' element={<SearchBookAdmin />} />
                 <Route path='comment' element={<CommentBook />} />
                 <Route path='add' element={<AddBook />} />
                 <Route path='addChapter' element={<AddChapter />} />
@@ -159,6 +160,24 @@ function CommentBook() {
         </div >
     )
 }
+function SearchBookAdmin() {
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Book Management </div>
+                <Title title={"Admin > Book Management > Search Book"} />
+                <div className='mainContent'>
+
+                    <ContentSearch />
+                </div>
+            </div>
+
+        </div >
+    )
+}
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -202,18 +221,7 @@ function AddChapter() {
 }
 
 function UpdateBook() {
-    // const id = localStorage.getItem("bookUpdate");
-    // const [list, setList] = useState([])
-    // useEffect(() => {
-    //     const data = async () => {
-    //         let a = await initData(id);
-    //         return a
 
-    //     }
-    //     setList(data());
-    // }, [])
-    // const list = initData(id)
-    // us
     return (
         <div>
 
@@ -252,10 +260,7 @@ function Title(props) {
 
 
 function BanAccountUser(props) {
-    // alert(user)
-    // <Dialog />
-    // <AlertDialogSlide />
-    // alert("ASd")
+
     const [open, setOpen] = React.useState();
 
     const handleClickOpen = () => {
@@ -277,6 +282,13 @@ const deleteAccount = (user) => {
 const restore = (user) => {
     alert(user)
 }
+const bookComment = (id) => {
+
+    localStorage.setItem("bookComment", id);
+    // handleOnClick2()
+
+}
+
 function Content(props) {
     const [listAccount, setList] = useState([]);
     const [state, update] = useStore()
@@ -307,8 +319,7 @@ function Content(props) {
     const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
 
     const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
-
-    const handleOnClick3 = useCallback(() => navigate('../addChapter', { replace: true }), [navigate]);
+    const handleOnClick3 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
 
     return (
         <>
@@ -316,7 +327,29 @@ function Content(props) {
 
 
                 <div className={StyleHome.searchBarAdmin}>
-                    <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" />
+
+
+                    <div className="searchAdmin" >
+
+
+                        <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdmin" />
+
+
+                        <button className="adminSearchButton" onClick={() => {
+
+                            let val = $("#searchHomeAdmin").val()
+                            localStorage.setItem("nameSearchBook", val)
+                            // searchBookAdmin()
+                            handleOnClick3()
+                        }
+                        }
+                        >Search</button>
+
+                    </div>
+
+                    {/* <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" >
+                        
+                    </input> */}
                     <button className='banned' onClick={handleOnClick}>Add new book</button>
 
                 </div>
@@ -341,7 +374,7 @@ function Content(props) {
                         {listAccount?.map((item, index) => {
                             let text = item.category.map(a => (a.name));
                             text = text.toString()
-                            text = text.substring(0, text.length - 1);
+                            text = text.substring(0, text.length);
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
@@ -349,7 +382,7 @@ function Content(props) {
                                     <td>{item.author}</td>
                                     <td>{item.numberChapter}</td>
                                     <td>{text}</td>
-                                    <td>{item.createdAt}</td>
+                                    <td>{item.createdAt.slice(0, 10)}</td>
 
                                     <td className='optionAdmin'>
 
@@ -359,7 +392,143 @@ function Content(props) {
                                             localStorage.setItem("bookComment", item._id);
                                             handleOnClick2()
                                         }
-                                        } type={"chat"} style={{cursor:"pointer"}}/>
+                                        } type={"chat"} />
+                                        <img className='icon' src={updateIcon} alt=""
+                                            onClick={() => {
+                                                // alert(item._id)
+                                                localStorage.setItem("bookUpdate", item._id);
+                                                update(updateBook(item._id))
+
+                                                handleOnClick1()
+                                            }
+                                            } type={"update"} />
+                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} />
+
+                                    </td>
+
+                                </tr>
+                            )
+
+
+                        })}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </>
+    )
+}
+function ContentSearch(props) {
+    const [listAccount, setList] = useState([]);
+    const [name, setName] = useState([]);
+    const [state, update] = useStore()
+
+    useEffect(() => {
+
+        // const authen = async () => await AuthAdmin()
+        // authen()
+        // AuthAdmin()
+        // console.log(a);
+
+        let name = localStorage.getItem("nameSearchBook")
+        bookService.getSearchBookAd(name).
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+    }, [name])
+
+
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../add', { replace: true }), [navigate]);
+
+    const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
+
+    const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
+    const handleOnClick3 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
+
+    const handleOnClick4 = useCallback(() => navigate('../addChapter', { replace: true }), [navigate]);
+
+    return (
+        <>
+            <div>
+
+
+                <div className={StyleHome.searchBarAdmin}>
+
+
+                    <div className="searchAdmin" >
+
+
+                        <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdmin" />
+
+
+                        <button className="adminSearchButton" onClick={() => {
+
+                            // searchBookAdmin()
+                            let val = $("#searchHomeAdmin").val()
+                            localStorage.setItem("nameSearchBook", val)
+                            setName(val)
+                            // handleOnClick3()
+                        }
+                        }
+                        >Search</button>
+
+                    </div>
+
+                    {/* <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" >
+                        
+                    </input> */}
+                    <button className='banned' onClick={handleOnClick}>Add new book</button>
+
+                </div>
+                <hr style={{ color: "red" }}></hr>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Number of Chapter</th>
+                            <th>Category</th>
+                            <th>Create at</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* {listAccount} */}
+
+                        {listAccount?.map((item, index) => {
+                            let text = item.category.map(a => (a.name));
+                            text = text.toString()
+                            text = text.substring(0, text.length);
+                            return (
+                                <tr key={index + 1}>
+                                    <th>{index + 1}</th>
+                                    <th>{item.name}</th>
+                                    <td>{item.author}</td>
+                                    <td>{item.numberChapter}</td>
+                                    <td>{text}</td>
+                                    <td>{item.createdAt.slice(0, 10)}</td>
+
+                                    <td className='optionAdmin'>
+
+
+                                        <img className='icon' src={chat} alt="" onClick={() => {
+                                            // alert(item._id)
+                                            localStorage.setItem("bookComment", item._id);
+                                            handleOnClick2()
+                                        }
+                                        } type={"chat"} style={{ cursor: "pointer" }} />
                                         <img className='icon' src={updateIcon} alt=""
                                             onClick={() => {
                                                 // alert(item._id)
@@ -367,14 +536,14 @@ function Content(props) {
                                                 update(updateBook(item._id))
                                                 handleOnClick1()
                                             }
-                                            } type={"update"} style={{cursor:"pointer"}}/>
-                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} style={{cursor:"pointer"}}/>
+                                            } type={"update"} style={{ cursor: "pointer" }} />
+                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} style={{ cursor: "pointer" }} />
                                         <img className='icon' src={add} alt="" onClick={() => {
                                             // alert(item._id)
                                             localStorage.setItem("bookAddChapter", item._id);
-                                            handleOnClick3()
+                                            handleOnClick4()
                                         }
-                                        } type={"addChapter"} style={{cursor:"pointer"}}/>
+                                        } type={"addChapter"} style={{ cursor: "pointer" }} />
                                     </td>
 
                                 </tr>
@@ -398,18 +567,18 @@ function ContentComment(props) {
 
 
     useEffect(() => {
-  
-  
-      bookService.getBookById(id).
-        then(response => {
-          console.log(response.data.data);
-          setList(response.data.data.comments)
-  
-        }).catch(err => {
-          console.log(err);
-        })
-  
-  
+
+
+        bookService.getBookById(id).
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data.comments)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
     }, [])
 
 
@@ -447,7 +616,7 @@ function ContentComment(props) {
                                     <th>{index + 1}</th>
                                     <th>{item.user.username}</th>
                                     <td>{item.content}</td>
-                                    <td>{item.createdAt.slice(0,10)}</td>
+                                    <td>{item.createdAt.slice(0, 10)}</td>
 
 
                                     <td className='optionAdmin' >
@@ -478,20 +647,20 @@ function ContentPreview() {
 
 
     useEffect(() => {
-  
-  
-      bookService.getBookById(id).
-        then(response => {
-        //   console.log(response.data.data);
-          setList(response.data.data.book)
-  
-        }).catch(err => {
-          console.log(err);
-        })
-  
-  
+
+
+        bookService.getBookById(id).
+            then(response => {
+                //   console.log(response.data.data);
+                setList(response.data.data.book)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
     }, [])
-  
+
     useEffect(() => {
         return () => avatar && URL.revokeObjectURL(avatar.preview);
     }, [avatar]);
@@ -506,12 +675,12 @@ function ContentPreview() {
     return (
         <>
             {!avatar && (<img
-          style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}
-          src={listAccount.image}
-          alt=""
-          width="80%"
+                style={{ marginTop: 8, marginLeft: "10px", height: "290px", marginBottom: "10px" }}
+                src={listAccount.image}
+                alt=""
+                width="80%"
 
-        />)}
+            />)}
 
             {avatar && (
                 <img
@@ -653,7 +822,7 @@ function ContentBan(props) {
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitBook} style={{cursor:"pointer"}}>SUBMIT</span>
+                    <span id='submitBook' onClick={submitBook} style={{ cursor: "pointer" }}>SUBMIT</span>
                 </div>
             </div>
         </>
@@ -668,7 +837,7 @@ async function initData(id) {
     $('#nameBook2').val(data.name)
     $('#author2').val(data.author)
     $('#country2').val(data.country);
-   
+
     $('#descriptionFormBook2').val(data.description);
     let op = []
     data.category.map((index, item) => op.push({ label: index.name, value: index._id }));
@@ -837,8 +1006,8 @@ function ContentUpdate(props) {
                     </div>
                     <div className="descriptionFormBook">
                         <label htmlFor="descriptionFormBook">Description:</label>
-                        
-                        <textarea id='descriptionFormBook2' type="text" name="descriptionFormBook"  /> 
+
+                        <textarea id='descriptionFormBook2' type="text" name="descriptionFormBook" />
                     </div>
 
                     <label>Add cover image
@@ -850,7 +1019,7 @@ function ContentUpdate(props) {
 
                 </div>
                 <div className='submitFormBook'>
-                    <span id='submitBook' onClick={submitUpdateBook} style={{cursor:"pointer"}}>SUBMIT</span>
+                    <span id='submitBook' onClick={submitUpdateBook} style={{ cursor: "pointer" }}>SUBMIT</span>
                 </div>
             </div>
         </>
@@ -930,7 +1099,7 @@ const submitNewChapter = async () => {
     formData.append("contentText", descript);
     let jwts = jwt()
     let id = localStorage.getItem("bookAddChapter");
-   
+
     await fetch(
         `https://ebook4u-server.onrender.com/api/chapter/${id}`,
         {
@@ -966,39 +1135,39 @@ function ContentAddChapter(props) {
         console.log(props);
 
         // const load = async () => {
-            // const dataNew =  initData(id)
-            // setOp(initData(id))
+        // const dataNew =  initData(id)
+        // setOp(initData(id))
 
-            // bookService.getBookById(id).then((response) => {
-            //     let data = response.data.data.book;
-            //     if (!data) return
-            //     // console.log(data);
+        // bookService.getBookById(id).then((response) => {
+        //     let data = response.data.data.book;
+        //     if (!data) return
+        //     // console.log(data);
 
-            //     let options = []
-            //     data.category.map((index, item) => options.push({ label: index.name, value: index._id }));
-            //     console.log("---");
-            //     console.log(options);
-            //     // setOp(options)
-            //     $('#nameBook2').val(data.name)
-            //     $('#author2').val(data.author)
-            //     // $('#country2').val(data.country);
+        //     let options = []
+        //     data.category.map((index, item) => options.push({ label: index.name, value: index._id }));
+        //     console.log("---");
+        //     console.log(options);
+        //     // setOp(options)
+        //     $('#nameBook2').val(data.name)
+        //     $('#author2').val(data.author)
+        //     // $('#country2').val(data.country);
 
-            //     $('#descriptionFormBook2').val(data.description);
-            //     selectElement('country2', data.country._id);
-            //     // localStorage.location.setItem("typeOld", op)
+        //     $('#descriptionFormBook2').val(data.description);
+        //     selectElement('country2', data.country._id);
+        //     // localStorage.location.setItem("typeOld", op)
 
-            // });
+        // });
 
-            // // initData(id)
-            // const result = await bookService.getAllCategory();
+        // // initData(id)
+        // const result = await bookService.getAllCategory();
 
-            // let list = [];
-            // result.data.data.map((item) => {
-            //     list.push({ value: item._id, label: item.name });
-            // });
+        // let list = [];
+        // result.data.data.map((item) => {
+        //     list.push({ value: item._id, label: item.name });
+        // });
 
-            // setOption(list);
-            // CategoryListFromSV = list
+        // setOption(list);
+        // CategoryListFromSV = list
 
         // };
 
@@ -1043,7 +1212,7 @@ function ContentAddChapter(props) {
                     <div className="descriptionFormBook">
                         <label htmlFor="descriptionFormChapter">Description:</label>
 
-                        <input id='descriptionFormChapter' type="text" name="descriptionFormChapter" placeholder='Content'/>
+                        <input id='descriptionFormChapter' type="text" name="descriptionFormChapter" placeholder='Content' />
                     </div>
 
 

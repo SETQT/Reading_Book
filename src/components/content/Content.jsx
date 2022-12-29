@@ -22,17 +22,17 @@ function Content(props) {
             <div class="main-search-input-wrap" >
               <div
                 class="main-search-input fl-wrap"
-                style={{ display: "flex",marginRight:"20px" }}
+                style={{ display: "flex", marginRight: "20px" }}
               >
                 <div class="main-search-input-item">
-                  <input type="text" defaultValue="" placeholder="Search..." id="searchHome"/>
+                  <input type="text" defaultValue="" placeholder="Search..." id="searchHome" />
                 </div>
 
-                <button class="main-search-button" onClick={()=>{
-                        let name = $('#searchHome').val();
-                        let result = name.toLowerCase();
-                        localStorage.setItem("searchName", result);
-                        window.location.href="http://localhost:3000/search"
+                <button class="main-search-button" onClick={() => {
+                  let name = $('#searchHome').val();
+                  let result = name.toLowerCase();
+                  localStorage.setItem("searchName", result);
+                  window.location.href = "http://localhost:3000/search"
 
                 }}>Search</button>
               </div>

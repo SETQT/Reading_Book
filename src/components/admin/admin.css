@@ -63,6 +63,52 @@
 
 }
 
+.searchAdmin {
+    display: flex;
+    width: 70px;
+    flex: 2;
+}
+
+.searchAdmin input {
+    flex: 3;
+    width: 50px;
+}
+
+/* .searchAdmin input {
+    flex: 3;
+
+    width: 50px;
+} */
+
+.adminSearchButton {
+    flex: 1;
+    margin-right: 100px;
+    width: 10px;
+    border-radius: 10px;
+}
+
+#searchHomeAdmin {
+    /* width: 800px; */
+    /* flex: 3; */
+    border-radius: 10px;
+}
+
+.admin-search-button {
+    flex: 3;
+    /* width: 100%; */
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+#searchHome {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.searchAdmin {
+    flex: 2;
+}
+
 .react-select__value-container {
     display: flex;
     height: 50px;

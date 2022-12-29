@@ -14,7 +14,7 @@ import AlertDialogSlide from '../dialog/Dialog';
 import { render } from 'react-dom';
 
 import UserService from '../../service/UserService';
-
+import $ from "jquery"
 
 import Button from '@mui/material/Button';
 
@@ -66,6 +66,7 @@ function ManagerAccount() {
 
                 <Route path='all' element={<AllAccount />} />
                 <Route path='reported' element={<BanAccount />} />
+                <Route path='search' element={<SearchAccount />} />
 
                 {/* </Route> */}
             </Routes>
@@ -114,6 +115,26 @@ function BanAccount() {
                 <div className='mainContent'>
 
                     <ContentBan data={data} />
+                </div>
+            </div>
+
+        </div >
+    )
+}
+function SearchAccount() {
+    // const load = async () => await AuthAdmin()
+    // load()
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Search Account</div>
+                <Title title={"Admin > User Management > Reported Account "} />
+                <div className='mainContent'>
+
+                    <ContentSearch />
                 </div>
             </div>
 
@@ -193,15 +214,127 @@ function Content(props) {
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
+    const handleOnClick4 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
     return (
         <>
             <div>
 
 
                 <div className={StyleHome.searchBarAdmin}>
-                    <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" />
-                    <button className='banned' onClick={handleOnClick}>View reported account</button>
+                    <div className="searchAdmin" >
 
+
+                        <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdminUser" />
+
+
+                        <button className="adminSearchButton" onClick={() => {
+
+                            let val = $("#searchHomeAdminUser").val()
+                            localStorage.setItem("nameSearchUser", val)
+                            // searchBookAdmin()
+                            handleOnClick4()
+                        }
+                        }
+                        >Search</button>
+
+                    </div>
+                </div>
+                <hr style={{ color: "red" }}></hr>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* {listAccount} */}
+
+                        {listAccount?.map((item, index) => {
+
+                            return (
+                                <tr key={index + 1}>
+                                    <th>{index + 1}</th>
+                                    <th>{item.email}</th>
+                                    <td>{item.username}</td>
+                                    <td>{item.fullname}</td>
+                                    <td>{item.role}</td>
+                                    <td>{item.status}</td>
+
+                                    <td className='optionAdmin'>
+                                        {/* <img className='icon' src={ban} alt="" onClick={() => <BanAccountUser user={item.Username} />} /> */}
+
+                                        <AlertDialogSlide icon={ban} user={item._id} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        {/* <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={reuse} user={item._id} type={"reuse"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                    </td>
+
+                                </tr>
+                            )
+
+
+                        })}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </>
+    )
+}
+
+function ContentSearch(props) {
+    const [listAccount, setList] = useState(null);
+    const [name, setName] = useState(null);
+    useEffect(() => {
+
+        let name = localStorage.getItem("nameSearchUser")
+        UserService.searchUser(name).
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+    }, [name])
+
+
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
+    // const handleOnClick4 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
+    return (
+        <>
+            <div>
+
+
+                <div className={StyleHome.searchBarAdmin}>
+                    <div className="searchAdmin" >
+
+
+                        <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdminUser" />
+
+
+                        <button className="adminSearchButton" onClick={() => {
+
+                            let val = $("#searchHomeAdminUser").val()
+                            localStorage.setItem("nameSearchUser", val)
+                            setName(val)
+                            // searchBookAdmin()
+                            // handleOnClick4()
+                        }
+                        }
+                        >Search</button>
+
+                    </div>
                 </div>
                 <hr style={{ color: "red" }}></hr>
                 <table class="paleBlueRows">

@@ -49,12 +49,13 @@ class UserService {
             }
         )
     }
-    // unbanAccount(id) {
-    //     return axios.get(API + `admin/user/${id}/unbanned`, { headers: authHeader() })
 
-    // }
     getReport() {
         return axios.get(API + 'admin/report/all', { headers: authHeader() })
+
+    }
+    searchUser(name) {
+        return axios.get(API + `search/user?q=${name}`, { headers: authHeader() })
 
     }
 
@@ -77,6 +78,7 @@ class UserService {
         return axios.get(API + 'api/book/all', { headers: authHeader() })
 
     }
+
 
 }
 
