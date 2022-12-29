@@ -1,8 +1,8 @@
 import React from "react";
 import { Component } from "react";
 import style from "../../style/header.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.js";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.js";
 import headerUser from "../header/HeaderUser";
 import bell from "../../assets/imgs/bell-solid.svg";
 import chat from "../../assets/imgs/chat.svg";
@@ -81,7 +81,7 @@ function SignIn() {
 
     return (
         <>
-            <div class="bg_image">
+            <div className="bg_image">
                 <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
                     <div className="container-fluid">
                         <img className="book" src={book} alt="" />
@@ -201,7 +201,7 @@ function SignIn() {
                         </div>
                         <button
                             type="button"
-                            class="btn btn-success"
+                            className="btn btn-success"
                             style={{ marginTop: "20px" }}
                             onClick={login}
                         >

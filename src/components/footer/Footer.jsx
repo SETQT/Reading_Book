@@ -17,9 +17,8 @@ import "./footer.css"
 
 function Footer() {
     return (
-        <div>
-            {/* className="container my-5" */}
-            <footer
+        <>
+            <div
                 className="text-center text-lg-start text-white"
                 style={{ backgroundColor: "#929fba" }}
             >
@@ -108,13 +107,13 @@ function Footer() {
                 >
                     © 2020 Copyright:
                     <a className="text-white" href="https://mdbootstrap.com/"
-                    >MDBootstrap.com</a
-                    >
+                    >MDBootstrap.com</a>
                 </div>
 
-            </footer>
+            </div>
 
-        </div>
+
+        </>
     )
 }
 

@@ -8,10 +8,11 @@
     align-items: flex-start;
 }
 
-.descriptionFormBook textarea{
+.descriptionFormBook textarea {
     width: 100%;
     height: 200px;
 }
+
 .formBook div {
     display: flex;
     justify-content: flex-start;
@@ -79,6 +80,13 @@
 
     width: 50px;
 } */
+
+.nameAddChapter {
+    grid-column: 1/3;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+}
 
 .adminSearchButton {
     flex: 1;
@@ -258,4 +266,3 @@ table.paleBlueRows tfoot .links a {
     padding: 2px 8px;
     border-radius: 5px;
 }
-

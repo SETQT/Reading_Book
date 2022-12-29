@@ -88,7 +88,7 @@ function BookDetails() {
                     {book?.name}
                   </span>
                 </div>
-                <button type="button" class="btn btn-danger" style={{ marginRight: "20px", marginTop: "20px" }} onClick={() => {
+                <button type="button" className="btn btn-danger" style={{ marginRight: "20px", marginTop: "20px" }} onClick={() => {
                   localStorage.setItem("idToAddFav", book?._id);
 
                   addToFavorite();
@@ -127,7 +127,7 @@ function BookDetails() {
                 <span>Lượt xem: {book?.view}</span>
               </div>
 
-              <button type="button" class="btn btn-danger" style={{ marginLeft: "20px", marginBottom: "20px" }} onClick={() => {
+              <button type="button" className="btn btn-danger" style={{ marginLeft: "20px", marginBottom: "20px" }} onClick={() => {
                 // localStorage.setItem("idToAddFav", book?._id);
                 window.location.href = "http://localhost:3000/read"
                 // addToFavorite();
@@ -144,14 +144,14 @@ function BookDetails() {
       </section>
       <div className="enterComment" >
 
-        <div class="form__group field">
-          <input type="input" class="form__field" placeholder="Comment" name="name" id='CommentRead' required />
-          <label for="name" class="form__label">Comment</label>
+        <div className="form__group field">
+          <input type="input" className="form__field" placeholder="Comment" name="name" id='CommentRead' required />
+          <label for="name" className="form__label">Comment</label>
         </div>
         <div className='sendding'>
           <button className='buttonSend' onClick={upComment}>
-            <div class="svg-wrapper-1">
-              <div class="svg-wrapper">
+            <div className="svg-wrapper-1">
+              <div className="svg-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                   <path fill="none" d="M0 0h24v24H0z"></path>
                   <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
@@ -214,10 +214,10 @@ const upComment = async () => {
         const datas = await UserService.getProfileUser();
         let user = datas.data.data;
         let a = `
-              <div class="commentLine">
-              <img class ="imgAdd" src=${user.avatar}></img>
-                              <div class='commentReadBook'>
-                                   <div class='nameUserRead'>${user.username} </div>
+              <div className="commentLine">
+              <img className ="imgAdd" src=${user.avatar}></img>
+                              <div className='commentReadBook'>
+                                   <div className='nameUserRead'>${user.username} </div>
                               <div> ${content}</div>
                               </div>
                               </div>`

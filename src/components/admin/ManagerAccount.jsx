@@ -5,70 +5,23 @@ import "./admin.css"
 import StyleHome from '../../style/content.module.css'
 import ban from "../../assets/imgs/banAC.png";
 import reuse from "../../assets/imgs/reuse.png";
-import del from "../../assets/imgs/delete.png";
-import { Link, Navigate, Route, Routes, useHref, useNavigate } from 'react-router-dom';
-
-
-import { Dialog } from 'primereact/dialog';
+import { Navigate, Route, Routes, useHref, useNavigate } from 'react-router-dom';
 import AlertDialogSlide from '../dialog/Dialog';
-import { render } from 'react-dom';
-
 import UserService from '../../service/UserService';
 import $ from "jquery"
-
-import Button from '@mui/material/Button';
-
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import axios from 'axios';
-import authHeader from '../../service/authHeader';
-import AuthAdmin from '../../service/auth';
-// import HeaderAdmin from '../../components/header/HeaderAdmin'
-const data = [
-    {
-        "Email": "tqthai1852@gmail.com",
-        "Username": "Jack",
-        "Name": "Jack 5 củ",
-        "Type": "Reader",
-        "Views": "1000",
-        "Status": "Active",
-        // Action:""
-    },
-    {
-        "Email": "tqthai1852@gmail.com",
-        "Username": "Jadck",
-        "Name": "Jack 5 củ",
-        "Type": "Reader",
-        "Views": "1000",
-        "Status": "Banned",
-        // Action:""
-    },
-    {
-        "Email": "tqthai1852@gmail.com",
-        "Username": "Jasck",
-        "Name": "Jack 5 củ",
-        "Type": "Reader",
-        "Views": "1000",
-        "Status": "Deleted",
-        // Action:""
-    },
-]
+
 function ManagerAccount() {
     return (
         <>
             <Routes>
-                {/* <Route path='/'> */}
 
                 <Route index element={<Navigate to="all" replace />} />
 
                 <Route path='all' element={<AllAccount />} />
-                <Route path='reported' element={<BanAccount />} />
+                <Route path='reported' element={< BannedAccount />} />
                 <Route path='search' element={<SearchAccount />} />
 
-                {/* </Route> */}
             </Routes>
         </>
     )
@@ -77,44 +30,33 @@ function ManagerAccount() {
 
 
 function AllAccount() {
-    // const load = async () => await AuthAdmin()
-    // load()
     return (
         <div>
-
             <div className='mainTittle'>
-                {/* <HeaderAdmin /> */}
-
                 <div className='mainTitleMgb'>User Management </div>
                 <Title title={"Admin > User Management"} />
                 <div className='mainContent'>
-
-                    <Content data={data} />
+                    <Content />
                 </div>
             </div>
-
         </div >
     )
 }
 
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
-function BanAccount() {
-    // const load = async () => await AuthAdmin()
-    // load()
+function BannedAccount() {
+
     return (
         <div>
 
             <div className='mainTittle'>
-                {/* <HeaderAdmin /> */}
+
 
                 <div className='mainTitleMgb'>Reported Account</div>
                 <Title title={"Admin > User Management > Reported Account "} />
                 <div className='mainContent'>
 
-                    <ContentBan data={data} />
+                    < TableBannedAccount />
                 </div>
             </div>
 
@@ -122,18 +64,14 @@ function BanAccount() {
     )
 }
 function SearchAccount() {
-    // const load = async () => await AuthAdmin()
-    // load()
+
     return (
         <div>
 
             <div className='mainTittle'>
-                {/* <HeaderAdmin /> */}
-
                 <div className='mainTitleMgb'>Search Account</div>
                 <Title title={"Admin > User Management > Reported Account "} />
                 <div className='mainContent'>
-
                     <ContentSearch />
                 </div>
             </div>
@@ -141,8 +79,6 @@ function SearchAccount() {
         </div >
     )
 }
-
-
 
 
 
@@ -161,37 +97,6 @@ function Title(props) {
     )
 }
 
-
-
-function BanAccountUser(props) {
-    // alert(user)
-    // <Dialog />
-    // <AlertDialogSlide />
-    // alert("ASd")
-    const [open, setOpen] = React.useState();
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-    return (
-        <>
-
-        </>
-    )
-}
-const deleteAccount = (user) => {
-    alert(user)
-}
-const restore = (user) => {
-    alert(user)
-}
-const API = 'https://ebook4u-server.onrender.com/api/user/all'
-// const url = 'https://ebook4u-server.onrender.com/user/me'
-
 function Content(props) {
     const [listAccount, setList] = useState(null);
 
@@ -200,20 +105,14 @@ function Content(props) {
 
         UserService.getAllAccount().
             then(response => {
-                console.log(response.data.data);
+
                 setList(response.data.data)
 
             }).catch(err => {
-                console.log(err);
+
             })
-
-
     }, [])
-
-
-
     const navigate = useNavigate();
-    const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
     const handleOnClick4 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
     return (
         <>
@@ -231,16 +130,14 @@ function Content(props) {
 
                             let val = $("#searchHomeAdminUser").val()
                             localStorage.setItem("nameSearchUser", val)
-                            // searchBookAdmin()
                             handleOnClick4()
                         }
                         }
                         >Search</button>
-
                     </div>
                 </div>
                 <hr style={{ color: "red" }}></hr>
-                <table class="paleBlueRows">
+                <table className="paleBlueRows">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -253,7 +150,6 @@ function Content(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {listAccount} */}
 
                         {listAccount?.map((item, index) => {
 
@@ -267,11 +163,8 @@ function Content(props) {
                                     <td>{item.status}</td>
 
                                     <td className='optionAdmin'>
-                                        {/* <img className='icon' src={ban} alt="" onClick={() => <BanAccountUser user={item.Username} />} /> */}
-
-                                        <AlertDialogSlide icon={ban} user={item._id} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        {/* <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        <AlertDialogSlide icon={reuse} user={item._id} type={"reuse"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+                                        <AlertDialogSlide icon={ban} user={item._id} type={"ban"} />
+                                        <AlertDialogSlide icon={reuse} user={item._id} type={"reuse"} />
                                     </td>
 
                                 </tr>
@@ -296,11 +189,11 @@ function ContentSearch(props) {
         let name = localStorage.getItem("nameSearchUser")
         UserService.searchUser(name).
             then(response => {
-                console.log(response.data.data);
+
                 setList(response.data.data)
 
             }).catch(err => {
-                console.log(err);
+
             })
 
 
@@ -310,34 +203,25 @@ function ContentSearch(props) {
 
     const navigate = useNavigate();
     const handleOnClick = useCallback(() => navigate('../reported', { replace: true }), [navigate]);
-    // const handleOnClick4 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
+
     return (
         <>
             <div>
-
-
                 <div className={StyleHome.searchBarAdmin}>
                     <div className="searchAdmin" >
-
-
                         <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdminUser" />
-
-
                         <button className="adminSearchButton" onClick={() => {
 
                             let val = $("#searchHomeAdminUser").val()
                             localStorage.setItem("nameSearchUser", val)
                             setName(val)
-                            // searchBookAdmin()
-                            // handleOnClick4()
                         }
                         }
                         >Search</button>
-
                     </div>
                 </div>
                 <hr style={{ color: "red" }}></hr>
-                <table class="paleBlueRows">
+                <table className="paleBlueRows">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -350,8 +234,6 @@ function ContentSearch(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {listAccount} */}
-
                         {listAccount?.map((item, index) => {
 
                             return (
@@ -364,17 +246,14 @@ function ContentSearch(props) {
                                     <td>{item.status}</td>
 
                                     <td className='optionAdmin'>
-                                        {/* <img className='icon' src={ban} alt="" onClick={() => <BanAccountUser user={item.Username} />} /> */}
 
                                         <AlertDialogSlide icon={ban} user={item._id} type={"ban"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        {/* <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
+
                                         <AlertDialogSlide icon={reuse} user={item._id} type={"reuse"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
                                     </td>
 
                                 </tr>
                             )
-
-
                         })}
 
                     </tbody>
@@ -384,7 +263,7 @@ function ContentSearch(props) {
         </>
     )
 }
-function ContentBan(props) {
+function TableBannedAccount(props) {
     const [listAccount, setList] = useState([]);
 
     useEffect(() => {
@@ -392,14 +271,12 @@ function ContentBan(props) {
 
         UserService.getReport().
             then(response => {
-                console.log(response.data.data);
+
                 setList(response.data.data)
 
             }).catch(err => {
-                console.log(err);
+
             })
-
-
     }, [])
 
 
@@ -408,13 +285,10 @@ function ContentBan(props) {
     return (
         <>
             <div>
-
                 <div className={StyleHome.searchBarAdmin}>
-
-
                 </div>
                 <hr style={{ color: "red" }}></hr>
-                <table class="paleBlueRows">
+                <table className="paleBlueRows">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -425,21 +299,15 @@ function ContentBan(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {listAccount} */}
-
                         {listAccount?.map((item, index) => {
-
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
                                     <td>{item.object.username}</td>
                                     <th>{item.reason}</th>
                                     <td>{item.reporter.username}</td>
-
                                     <td className='optionAdmin'>
                                         <AlertDialogSlide icon={ban} user={item.object._id} type={"ban this user"} />                                        {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        {/* <AlertDialogSlide icon={del} user={item.Username} type={"delete"} />                                        <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
-                                        {/* <AlertDialogSlide icon={reuse} user={item.Username} type={"reuse"} /> */}
                                     </td>
                                 </tr>
                             )
@@ -459,83 +327,3 @@ function ContentBan(props) {
 export default ManagerAccount
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    <th>ID</th>
-//                             <th>Name</th>
-//                             <th>Author</th>
-//                             <th>Pages</th>
-//                             <th>Views</th>
-//                             <th>Category</th>
-//                             <th>Create at</th>
-//                             <th>Action</th>
-
-
-
-
-// <table class="paleBlueRows">
-// <thead>
-//     <tr>
-//         <th>ID</th>
-//         <th>Name</th>
-//         <th>Author</th>
-//         <th>Pages</th>
-//         <th>Views</th>
-//         <th>Category</th>
-//         <th>Create at</th>
-//         <th>Action</th>
-//     </tr>
-// </thead>
-// <tbody>
-//     <tr>
-//         <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-//         <td>
-//             <img className='icon' src={chat} alt="" />
-//             <img className='icon' src={ban} alt="" />
-//             <img className='icon' src={del} alt="" />
-//         </td>
-//     </tr>
-//     <tr>
-//         <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-//         <td>
-//             <img className='icon' src={chat} alt="" />
-//             <img className='icon' src={ban} alt="" />
-//             <img className='icon' src={del} alt="" />
-//         </td>
-//     </tr>
-//     <tr>
-//         <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-//         <td>
-//             <img className='icon' src={chat} alt="" />
-//             <img className='icon' src={ban} alt="" />
-//             <img className='icon' src={del} alt="" />
-//         </td>
-//     </tr>
-//     <tr>
-//         <td>1</td><td>The Secret GoldFish</td><td>Ariel Morison</td><td>5000</td><td>10035</td><td>Novel</td><td>10/10/2000</td>
-//         <td>
-//             <img className='icon' src={chat} alt="" />
-//             <img className='icon' src={ban} alt="" />
-//             <img className='icon' src={del} alt="" />
-//         </td>
-//     </tr>
-// </tbody>
-
-// </table>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './style.css'
 
@@ -8,27 +8,28 @@ const Pagination = () => {
 
     const totalPage = localStorage.getItem('totalPage');
     const [currentPage, setCurrentPage] = useState(parseInt(currentPageNum));
-    for(var i = 1; i <= parseInt(totalPage); i++){
+    for (var i = 1; i <= parseInt(totalPage); i++) {
         pages.push(i);
     }
-    
 
-    return(
+
+    return (
         <div className='pagination'>
             {
-                
+
                 pages.map((page, index) => {
 
-                    return <a href={`/book/page/${page}`}>
-                    <button key={index} onClick={() => {
-                        localStorage.setItem("currentPage", page);
-                        setCurrentPage(page)}}
-                    className={page === currentPage ? "active" : ""}>{page}</button>
-                    </a>
-                    
+                    return (<a href={`/book/page/${page}`}>
+                        <button key={index} onClick={() => {
+                            localStorage.setItem("currentPage", page);
+                            setCurrentPage(page)
+                        }}
+                            className={page === currentPage ? "active" : ""}>{page}</button>
+                    </a>)
+
                 })
             }
-            
+
         </div>
     )
 }

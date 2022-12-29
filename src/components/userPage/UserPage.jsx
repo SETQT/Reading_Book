@@ -13,8 +13,8 @@ import { SideBarData } from "./SideBarData";
 import { SideBarDataOption } from "./SideBarDataOption";
 import { logout } from "../../service/authHeader";
 import UserService from "../../service/UserService";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.js";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.js";
 
 const LogoutAccount = () => {
   logout();
@@ -22,29 +22,29 @@ const LogoutAccount = () => {
 };
 
 function UserPage() {
-//   const [book, setBook] = useState(10);
-const [listAccount, setList] = useState([]);
+  //   const [book, setBook] = useState(10);
+  const [listAccount, setList] = useState([]);
 
 
-useEffect(() => {
+  useEffect(() => {
 
 
-  UserService.getProfileUser().
-    then(response => {
-      console.log(response.data.data);
-      setList(response.data.data)
+    UserService.getProfileUser().
+      then(response => {
+        console.log(response.data.data);
+        setList(response.data.data)
 
-    }).catch(err => {
-      console.log(err);
-    })
+      }).catch(err => {
+        console.log(err);
+      })
 
 
-}, [])
+  }, [])
   return (
     <>
       <div className={style.App}>
         <div className={style.Sidebar}>
-          
+
           <img
             src={listAccount.avatar}
             alt=""

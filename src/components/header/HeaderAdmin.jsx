@@ -3,8 +3,8 @@ import { Component } from 'react'
 import style from "../../style/header.css"
 // import "../../style/styleGlobal.js/index.js"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.js';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.js';
 import bell from "../../assets/imgs/bell-solid.svg"
 import chat from "../../assets/imgs/chat.svg"
 import book from "../../assets/imgs/book.png"
