@@ -45,8 +45,17 @@ class BookService {
 
     }
 
+    getTopBook(num) {
+        return axios.get(API + `api/book/top/viewed?per=${num}`, { headers: authHeader() })
+
+    }
+
     getSearchBook(name) {
         return axios.get(API + `search?q=${name}&category=${searchCategory}&country=${searchCountry}`, { headers: authHeader() })
+
+    }
+    getSearchBookAd(name) {
+        return axios.get(API + `search?q=${name}`, { headers: authHeader() })
 
     }
 

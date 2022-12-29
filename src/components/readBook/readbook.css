@@ -22,7 +22,7 @@
     /* flex-direction: row; */
 }
 
-.commentLine img {
+.commentLine .imgAdd {
 
     width: 60px;
     height: 60px;
@@ -61,6 +61,195 @@
     background-color: antiquewhite;
 }
 
+/* .enterComment div {
+    flex: 2;
+} */
+
+
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+
+.form__field:placeholder-shown~.form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+}
+
+.form__field:focus {
+    padding-bottom: 6px;
+    /* font-weight: 700; */
+    border-width: 3px;
+    border-image: linear-gradient(to right, #d6e0e0, #89c4a0);
+    border-image-slice: 1;
+}
+
+.form__field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #bfcac9;
+    font-weight: 700;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+    box-shadow: none;
+}
+
+/* demo */
+/* body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    background-color: #222222;
+} */
+
+.footerComment {
+    width: 90%;
+    margin: auto;
+
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.enterComment {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    /* align-items: center; */
+    justify-content: flex-start;
+    /* align-items: center; */
+    /* flex-direction: column; */
+    /* height: 50px; */
+
+    /* margin-left: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%; */
+
+    font-weight: 400;
+    /* margin-top: 20px; */
+    /* background-color: antiquewhite; */
+}
+
+
+.sendding {
+    display: flex;
+    align-items: flex-end;
+}
+
+.buttonSend {
+    font-family: inherit;
+    font-size: 10px;
+    background: rgb(55, 114, 44);
+    color: rgb(37, 214, 105);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.buttonSend span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.buttonSend svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* .commentDetail {
+    color: #9b9b9b;
+} */
+
+.buttonSend:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.buttonSendSend {
+    /* height: 20px; */
+}
+
+.buttonSend:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.buttonSend:hover span {
+    transform: translateX(5em);
+}
+
+.buttonSend:active {
+    transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+
+    to {
+        transform: translateY(-0.1em);
+    }
+}
+
+#CommentRead {
+    color: #064233;
+}
+
+.enterComment input {
+    width: 100%;
+}
+
+.form__group {
+    width: 100%;
+}
+
+/* form__group field */
 .afterMain {
     flex: 1;
     display: grid;

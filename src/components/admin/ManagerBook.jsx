@@ -107,6 +107,7 @@ function ManagerBook() {
 
                 <Route index element={<Navigate to="all" replace />} />
                 <Route path='all' element={<AllBook />} />
+                <Route path='search' element={<SearchBookAdmin />} />
                 <Route path='comment' element={<CommentBook />} />
 
                 <Route path='update' element={<UpdateBook />} />
@@ -156,6 +157,24 @@ function CommentBook() {
         </div >
     )
 }
+function SearchBookAdmin() {
+    return (
+        <div>
+
+            <div className='mainTittle'>
+                {/* <HeaderAdmin /> */}
+
+                <div className='mainTitleMgb'>Book Management </div>
+                <Title title={"Admin > Book Management > Search Book"} />
+                <div className='mainContent'>
+
+                    <ContentSearch />
+                </div>
+            </div>
+
+        </div >
+    )
+}
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -180,18 +199,7 @@ function AddBook() {
 }
 
 function UpdateBook() {
-    // const id = localStorage.getItem("bookUpdate");
-    // const [list, setList] = useState([])
-    // useEffect(() => {
-    //     const data = async () => {
-    //         let a = await initData(id);
-    //         return a
 
-    //     }
-    //     setList(data());
-    // }, [])
-    // const list = initData(id)
-    // us
     return (
         <div>
 
@@ -230,10 +238,7 @@ function Title(props) {
 
 
 function BanAccountUser(props) {
-    // alert(user)
-    // <Dialog />
-    // <AlertDialogSlide />
-    // alert("ASd")
+
     const [open, setOpen] = React.useState();
 
     const handleClickOpen = () => {
@@ -255,6 +260,13 @@ const deleteAccount = (user) => {
 const restore = (user) => {
     alert(user)
 }
+const bookComment = (id) => {
+
+    localStorage.setItem("bookComment", id);
+    // handleOnClick2()
+
+}
+
 function Content(props) {
     const [listAccount, setList] = useState([]);
     const [state, update] = useStore()
@@ -285,6 +297,7 @@ function Content(props) {
     const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
 
     const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
+    const handleOnClick3 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
 
     return (
         <>
@@ -292,7 +305,29 @@ function Content(props) {
 
 
                 <div className={StyleHome.searchBarAdmin}>
-                    <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" />
+
+
+                    <div className="searchAdmin" >
+
+
+                        <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdmin" />
+
+
+                        <button className="adminSearchButton" onClick={() => {
+
+                            let val = $("#searchHomeAdmin").val()
+                            localStorage.setItem("nameSearchBook", val)
+                            // searchBookAdmin()
+                            handleOnClick3()
+                        }
+                        }
+                        >Search</button>
+
+                    </div>
+
+                    {/* <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" >
+                        
+                    </input> */}
                     <button className='banned' onClick={handleOnClick}>Add new book</button>
 
                 </div>
@@ -317,7 +352,7 @@ function Content(props) {
                         {listAccount?.map((item, index) => {
                             let text = item.category.map(a => (a.name));
                             text = text.toString()
-                            text = text.substring(0, text.length - 1);
+                            text = text.substring(0, text.length);
                             return (
                                 <tr key={index + 1}>
                                     <th>{index + 1}</th>
@@ -325,7 +360,141 @@ function Content(props) {
                                     <td>{item.author}</td>
                                     <td>{item.numberChapter}</td>
                                     <td>{text}</td>
-                                    <td>{item.createdAt}</td>
+                                    <td>{item.createdAt.slice(0, 10)}</td>
+
+                                    <td className='optionAdmin'>
+
+
+                                        <img className='icon' src={chat} alt="" onClick={() => {
+                                            // alert(item._id)
+                                            localStorage.setItem("bookComment", item._id);
+                                            handleOnClick2()
+                                        }
+                                        } type={"chat"} />
+                                        <img className='icon' src={updateIcon} alt=""
+                                            onClick={() => {
+                                                // alert(item._id)
+                                                localStorage.setItem("bookUpdate", item._id);
+                                                update(updateBook(item._id))
+
+                                                handleOnClick1()
+                                            }
+                                            } type={"update"} />
+                                        <AlertDialogSlide icon={del} user={item._id} type={"delete"} />
+
+                                    </td>
+
+                                </tr>
+                            )
+
+
+                        })}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </>
+    )
+}
+function ContentSearch(props) {
+    const [listAccount, setList] = useState([]);
+    const [name, setName] = useState([]);
+    const [state, update] = useStore()
+
+    useEffect(() => {
+
+        // const authen = async () => await AuthAdmin()
+        // authen()
+        // AuthAdmin()
+        // console.log(a);
+
+        let name = localStorage.getItem("nameSearchBook")
+        bookService.getSearchBookAd(name).
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+    }, [name])
+
+
+
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('../add', { replace: true }), [navigate]);
+
+    const handleOnClick1 = useCallback(() => navigate('../update', { replace: true }), [navigate]);
+
+    const handleOnClick2 = useCallback(() => navigate('../comment', { replace: true }), [navigate]);
+    const handleOnClick3 = useCallback(() => navigate('../search', { replace: true }), [navigate]);
+
+    return (
+        <>
+            <div>
+
+
+                <div className={StyleHome.searchBarAdmin}>
+
+
+                    <div className="searchAdmin" >
+
+
+                        <input type="text" defaultValue="" placeholder="Search..." id="searchHomeAdmin" />
+
+
+                        <button className="adminSearchButton" onClick={() => {
+
+                            // searchBookAdmin()
+                            let val = $("#searchHomeAdmin").val()
+                            localStorage.setItem("nameSearchBook", val)
+                            setName(val)
+                            // handleOnClick3()
+                        }
+                        }
+                        >Search</button>
+
+                    </div>
+
+                    {/* <input className={StyleHome.searchInputAdmin} type="text" placeholder="Search" >
+                        
+                    </input> */}
+                    <button className='banned' onClick={handleOnClick}>Add new book</button>
+
+                </div>
+                <hr style={{ color: "red" }}></hr>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Number of Chapter</th>
+                            <th>Category</th>
+                            <th>Create at</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* {listAccount} */}
+
+                        {listAccount?.map((item, index) => {
+                            let text = item.category.map(a => (a.name));
+                            text = text.toString()
+                            text = text.substring(0, text.length);
+                            return (
+                                <tr key={index + 1}>
+                                    <th>{index + 1}</th>
+                                    <th>{item.name}</th>
+                                    <td>{item.author}</td>
+                                    <td>{item.numberChapter}</td>
+                                    <td>{text}</td>
+                                    <td>{item.createdAt.slice(0, 10)}</td>
 
                                     <td className='optionAdmin'>
 
@@ -369,18 +538,18 @@ function ContentComment(props) {
 
 
     useEffect(() => {
-  
-  
-      bookService.getBookById(id).
-        then(response => {
-          console.log(response.data.data);
-          setList(response.data.data.comments)
-  
-        }).catch(err => {
-          console.log(err);
-        })
-  
-  
+
+
+        bookService.getBookById(id).
+            then(response => {
+                console.log(response.data.data);
+                setList(response.data.data.comments)
+
+            }).catch(err => {
+                console.log(err);
+            })
+
+
     }, [])
 
 
