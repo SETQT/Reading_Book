@@ -91,7 +91,7 @@ function UpdateProfile() {
   return (
     <div>
       <div className="cardInfo">
-        <div className="mainContentUser">
+        <div className="mainContentUser1">
           <p
             className="text-sm mb-0 text-capitalize font-weight-bold text-center "
             style={{ marginLeft: "10px", fontSize: "30px", fontWeight: "bold" }}

@@ -34,6 +34,17 @@
   height: 400px;
 }
 
+.mainContentUser1 {
+  position: absolute;
+  width: 50%;
+  top: 120px;
+  left: 550px;
+  background-color: white;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  height: 500px;
+}
+
 .contentUserMain {
   display: flex;
 }
