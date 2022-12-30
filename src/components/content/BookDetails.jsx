@@ -11,6 +11,20 @@ import Header from "../../components/header/HeaderDetailBook";
 import bookService from "../../service/bookService";
 import UserService from "../../service/UserService";
 import { jwt } from "../../service/authHeader";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
+const notify = () => toast('This book is added to favorite books!', {
+  position: "top-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+  });
+
 
 function BookDetails() {
   const { id } = useParams();
@@ -59,6 +73,8 @@ function BookDetails() {
   return (
     <div>
       <Header />
+      <ToastContainer />
+
       <section className={Style.bookDetails}>
         <div className="container">
           <div className={Style.bookDetailsContent}>
@@ -81,7 +97,7 @@ function BookDetails() {
                   style={{ marginRight: "20px", marginTop: "20px" }}
                   onClick={() => {
                     localStorage.setItem("idToAddFav", book?._id);
-
+                    notify();
                     addToFavorite();
                   }}
                 >
