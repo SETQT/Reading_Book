@@ -1,6 +1,7 @@
 import React from "react";
 import "./aboutus.css"
 import Header from "../header/HeaderUser";
+import Footer from "../footer/Footer";
 
 
 function AboutUs() {
@@ -68,6 +69,7 @@ function AboutUs() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
     
   );
