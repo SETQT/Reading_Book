@@ -31,12 +31,16 @@ class Main extends React.Component {
       bookService
         .getBookById(arrayLibrary[i])
         .then((response) => {
+          console.log(response.data.data);
           array.push(response.data.data);
           
+
           
         })
         .catch((err) => {});
     }
+    console.log(array);
+
     let arr = array;
     console.log(arr);
         var clean = arr.filter((arr, index, self) =>
