@@ -60,7 +60,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <div className="app-card-list1" id="app-CardBook-list">
+        <div className="app-card-list2" id="app-CardBook-list">
           {Object.keys(this.state.posts).map((key) => (
             <CardBook key={key} index={key} details={this.state.posts[key]} />
           ))}
