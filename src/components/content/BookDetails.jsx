@@ -30,7 +30,7 @@ function BookDetails() {
       .then((response) => {
         setComment(response.data.data.comments);
 
-     
+
       })
       .catch((err) => {
         console.log(err);
@@ -53,7 +53,7 @@ function BookDetails() {
       );
 
       setBook(data.data.book);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
@@ -121,16 +121,16 @@ function BookDetails() {
                 <span>Lượt xem: {book?.view}</span>
               </div>
               <Link to={"/read"}>
-              <button
-                type="button"
-                className="btn btn-danger"
-                style={{ marginLeft: "20px", marginBottom: "20px" }}
-        
-              >
-                Đọc sách
-              </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  style={{ marginLeft: "20px", marginBottom: "20px" }}
+
+                >
+                  Đọc sách
+                </button>
               </Link>
-              
+
             </div>
           </div>
         </div>
@@ -215,10 +215,10 @@ const upComment = async () => {
         const datas = await UserService.getProfileUser();
         let user = datas.data.data;
         let a = `
-              <div className="commentLine">
-              <img className ="imgAdd" src=${user.avatar}></img>
-                              <div className='commentReadBook'>
-                                   <div className='nameUserRead'>${user.username} </div>
+              <div class="commentLine">
+              <img class ="imgAdd" src=${user.avatar}></img>
+                              <div class='commentReadBook'>
+                                   <div class='nameUserRead'>${user.username} </div>
                               <div> ${content}</div>
                               </div>
                               </div>`;
@@ -226,7 +226,7 @@ const upComment = async () => {
       };
       load();
     })
-    .catch((error) => {});
+    .catch((error) => { });
 };
 const addToFavorite = async () => {
   const id = localStorage.getItem("idToAddFav");
@@ -243,8 +243,8 @@ const addToFavorite = async () => {
     },
     body: JSON.stringify(idBook),
   })
-    .then((result) => {})
-    .catch((error) => {});
+    .then((result) => { })
+    .catch((error) => { });
 };
 
 export default BookDetails;

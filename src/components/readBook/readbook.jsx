@@ -46,10 +46,10 @@ const upComment = async () => {
         const datas = await UserService.getProfileUser();
         let user = datas.data.data;
         let a = `
-                <div className="commentLine">
-                <img className ="imgAdd" src=${user.avatar}></img>
-                                <div className='commentReadBook'>
-                                     <div className='nameUserRead'>${user.username} </div>
+                <div class="commentLine">
+                <img class ="imgAdd" src=${user.avatar}></img>
+                                <div class='commentReadBook'>
+                                     <div class='nameUserRead'>${user.username} </div>
                                 <div> ${content}</div>
                                 </div>
                                 </div>`;
@@ -57,7 +57,7 @@ const upComment = async () => {
       };
       load();
     })
-    .catch((error) => {});
+    .catch((error) => { });
 };
 const ReadBook = () => {
   const [chapter, setChapter] = useState(null);
@@ -85,7 +85,7 @@ const ReadBook = () => {
             response.data.data.chapters.length
           );
         })
-        .catch((err) => {});
+        .catch((err) => { });
     };
     fetch();
   }, []);
