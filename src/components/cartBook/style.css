@@ -168,6 +168,14 @@
     gap: 10px;
 }
 
+.app-card-list2 {
+    display: grid;
+    margin-left: 10%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+
 .app-card-list1::-webkit-scrollbar {
     display: none;
 }
