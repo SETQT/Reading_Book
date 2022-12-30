@@ -12,6 +12,8 @@ import DescribeContent from "../content/DescribeContent";
 import { updateBook } from "../store/action";
 import { useStore } from "../store/hook";
 
+
+
 const deleteFavorite = async () => {
   const id = localStorage.getItem("idToDeleteFav");
   let idBook = { idBook: id };
@@ -49,6 +51,7 @@ class Main extends React.Component {
         let arr = response.data.data;
         var clean = arr.filter((arr, index, self) =>
         index === self.findIndex((t) => (t.save === arr.save && t.State === arr.State)))
+        console.log(clean);
         this.setState({
           posts: clean,
         });
