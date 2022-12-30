@@ -48,7 +48,10 @@ class Main extends React.Component {
   fetchData = async () => {
     UserService.getFavBook()
       .then((response) => {
+
         let arr = response.data.data;
+        console.log(arr);
+
         var clean = arr.filter((arr, index, self) =>
         index === self.findIndex((t) => (t.save === arr.save && t.State === arr.State)))
         console.log(clean);
