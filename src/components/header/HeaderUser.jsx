@@ -42,7 +42,7 @@ function headerUser() {
               <ul className="navbar-nav ms-auto ">
                 <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
 
-                  <Link to={"/user/favorite"}> My Book</Link>
+                  <Link to={"/user/favorite"}> My Favorite Book</Link>
                   <Link onClick={LogoutAccount}> Logout</Link>
                 </li>
               </ul>

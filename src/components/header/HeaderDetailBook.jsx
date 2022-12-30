@@ -1,10 +1,8 @@
 import React from 'react'
 import { Component } from 'react'
+import { Link } from 'react-router-dom'
 import style from "../../style/header.css"
-// import "../../style/styleGlobal.js/index.js"
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.js';
 function header() {
     return (
         <>
@@ -23,9 +21,10 @@ function header() {
                         <div className=" collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ms-auto ">
                                 <li className="nav-item">
-                                    <a className="nav-link mx-2 active" aria-current="page" href="/user">My Book</a>
+                                    <Link to={"/user/favorite"}> My Favorite Book</Link>
+
                                 </li>
-                              
+
                             </ul>
                         </div>
                     </div>

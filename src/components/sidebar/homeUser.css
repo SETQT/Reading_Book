@@ -13,6 +13,7 @@
   background-color: rgb(199, 198, 175);
   width: 100%;
   display: flex;
+  flex: 4;
   justify-content: center;
 }
 
