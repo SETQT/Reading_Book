@@ -124,6 +124,8 @@ function AddBook() {
 function AddChapter() {
   return (
     <div>
+                  <ToastContainer />
+
       <div className="mainTittle">
         <div className="mainTitleMgb">Add new chapter</div>
         <Title title={"Admin > Book Management > Add new chapter "} />
