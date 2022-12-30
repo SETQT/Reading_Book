@@ -302,7 +302,7 @@ function Dashboard() {
             {userData && <BarChart chartData={userData} />}
           </div>
         </div>
-        <div className="mainContent1">
+        <div className="mainContent4">
           <Content />
         </div>
 

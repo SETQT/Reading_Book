@@ -76,6 +76,17 @@
 
 }
 
+.mainContent4 {
+    position: absolute;
+    top: 120px;
+    left: 800px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    width: 250px;
+
+}
+
 .mainContent3 {
     position: absolute;
     width: 250px;
