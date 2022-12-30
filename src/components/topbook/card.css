@@ -10,6 +10,98 @@
     border-radius: 20px;
 }
 
+.dropdown {
+    position: relative;
+}
+
+.dropdown__trigger {
+    cursor: pointer;
+}
+
+/* Hide the dropdown's content by default */
+.dropdown__content {
+    display: none;
+
+    /* Position it right below the trigger element */
+    left: 0;
+    padding-top: 0.25rem;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    /* It should be on the top of other elements */
+    background-color: #d6f5f6;
+    /* border: #07182E solid 1px; */
+    z-index: 9999;
+    border-radius: 0 0 10px 10px;
+    padding-left: 10px;
+
+}
+
+/* Show the content when hover on the container */
+.dropdown:hover .dropdown__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 80px;
+
+    /* align-items: center; */
+}
+
+
+.dropdown {
+    margin-right: 20px;
+}
+
+
+.headerNew {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    background-color: #d6f5f6;
+}
+
+.headerNew .headerItemHome {
+    flex: 10;
+    margin-left: 20px;
+}
+
+.headerNew .headerItemProfile {
+    flex: 1;
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.headerNew .headerItemAbout {
+    flex: 1;
+    /* margin-left: 20px; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: flex-end;
+}
+
+.headerNew .headerItemAccount {
+    flex: 2;
+    /* margin-left: 30px; */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* width: 50px; */
+}
+
+
+
+.headerNew div {
+    font-size: 20px;
+
+}
+
+.headerNew div:hover {
+    color: #3f00b5;
+    cursor: pointer;
+}
+
 .cardTopBook div {
     z-index: 1;
     color: white;
@@ -45,10 +137,6 @@
     border-radius: 15px;
 }
 
-/* .cardTopBook:hover:before {
-    background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
-    animation: rotBGimg 3.5s linear infinite;
-  } */
 
 
 

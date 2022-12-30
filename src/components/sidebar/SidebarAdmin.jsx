@@ -12,7 +12,7 @@ function SidebarAdmin() {
       <div>
         <section className="app">
           <aside className="sidebar">
-            <header>
+            <header style={{"fontSize":"18px"}}>
               <img className="icon" src={admin} alt="" /> SuperAdmin
             </header>
             <div className="lineRow"></div>
@@ -20,25 +20,22 @@ function SidebarAdmin() {
               <ul>
                 <li>
                   <Link to="dashboard">
-                    <span>
-                      {" "}
-                      <img className="icon" src={home} alt="" /> DashBoard{" "}
+                    <span style={{"fontSize":"18px"}}>
+                      <img className="icon" src={home} alt="" /> DashBoard
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link to="account/all">
-                    <span>
-                      {" "}
-                      <img className="icon" src={user} alt="" /> Users{" "}
+                    <span style={{"fontSize":"18px"}}>
+                      <img className="icon" src={user} alt="" /> Users
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link to="book/all">
-                    <span>
-                      {" "}
-                      <img className="icon" src={book} alt="" /> Books{" "}
+                    <span style={{"fontSize":"18px"}}>
+                      <img className="icon" src={book} alt="" /> Books
                     </span>
                   </Link>
                 </li>

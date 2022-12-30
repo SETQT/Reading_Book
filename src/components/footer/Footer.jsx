@@ -9,9 +9,9 @@ import home from "../../assets/imgs/home.png";
 import envelope from "../../assets/imgs/envelope.png";
 import telephone from "../../assets/imgs/telephone.png";
 
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 
-import { Dropdown } from "bootstrap";
+// import { Dropdown } from "bootstrap";
 import "./footer.css";
 
 function Footer() {

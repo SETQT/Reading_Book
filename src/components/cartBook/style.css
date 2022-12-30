@@ -4,8 +4,7 @@
     margin: 60px auto;
     box-shadow: 10px 5px 40px 20px #2d1896;
     transition: 0.25s;
-    /* border: 5px solid rebeccapurple;
-    border-radius: 5px; */
+    
 }
 
 .card:hover {
@@ -18,9 +17,7 @@
 }
 
 .card-header {
-    /* height: 150px; */
-    /* width: 100%; */
-    /* padding: 15px; */
+   
     padding: 10px;
     width: 100%;
     background-size: contain;
@@ -33,9 +30,7 @@
 }
 
 .card-body {
-    /* padding: 15px; */
     background-color: #fff;
-    /* width: 100%; */
 }
 
 .date {
@@ -45,7 +40,6 @@
 }
 
 .body-content {
-    /* padding-bottom: 40px; */
     margin-top: 10px;
     display: -webkit-box;
     max-width: 200px;
@@ -53,9 +47,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     padding: 0 10px;
-    /* overflow: visible; */
-
-    /* line-height: 1.8; */
 }
 
 .button-primary {
@@ -80,17 +71,13 @@
     display: block;
 }
 
-/* Designer credit: https://dribbble.com/shots/1978243-Latest-News */
-
 
 .app-header {
     display: block;
-    /* padding: 30px; */
 }
 
 .app-title {
     display: inline-block;
-    /* width: 100%; */
     margin: 80px 0 0 0;
     float: left;
     position: relative;
@@ -98,7 +85,6 @@
 }
 
 .CardBook-header {
-    /* width: 200px; */
     height: 180px;
     padding: 10px;
     border-top-left-radius: 20px;
@@ -107,7 +93,6 @@
 }
 
 .CardBook-favorite-header {
-    /* width: 200px; */
     height: 300px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -115,22 +100,14 @@
 }
 
 .CardBook {
-    /* width: 400px; */
+ 
     border: 2px solid rgb(34, 197, 48);
     border-radius: 20px;
     width: 250px;
-    /* height: 400px; */
-    /* height: 300px; */
+  
 }
 
 
-/* 
-@media (min-width: 768px) {
-    .app-title {
-        width: 20%;
-        margin: 280px 0 0 0;
-    }
-} */
 
 .app-title h1 {
     font-size: 52px;
@@ -146,22 +123,13 @@
     position: relative;
     top: 50%;
     left: 50%;
-    /* width: 100%; */
     text-align: center;
     transform: translate(-50%, -50%);
 }
 
-/* 
-@media (min-width: 768px) {
-    .app-title-content {
-        width: auto;
-        position: absolute;
-        text-align: left;
-    }
-} */
+
 
 .CardBook-body {
-    /* width: 300px; */
     background-color: #fff;
     ;
     overflow: hidden;
@@ -176,32 +144,15 @@
     grid-template-rows: 1fr 1fr;
     gap: 10px;
     min-height: 700px;
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    /* width: 100%; */
-    /* float: right; */
     margin: 0;
-    /* overflow: scroll; */
-    /* min-height: 75vh; */
-    /* white-space: normal;
-    overflow-x: scroll; */
-    /* margin-top: -70px; */
 }
 
 .app-card-list::-webkit-scrollbar {
     display: none;
 }
 
-/* 
-@media (min-width: 768px) {
-    .app-card-list {
-        width: 80%;
-        white-space: nowrap;
-        margin-top: 0;
-    }
-} */
 
 .app-card-list .card {
-    /* margin: 60px 30px; */
     display: inline-block;
 }
 
@@ -215,31 +166,14 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    /* width: 100%; */
-    /* float: right; */
-    /* overflow: scroll; */
-    /* min-height: 75vh; */
-    /* white-space: normal;
-    overflow-x: scroll; */
-    /* margin-top: -70px; */
 }
 
 .app-card-list1::-webkit-scrollbar {
     display: none;
 }
 
-/* 
-@media (min-width: 768px) {
-    .app-card-list {
-        width: 80%;
-        white-space: nowrap;
-        margin-top: 0;
-    }
-} */
 
 .app-card-list1 .card {
-    /* margin: 60px 30px; */
     display: inline-block;
 }
 
@@ -250,7 +184,6 @@
 
 .designer-link {
     display: inline-block;
-    /* padding-top: 40px; */
 }
 
 .pagination {

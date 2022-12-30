@@ -25,12 +25,6 @@ function header() {
                                 <li className="nav-item">
                                     <a className="nav-link mx-2 active" aria-current="page" href="/user">My Book</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link mx-2" href="#">Products</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link mx-2" href="#">Pricing</a>
-                                </li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Company

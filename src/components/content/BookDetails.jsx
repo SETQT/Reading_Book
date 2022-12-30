@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import $ from "jquery";
-
+import { Link } from "react-router-dom";
 import Comment from "../comment/Comment";
 import { useNavigate } from "react-router-dom";
 import Style from "../../components/userPage/style1.module.css";
@@ -30,8 +30,7 @@ function BookDetails() {
       .then((response) => {
         setComment(response.data.data.comments);
 
-        // setCurrenChapter(response.data.data.chapters[0])
-        // console.log(book);
+     
       })
       .catch((err) => {
         console.log(err);
@@ -121,17 +120,17 @@ function BookDetails() {
               <div className={Style.bookDetailsItem}>
                 <span>Lượt xem: {book?.view}</span>
               </div>
-
+              <Link to={"/read"}>
               <button
                 type="button"
                 className="btn btn-danger"
                 style={{ marginLeft: "20px", marginBottom: "20px" }}
-                onClick={() => {
-                  window.location.href = "http://localhost:3000/read";
-                }}
+        
               >
                 Đọc sách
               </button>
+              </Link>
+              
             </div>
           </div>
         </div>

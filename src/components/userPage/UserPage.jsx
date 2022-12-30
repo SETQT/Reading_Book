@@ -52,8 +52,8 @@ function UserPage() {
           <ul className={style.SidebarList}>
             {SideBarData.map((val, key) => {
               return (
-                <Link to={val.link}>
-                  <li className={style.row} key={`keyTop${key}`}>
+                <Link to={val.link} >
+                  <li className={style.row} key={`keyTop${key}`} >
                     <div id={style.icon}>{val.icon}</div>
                     {""}
                     <div id={style.title}>{val.title}</div>

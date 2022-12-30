@@ -2,13 +2,20 @@ import React from "react";
 import { Component } from "react";
 import style from "../../style/header.css";
 // import "../../style/styleGlobal.js/index.js"
-
+import { Link } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/js/bootstrap.js';
+import { jwt, logout } from '../../service/authHeader';
 import bell from "../../assets/imgs/bell-solid.svg";
 import chat from "../../assets/imgs/chat.svg";
 import book from "../../assets/imgs/book.png";
 import user from "../../assets/imgs/user2.png";
+
+const LogoutAccount = () => {
+  logout()
+  window.location.href = "/login"
+}
+
 function headerUser() {
   return (
     <>
@@ -33,9 +40,9 @@ function headerUser() {
 
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto ">
-                {/* <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
-                                    My Library
-                                </li> */}
+                <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
+                <Link onClick={LogoutAccount}> Logout</Link>
+                                </li>
               </ul>
             </div>
           </div>

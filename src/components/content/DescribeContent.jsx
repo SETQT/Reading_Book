@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../store/hook";
-
+import { Link } from "react-router-dom";
 import Style from "./styleDescript.module.css";
 
 import "../topbook/card.css";
@@ -69,13 +69,16 @@ function DescribeContent(props) {
                             <span className="titleTopBook">Country:&nbsp;</span>
                             {item?.country?.name}
                           </div>
-                          <button
-                            onClick={() => {
+                          <Link to={"/read"} onClick={() => {
                               read(item?._id);
-                            }}
+                            }}>
+                          <button
+                            
                           >
                             Read Now
                           </button>
+                          </Link>
+                          
                         </div>
                       </div>
                     </div>

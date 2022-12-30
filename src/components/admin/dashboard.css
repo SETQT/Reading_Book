@@ -11,16 +11,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    /* grid-area: 2px; */
-    /* align-items: center; */
     align-self: center;
     position: absolute;
 }
 
-/* .cardInfo img {
-    object-fit: contain;
-    height: 300px;
-} */
+
 
 .cardInfo {
     height: 190px;
@@ -53,17 +48,14 @@
     padding: 10px;
     padding-bottom: 50px;
     position: relative;
-    /* border-radius: 20px; */
 }
 
 .mainTitleMgb {
     font-size: 40px;
     color: white;
-    /* background-color: #141414; */
 }
 
 .mainContent2 {
-    /* display: ; */
     position: absolute;
     width: 65%;
     top: 120px;
@@ -75,9 +67,7 @@
 }
 
 .mainContent1 {
-    /* display: ; */
     position: absolute;
-    /* width: 27%; */
     top: 120px;
     left: 800px;
     background-color: white;
@@ -87,7 +77,6 @@
 }
 
 .mainContent3 {
-    /* display: ; */
     position: absolute;
     width: 250px;
     top: 360px;
@@ -100,7 +89,6 @@
 }
 
 .titleDashboard {
-    /* color: rgb(219, 195, 195); */
     font-size: 25px;
     color: white;
 }

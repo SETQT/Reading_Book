@@ -55,7 +55,7 @@ function Signup() {
                     <div className="container-fluid">
                         <img className="book" src={book} alt="" />
                         <a className="navbar-brand" href="/home">
-                            EBooK4U
+                            EBook4U
                         </a>
                         <button
                             className="navbar-toggler"
@@ -71,46 +71,7 @@ function Signup() {
 
                         <div className=" collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ms-auto ">
-                                <li
-                                    className="nav-item"
-                                    style={{
-                                        marginLeft: "20px",
-                                        fontWeight: "bold",
-                                        fontSize: "20px",
-                                    }}
-                                >
-                                    Donate
-                                </li>
-                                <li
-                                    className="nav-item"
-                                    style={{
-                                        marginLeft: "20px",
-                                        fontWeight: "bold",
-                                        fontSize: "20px",
-                                    }}
-                                >
-                                    My Library
-                                </li>
-                                <li
-                                    className="nav-item"
-                                    style={{
-                                        marginLeft: "20px",
-                                        fontWeight: "bold",
-                                        fontSize: "20px",
-                                    }}
-                                >
-                                    Write
-                                </li>
-                                <li
-                                    className="nav-item"
-                                    style={{
-                                        marginLeft: "20px",
-                                        fontWeight: "bold",
-                                        fontSize: "20px",
-                                    }}
-                                >
-                                    Company
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>

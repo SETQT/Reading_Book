@@ -10,7 +10,7 @@ import ReadBook from './components/readBook/readbook';
 import SearchBook from './components/searchBook/searchbook';
 import "./style/GlobalStyle.js"
 import { StoreContext } from "./utils/Store";
-
+import AboutUs from './components/content/aboutus';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -30,6 +30,7 @@ function App() {
         <Route path='/read' element={<ReadBook />} />
         <Route path="/login/*" element={<Login />} />{" "}
         <Route path='/search/*' element={<SearchBook />} />
+        <Route path='/aboutus' element={<AboutUs />} />
 
       </Routes>
     </>
