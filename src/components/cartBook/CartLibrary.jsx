@@ -40,7 +40,7 @@ class Main extends React.Component {
     let arr = array;
     console.log(arr);
         var clean = arr.filter((arr, index, self) =>
-        index === self.findIndex((t) => (t.save === arr.save && t.State === arr.State)))
+        index === self.findIndex((t) => (t._id === arr._id )))
         console.log(clean);
 
         this.setState({
