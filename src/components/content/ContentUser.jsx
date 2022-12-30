@@ -8,6 +8,7 @@ import { useStore } from "../store/hook";
 function Content(props) {
   return (
     <>
+
       <div style={props.style}>
         <div className={Style.contentUser}>
           <div className={Style.contentForYou1}>

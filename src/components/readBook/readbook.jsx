@@ -68,8 +68,12 @@ const ReadBook = () => {
   const [currentChapter, setCurrentChapter] = useState(parseInt(a));
   let ids = window.localStorage.getItem("idBookForRead");
   // $("#chapter" + currentChapter).addClass("current")
+  console.log(currentChapter)
+  console.log("currentChapter")
   $("#chapter" + currentChapter).addClass("current")
   useEffect(() => {
+    // alert("Asd")
+
 
     const fetch = async () => {
       await bookService
@@ -117,6 +121,7 @@ const ReadBook = () => {
                     key={count}
                     className="chapterOfBook"
                     onClick={() => {
+
                       window.localStorage.setItem("currentChapter", count);
                       window.location.reload(false);
                     }}
@@ -182,7 +187,7 @@ const ReadBook = () => {
 };
 
 function ContentRead(props) {
-  const [currentChapter, setCurrenChapter] = useState([]);
+  // const [currentChapter, setCurrenChapter] = useState([]);
 
   console.log("---");
   console.log(props);

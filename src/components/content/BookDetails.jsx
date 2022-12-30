@@ -23,7 +23,7 @@ const notify = () => toast('This book is added to favorite books!', {
   draggable: true,
   progress: undefined,
   theme: "light",
-  });
+});
 
 
 function BookDetails() {
@@ -141,11 +141,13 @@ function BookDetails() {
                   type="button"
                   className="btn btn-danger"
                   style={{ marginLeft: "20px", marginBottom: "20px" }}
-                  onClick={()=>{
+                  onClick={() => {
+                    localStorage.setItem("currentChapter", 0);
+
                     var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary"));
-                    if(arrayLibrary ==null){
+                    if (arrayLibrary == null) {
                       arrayLibrary = [];
-                    } 
+                    }
                     arrayLibrary.push(book?._id);
                     window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
                   }}

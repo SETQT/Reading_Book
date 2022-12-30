@@ -7,6 +7,8 @@ import "../topbook/card.css";
 import bookService from "../../service/bookService";
 
 const read = (id) => {
+
+  localStorage.setItem("currentChapter", 0);
   window.localStorage.setItem("idBookForRead", id);
   window.location.href = "https://ebooks4u.netlify.app/read";
 };
