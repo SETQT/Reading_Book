@@ -41,8 +41,10 @@ function headerUser() {
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto ">
                 <li className="nav-item" style={{ marginLeft: "20px", fontWeight: "bold", fontSize: "20px" }}>
-                <Link onClick={LogoutAccount}> Logout</Link>
-                                </li>
+
+                  <Link to={"/user/favorite"}> My Book</Link>
+                  <Link onClick={LogoutAccount}> Logout</Link>
+                </li>
               </ul>
             </div>
           </div>

@@ -66,9 +66,10 @@ const ReadBook = () => {
   let a = localStorage.getItem("currentChapter");
   if (!a) a = 0;
   const [currentChapter, setCurrentChapter] = useState(parseInt(a));
-
+  let ids = window.localStorage.getItem("idBookForRead");
+  // $("#chapter" + currentChapter).addClass("current")
+  $("#chapter" + currentChapter).addClass("current")
   useEffect(() => {
-    let ids = window.localStorage.getItem("idBookForRead");
 
     const fetch = async () => {
       await bookService
@@ -107,21 +108,25 @@ const ReadBook = () => {
           </div>
           <div className="afterMain">
             <div className="titleAfterMain">Chapter List</div>
-            {chapter?.map((index, count) => (
-              <div>
-                <span
-                  key={count}
-                  className="chapterOfBook"
-                  onClick={() => {
-                    window.localStorage.setItem("currentChapter", count);
-                    window.location.reload(false);
-                  }}
-                >
-                  {" "}
-                  Chapter {count + 1}
-                </span>
-              </div>
-            ))}{" "}
+            {chapter?.map((index, count) => {
+              let id = "chapter" + count
+              return (
+                <div>
+                  <span
+                    id={id}
+                    key={count}
+                    className="chapterOfBook"
+                    onClick={() => {
+                      window.localStorage.setItem("currentChapter", count);
+                      window.location.reload(false);
+                    }}
+                  >
+                    {" "}
+                    Chapter {count + 1}
+                  </span>
+                </div>
+              )
+            })}{" "}
           </div>
         </div>
         <div className="enterComment">
@@ -228,8 +233,16 @@ function ContentRead(props) {
         </div>
       </div>
       <div className="story">
-        <div className="nameBook"> {props.book}</div>
-        <div className="nameChapter"> {props.chapter?.name}</div>
+        <div className="nameBook">
+
+          {props.book}
+        </div>
+        <div className="nameChapter">
+          <p dangerouslySetInnerHTML={{
+            __html: `${props.chapter?.name}`,
+          }} />
+          {/* {} */}
+        </div>
         {/* <div className='contentOfPerChapter'> {props.chapter?.contentText}</div> */}
         <div className="contentOfPerChapter">
           <p

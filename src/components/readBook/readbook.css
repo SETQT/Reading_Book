@@ -5,6 +5,11 @@
 }
 
 
+.current {
+    color: #dee4ab;
+    /* background-color: #064233; */
+}
+
 .beforeMain {
     flex: 1;
 }
