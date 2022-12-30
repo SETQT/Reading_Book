@@ -32,12 +32,17 @@ class Main extends React.Component {
         .getBookById(arrayLibrary[i])
         .then((response) => {
           array.push(response.data.data);
-          this.setState({
-            posts: array,
-          });
+          
+          
         })
         .catch((err) => {});
     }
+    let arr = array;
+        var clean = arr.filter((arr, index, self) =>
+        index === self.findIndex((t) => (t.save === arr.save && t.State === arr.State)))
+        this.setState({
+          posts: clean,
+        });
   };
   componentDidMount() {
     this.fetchData();

@@ -6,6 +6,8 @@ import chat from "../../assets/imgs/chat.png";
 import updateIcon from "../../assets/imgs/update.png";
 import del from "../../assets/imgs/delete.png";
 import add from "../../assets/imgs/addChapter.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Navigate,
   Route,
@@ -26,6 +28,18 @@ import { useStore } from "../store/hook";
 import { updateBook } from "../store/action";
 import { jwt } from "../../service/authHeader";
 import AnimatedMulti from "./Selecter";
+
+const notify1 = () =>
+  toast("Please enter all fields!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
 function ManagerBook() {
   return (
@@ -94,6 +108,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function AddBook() {
   return (
     <div>
+            <ToastContainer />
+
       <div className="mainTittle">
         <div className="mainTitleMgb">Add new book</div>
         <Title title={"Admin > Book Management > Add new book "} />
@@ -108,6 +124,8 @@ function AddBook() {
 function AddChapter() {
   return (
     <div>
+                  <ToastContainer />
+
       <div className="mainTittle">
         <div className="mainTitleMgb">Add new chapter</div>
         <Title title={"Admin > Book Management > Add new chapter "} />
@@ -471,6 +489,7 @@ function ContentComment(props) {
       .getBookById(id)
       .then((response) => {
         setList(response.data.data.comments);
+
       })
       .catch((err) => {});
   }, []);
@@ -511,8 +530,8 @@ function ContentComment(props) {
                   <td className="optionAdmin">
                     <AlertDialogSlide
                       icon={del}
-                      user={item.Page}
-                      type={"delete"}
+                      type={"deleteComment"}
+                      user={item._id}
                     />{" "}
                     {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
                   </td>
@@ -628,7 +647,7 @@ function ContentBan(props) {
 
   const navigate = useNavigate();
   const handleOnClick = useCallback(
-    () => navigate("../reported", { replace: true }),
+    () => navigate("../all", { replace: true }),
     [navigate]
   );
   return (
@@ -688,7 +707,29 @@ function ContentBan(props) {
         <div className="submitFormBook">
           <span
             id="submitBook"
-            onClick={submitBook}
+            onClick={()=>{
+              let name = $("#nameBook").val();
+                let category = $("#category").val();
+                let country = $("#country").val();
+                let author = $("#author").val();
+                let description = $("#descriptionFormBook").val();
+                let image = $("#contentPDF").val();
+
+                if (
+                  name === "" ||
+                  category === "" ||
+                  country === "" ||
+                  author === "" ||
+                  description === "" ||
+                  image === ""
+                ) {
+                  notify1();
+                  return;
+                } else {
+                  submitBook();
+                  handleOnClick();
+                }
+            }}
             style={{ cursor: "pointer" }}
           >
             SUBMIT
@@ -963,8 +1004,19 @@ function ContentAddChapter(props) {
           <span
             id="submitChapter"
             onClick={() => {
-              submitNewChapter();
-              handleOnClick2();
+              let name = $("#nameChapter").val();
+              let descript = $("#descriptionFormChapter").val();
+                if (
+                  name === "" ||
+                  descript === ""
+) {
+                  notify1();
+                  return;
+                } else {
+                  submitNewChapter();
+                  handleOnClick2();;
+                }
+              
             }}
             style={{ cursor: "pointer" }}
           >

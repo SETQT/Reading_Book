@@ -141,7 +141,11 @@ function BookDetails() {
                   type="button"
                   className="btn btn-danger"
                   style={{ marginLeft: "20px", marginBottom: "20px" }}
+                  onClick={()=>{
+                    var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary"));
 
+                    window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
+                  }}
                 >
                   Đọc sách
                 </button>

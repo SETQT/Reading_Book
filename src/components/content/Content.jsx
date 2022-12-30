@@ -27,6 +27,8 @@ function Content(props) {
                   let name = $('#searchHome').val();
                   let result = name.toLowerCase();
                   localStorage.setItem("searchName", result);
+                  localStorage.setItem("currentPageSearch", 1);
+
                   window.location.href = "https://ebooks4u.netlify.app/search"
 
                 }}>Search</button>

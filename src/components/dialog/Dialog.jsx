@@ -51,12 +51,14 @@ const agree = (type, user) => {
         .catch((error) => { });
       break;
     case "deleteComment":
+
       bookService
         .deleteComment(user)
         .then((result) => {
-          window.location.reload(false);
         })
         .catch((error) => { });
+        window.location.reload(false);
+
       break;
 
     default:
