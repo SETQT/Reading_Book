@@ -40,12 +40,38 @@ const notify = () =>
     theme: "light",
   });
 
+  const notify2 = () =>
+  toast("Please enter your username!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+  const notify3 = () =>
+  toast("Please enter your password!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
 const forgetPass = () => {
-  let user = $("#inputLogin").val();
-  if (user == "") {
-    notify1();
+  let user = $("#inputLoginName").val();
+  let pass = $("#inputLoginPass").val();
+  if (user === "" ) {
+    notify2();
     return;
   }
+  
   let item = { information: user };
   fetch("https://ebook4u-server.onrender.com/auth/forget-password", {
     method: "post",
@@ -141,7 +167,7 @@ function SignIn() {
             <h1>Sign In</h1>
             <div>
               <input
-                id="inputLogin"
+                id="inputLoginName"
                 placeholder="Username"
                 type="text"
                 name="name"
@@ -158,7 +184,7 @@ function SignIn() {
             </div>
             <div>
               <input
-                id="inputLogin"
+                id="inputLoginPass"
                 type="password"
                 style={{
                   marginTop: "30px",
@@ -196,10 +222,15 @@ function SignIn() {
               className="btn btn-success"
               style={{ marginTop: "20px" }}
               onClick={() => {
-                let user = $("#inputLogin").val();
+                let user = $("#inputLoginName").val();
+                let pass = $("#inputLoginPass").val();
                 if (user === "") {
                   notify1();
                   return;
+                }
+                else if (pass === "") {
+                  notify2();
+                  return;  
                 }else{                login();
                 }
               }}
