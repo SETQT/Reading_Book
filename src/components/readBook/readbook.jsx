@@ -190,12 +190,12 @@ function ContentRead(props) {
             src={left}
             alt=""
             onClick={() => {
+
               let index = parseInt(
                 window.localStorage.getItem("currentChapter")
               );
-              let max = parseInt(window.localStorage.getItem("maxChapter"));
-              if (index != max) {
-                index += 1;
+              if (index != 0) {
+                index -= 1;
                 window.localStorage.setItem("currentChapter", index);
                 window.location.reload(false);
               }
@@ -216,10 +216,12 @@ function ContentRead(props) {
               let index = parseInt(
                 window.localStorage.getItem("currentChapter")
               );
-              if (index != 0) {
-                index -= 1;
+              let max = parseInt(window.localStorage.getItem("maxChapter"));
+              if (index != max - 1) {
+                index += 1;
                 window.localStorage.setItem("currentChapter", index);
                 window.location.reload(false);
+
               }
             }}
           />
