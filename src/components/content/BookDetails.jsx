@@ -143,7 +143,10 @@ function BookDetails() {
                   style={{ marginLeft: "20px", marginBottom: "20px" }}
                   onClick={()=>{
                     var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary"));
-
+                    if(arrayLibrary ==null){
+                      arrayLibrary = [];
+                    } 
+                    arrayLibrary.push(book?._id);
                     window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
                   }}
                 >
