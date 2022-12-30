@@ -9,55 +9,65 @@ import chat from "../../assets/imgs/chat.svg";
 import book from "../../assets/imgs/book.png";
 import user from "../../assets/imgs/user2.png";
 import "./account.css";
-import $ from "jquery"
+import $ from "jquery";
 import { borderRadius } from "@mui/system";
 import { useCallback, useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useHref, useNavigate } from "react-router-dom";
 
-const notify = () => toast('Wrong username or password!!!', {
-  position: "top-center",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: "light",
+const notify = () =>
+  toast("Wrong username or password!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+  const notify1 = () =>
+  toast("Please enter your account!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
   });
 
 const forgetPass = () => {
-
-  let user = $("#inputLogin").val()
+  let user = $("#inputLogin").val();
   if (user == "") {
-      alert("Please enter your account !")
-      return
+    notify1();
+    return;
   }
-  let item = { information: user }
+  let item = { information: user };
   fetch("https://ebook4u-server.onrender.com/auth/forget-password", {
-      method: 'post',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-      },
-      body: JSON.stringify(item),
-  }).then(async (res) => {
-      const data = await res.json()
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(item),
+  })
+    .then(async (res) => {
+      const data = await res.json();
       console.log(data);
       if (data.success) {
-          alert(data.message)
-
+        alert(data.message);
       } else {
-          alert(data.message)
-
+        alert(data.message);
       }
-
-
-  }).catch((e) => {
+    })
+    .catch((e) => {
       console.log(e);
-  })
-}
+    });
+};
 
 function SignIn() {
   const [userName, setUsername] = useState("");
@@ -90,8 +100,7 @@ function SignIn() {
           localStorage.setItem("user", data.accessToken);
           if (data?.admin) navigate("/admin");
           else navigate("/home");
-        }
-        else{
+        } else {
           notify();
         }
       })
@@ -100,9 +109,8 @@ function SignIn() {
 
   return (
     <>
-
       <div className="bg_image">
-      <ToastContainer />
+        <ToastContainer />
 
         <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
           <div className="container-fluid">
@@ -123,9 +131,7 @@ function SignIn() {
             </button>
 
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav ms-auto ">
-                
-              </ul>
+              <ul className="navbar-nav ms-auto "></ul>
             </div>
           </div>
         </nav>
@@ -145,6 +151,7 @@ function SignIn() {
                   borderRadius: "5%",
                   height: "40px",
                 }}
+                required
                 value={userName}
                 onChange={onUsernameChange}
               />
@@ -163,6 +170,7 @@ function SignIn() {
                 name="name"
                 value={password}
                 onChange={onPasswordChange}
+                required
               />
             </div>
 
@@ -174,12 +182,11 @@ function SignIn() {
               <Link
                 style={{
                   marginTop: "30px",
-                  cursor:"pointer"
+                  cursor: "pointer",
                 }}
-                onClick={()=>{
-                  forgetPass()
+                onClick={() => {
+                  forgetPass();
                 }}
-                
               >
                 Forget password?
               </Link>
@@ -188,7 +195,14 @@ function SignIn() {
               type="button"
               className="btn btn-success"
               style={{ marginTop: "20px" }}
-              onClick={login}
+              onClick={() => {
+                let user = $("#inputLogin").val();
+                if (user === "") {
+                  notify1();
+                  return;
+                }else{                login();
+                }
+              }}
             >
               SIGN
             </button>
