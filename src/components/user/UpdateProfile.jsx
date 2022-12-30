@@ -25,7 +25,7 @@ function Content() {
       .then((response) => {
         setList(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ function UpdateProfile() {
         let dob = response.data.data.dateOfBirth.slice(0, 10);
         $("#dobUser").val(dob);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
   return (
     <div>
@@ -261,9 +261,9 @@ const submitUpdateUser = async () => {
     body: formData,
   })
     .then((result) => {
-      window.location.href = "http://localhost:3000/user/profile";
+      window.location.href = "https://ebooks4u.netlify.app/user/profile";
     })
-    .catch((error) => {});
+    .catch((error) => { });
 };
 
 export default UpdateProfile;

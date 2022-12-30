@@ -8,7 +8,7 @@ import bookService from "../../service/bookService";
 
 const read = (id) => {
   window.localStorage.setItem("idBookForRead", id);
-  window.location.href = "http://localhost:3000/read";
+  window.location.href = "https://ebooks4u.netlify.app/read";
 };
 function DescribeContent(props) {
   const [state, update] = useStore();
@@ -19,7 +19,7 @@ function DescribeContent(props) {
       .then((res) => {
         setTop(res.data.data);
       })
-      .catch((e) => {});
+      .catch((e) => { });
   }, []);
   return (
     <>
@@ -70,15 +70,15 @@ function DescribeContent(props) {
                             {item?.country?.name}
                           </div>
                           <Link to={"/read"} onClick={() => {
-                              read(item?._id);
-                            }}>
-                          <button
-                            
-                          >
-                            Read Now
-                          </button>
+                            read(item?._id);
+                          }}>
+                            <button
+
+                            >
+                              Read Now
+                            </button>
                           </Link>
-                          
+
                         </div>
                       </div>
                     </div>

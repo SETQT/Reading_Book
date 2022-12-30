@@ -12,7 +12,7 @@ function Content(props) {
       <div style={props.style}>
         <div className={Style.content}>
           <div className={Style.headerContent}>
-            
+
             <div style={{ flex: 1 }}> </div>
             <div className="main-search-input-wrap" >
               <div
@@ -27,7 +27,7 @@ function Content(props) {
                   let name = $('#searchHome').val();
                   let result = name.toLowerCase();
                   localStorage.setItem("searchName", result);
-                  window.location.href = "http://localhost:3000/search"
+                  window.location.href = "https://ebooks4u.netlify.app/search"
 
                 }}>Search</button>
               </div>

@@ -16,7 +16,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const agree = (type, user) => {
-  
+
 
   switch (type) {
     case "ban":
@@ -24,15 +24,15 @@ const agree = (type, user) => {
         .then((result) => {
           window.location.reload(false);
         })
-        .catch((error) => {});
+        .catch((error) => { });
 
       break;
     case "ban this user":
       UserService.banAccount(user)
         .then((result) => {
-          window.location.href = "http://localhost:3000/admin/account/all";
+          window.location.href = "https://ebooks4u.netlify.app/admin/account/all";
         })
-        .catch((error) => {});
+        .catch((error) => { });
 
       break;
     case "reuse":
@@ -40,7 +40,7 @@ const agree = (type, user) => {
         .then((result) => {
           window.location.reload(false);
         })
-        .catch((error) => {});
+        .catch((error) => { });
       break;
     case "delete":
       bookService
@@ -48,7 +48,7 @@ const agree = (type, user) => {
         .then((result) => {
           window.location.reload(false);
         })
-        .catch((error) => {});
+        .catch((error) => { });
       break;
     case "deleteComment":
       bookService
@@ -56,9 +56,9 @@ const agree = (type, user) => {
         .then((result) => {
           window.location.reload(false);
         })
-        .catch((error) => {});
+        .catch((error) => { });
       break;
-      
+
     default:
       break;
   }
@@ -76,7 +76,7 @@ export default function AlertDialogSlide(props) {
 
   return (
     <div>
-      <img className="icon" src={props.icon} alt="" onClick={handleClickOpen} style={{cursor:"pointer"}}/>
+      <img className="icon" src={props.icon} alt="" onClick={handleClickOpen} style={{ cursor: "pointer" }} />
       <div>
         <Dialog
           open={open}

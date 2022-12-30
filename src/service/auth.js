@@ -7,7 +7,7 @@ export default function AuthAdmin() {
 
     const authen = async () => {
         await axios.get(API + 'auth/checkAdmin', { headers: authHeader() }).then((res) => {
-            if (!res.data.success) window.location.href = "http://localhost:3000/login"
+            if (!res.data.success) window.location.href = "https://ebooks4u.netlify.app/login"
 
         }).catch((e) => {
 

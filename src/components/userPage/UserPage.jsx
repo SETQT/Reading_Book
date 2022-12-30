@@ -18,7 +18,7 @@ import UserService from "../../service/UserService";
 
 const LogoutAccount = () => {
   logout();
-  window.location.href = "http://localhost:3000/login";
+  window.location.href = "https://ebooks4u.netlify.app/login";
 };
 
 function UserPage() {
