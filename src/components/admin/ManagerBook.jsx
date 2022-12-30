@@ -489,6 +489,7 @@ function ContentComment(props) {
       .getBookById(id)
       .then((response) => {
         setList(response.data.data.comments);
+
       })
       .catch((err) => {});
   }, []);
@@ -530,6 +531,7 @@ function ContentComment(props) {
                     <AlertDialogSlide
                       icon={del}
                       type={"deleteComment"}
+                      user={item._id}
                     />{" "}
                     {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
                   </td>

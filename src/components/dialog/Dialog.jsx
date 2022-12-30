@@ -54,7 +54,7 @@ const agree = (type, user) => {
       const id = localStorage.getItem("bookComment");
 
       bookService
-        .deleteComment(id)
+        .deleteComment(user)
         .then((result) => {
           window.location.reload(false);
         })
