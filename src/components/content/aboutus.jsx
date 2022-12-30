@@ -1,9 +1,12 @@
 import React from "react";
 import "./aboutus.css"
+import Header from "../header/HeaderUser";
 
 
 function AboutUs() {
   return (
+    <div>
+        <Header/>
     <div>
         <div className="about-section">
           <h1>About Us</h1>
@@ -58,13 +61,15 @@ function AboutUs() {
               <div className="container">
                 <h2 style={{height:"75px", marginTop:"10px"}}>Trần Văn Thật</h2>
                 <p className="title">Developer</p>
-                <p>jane@example.com</p>
+                <p>Email: <br/> thathnt16@gmail.com</p>
                 <p><button className="button">Contact</button></p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    
   );
 }
 

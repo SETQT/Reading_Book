@@ -149,7 +149,7 @@ function header() {
                   >
                      Profile
                   </a></div>
-                <div className='headerItemAbout'> AboutUs</div>
+                {/* <div className='headerItemAbout'> AboutUs</div> */}
                 <div className='headerItemAccount'>
                     <div className="dropdown">
 
