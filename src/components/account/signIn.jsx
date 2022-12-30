@@ -12,8 +12,20 @@ import "./account.css";
 import $ from "jquery"
 import { borderRadius } from "@mui/system";
 import { useCallback, useState, useEffect } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 import { Link, useHref, useNavigate } from "react-router-dom";
+
+const notify = () => toast('Wrong username or password!!!', {
+  position: "top-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+  });
 
 const forgetPass = () => {
 
@@ -79,13 +91,19 @@ function SignIn() {
           if (data?.admin) navigate("/admin");
           else navigate("/home");
         }
+        else{
+          notify();
+        }
       })
       .catch((e) => {});
   }
 
   return (
     <>
+
       <div className="bg_image">
+      <ToastContainer />
+
         <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
           <div className="container-fluid">
             <img className="book" src={book} alt="" />
