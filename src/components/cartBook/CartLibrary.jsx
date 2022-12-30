@@ -102,7 +102,7 @@ const MyContext = React.createContext();
 
 function CardBook(props) {
   const [state, update] = useStore();
-  const id = props.details.book._id;
+  const id = props.details._id;
 
   return (
     <div>
