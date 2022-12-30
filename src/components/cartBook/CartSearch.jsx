@@ -30,9 +30,11 @@ class Main extends React.Component {
     bookService
       .getSearchBook(searchContent)
       .then((response) => {
+        let a = (response.data.data.length / 8).toFixed()
+        if(a < 1) a=1;
         localStorage.setItem(
           "totalPageSearch",
-          (response.data.data.length / 8).toFixed()
+          a
         );
         localStorage.setItem("totalBookSearch", response.data.data.length);
       })

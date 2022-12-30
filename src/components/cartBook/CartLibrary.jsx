@@ -111,10 +111,10 @@ function CardBook(props) {
           <article article className="CardBook">
             <CardBookHeader
               category={props.details.category}
-              image={props.details.book.image}
+              image={props.details.image}
             />
             <CardBookBody
-              title={props.details.book.name}
+              title={props.details.name}
               text={props.details.description}
             />
           </article>
