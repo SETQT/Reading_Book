@@ -6,7 +6,7 @@
 
 
 .current {
-    color: #dee4ab;
+    color: #dee4ab !important;
     /* background-color: #064233; */
 }
 

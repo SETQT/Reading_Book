@@ -68,9 +68,10 @@ const ReadBook = () => {
   const [currentChapter, setCurrentChapter] = useState(parseInt(a));
   let ids = window.localStorage.getItem("idBookForRead");
   // $("#chapter" + currentChapter).addClass("current")
-  console.log(currentChapter)
-  console.log("currentChapter")
+  // console.log(currentChapter)
+  // console.log("currentChapter")
   $("#chapter" + currentChapter).addClass("current")
+
   useEffect(() => {
     // alert("Asd")
 
@@ -184,6 +185,9 @@ const ReadBook = () => {
       </div>
     </>
   );
+
+  // $("#chapter" + currentChapter).attr("color", "red")
+
 };
 
 function ContentRead(props) {
