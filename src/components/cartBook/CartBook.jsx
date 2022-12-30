@@ -31,7 +31,7 @@ class Main extends React.Component {
       .then((response) => {
         localStorage.setItem(
           "totalPage",
-          (response.data.data.length / 8 + 1).toFixed()
+          (response.data.data.length / 8).toFixed()
         );
         localStorage.setItem("totalBook", response.data.data.length);
         localStorage.setItem("bookPerPage", 8);

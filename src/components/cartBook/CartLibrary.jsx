@@ -31,8 +31,8 @@ class Main extends React.Component {
       await bookService
         .getBookById(arrayLibrary[i])
         .then((response) => {
-          console.log(response.data.data);
-          array.push(response.data.data);
+          console.log(response.data.data.book);
+          array.push(response.data.data.book);
           
 
           

@@ -32,7 +32,7 @@ class Main extends React.Component {
       .then((response) => {
         localStorage.setItem(
           "totalPageSearch",
-          (response.data.data.length / 8 + 1).toFixed()
+          (response.data.data.length / 8).toFixed()
         );
         localStorage.setItem("totalBookSearch", response.data.data.length);
       })
