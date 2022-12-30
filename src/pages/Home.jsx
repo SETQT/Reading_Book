@@ -9,9 +9,7 @@ import { useStore } from "../components/store/hook";
 import BookDetails from "../components/content/BookDetails";
 
 function Home() {
-  var arrayLibrary = JSON.parse(localStorage.getItem("arrayLibrary"));
-
-  window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
+  
 
   return (
     <>
