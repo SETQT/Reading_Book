@@ -28,7 +28,7 @@ class Main extends React.Component {
   fetchData = async () => {
     let array = [];
     for (var i = 0; i < arrayLibrary.length; i++) {
-      bookService
+      await bookService
         .getBookById(arrayLibrary[i])
         .then((response) => {
           console.log(response.data.data);
