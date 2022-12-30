@@ -9,10 +9,43 @@ import chat from "../../assets/imgs/chat.svg";
 import book from "../../assets/imgs/book.png";
 import user from "../../assets/imgs/user2.png";
 import "./account.css";
+import $ from "jquery"
 import { borderRadius } from "@mui/system";
 import { useCallback, useState, useEffect } from "react";
 
-import { useHref, useNavigate } from "react-router-dom";
+import { Link, useHref, useNavigate } from "react-router-dom";
+
+const forgetPass = () => {
+
+  let user = $("#inputLogin").val()
+  if (user == "") {
+      alert("Please enter your account !")
+      return
+  }
+  let item = { information: user }
+  fetch("https://ebook4u-server.onrender.com/auth/forget-password", {
+      method: 'post',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+      },
+      body: JSON.stringify(item),
+  }).then(async (res) => {
+      const data = await res.json()
+      console.log(data);
+      if (data.success) {
+          alert(data.message)
+
+      } else {
+          alert(data.message)
+
+      }
+
+
+  }).catch((e) => {
+      console.log(e);
+  })
+}
 
 function SignIn() {
   const [userName, setUsername] = useState("");
@@ -120,18 +153,18 @@ function SignIn() {
                 marginTop: "10px",
               }}
             >
-              <a
+              <Link
                 style={{
                   marginTop: "30px",
                   cursor:"pointer"
                 }}
                 onClick={()=>{
-                  alert("Mật khẩu mới đã được gửi đến email của bạn")
+                  forgetPass()
                 }}
                 
               >
                 Forget password?
-              </a>
+              </Link>
             </div>
             <button
               type="button"

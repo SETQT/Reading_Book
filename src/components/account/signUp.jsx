@@ -43,7 +43,7 @@ function Signup() {
             .then((Response) => Response.json())
             .then((result) => {
                 if (result.success)
-                    navigate("/home");
+                    navigate("/login");
                 
             })
     }
