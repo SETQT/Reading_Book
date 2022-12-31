@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SidebarAdmin from './SidebarAdmin'
 import UserPage from '../userPage/UserPage';
+import background from "../../assets/imgs/profileBackground.png";
 
 import "./homeUser.css"
 import HeaderUser from '../../components/header/HeaderUser'
@@ -87,7 +88,7 @@ function HomeUser() {
 
                     < UserPage/>
                 </div>
-                <div className="contentUser">
+                <div className="contentUser" style={{backgroundImage:{background}}}>
                     <Outlet />
                     
                 </div>
