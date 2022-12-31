@@ -41,6 +41,30 @@ const notify1 = () =>
     theme: "light",
   });
 
+  const notify2 = () =>
+  toast("New book is added!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });  
+
+  const notify3 = () =>
+  toast("New chapter is added!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  }); 
+
 function ManagerBook() {
   return (
     <>
@@ -735,6 +759,7 @@ function ContentBan(props) {
               } else {
                 submitBook();
                 handleOnClick();
+                notify2();
               }
             }}
             style={{ cursor: "pointer" }}
@@ -1020,6 +1045,8 @@ function ContentAddChapter(props) {
                 notify1();
                 return;
               } else {
+                notify3();
+
                 submitNewChapter();
                 handleOnClick2();;
               }

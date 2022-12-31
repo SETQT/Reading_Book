@@ -6,9 +6,9 @@ import authHeader from "./authHeader"
 const API = 'https://ebook4u-server.onrender.com/'
 
 
-const currentPage = localStorage.getItem('currentPage');
+let currentPage = localStorage.getItem('currentPage');
 
-const currentPageSearch = localStorage.getItem('currentPageSearch');
+let currentPageSearch = localStorage.getItem('currentPageSearch');
 
 
 const searchName = localStorage.getItem('searchName');
@@ -78,6 +78,10 @@ class BookService {
     }
 
     getPage() {
+        if(currentPage === null) 
+        {
+            currentPage = 1;
+        }
         return axios.get(API + `api/book/page/pagination?per=8&page=${currentPage}`, { headers: authHeader() })
 
     }
@@ -88,6 +92,10 @@ class BookService {
     }
 
     getPageSearch() {
+        if(currentPageSearch === null) 
+        {
+            currentPageSearch = 1;
+        }
         return axios.get(API + `api/book/page/pagination?per=8&page=${currentPageSearch}&q=${searchName}&category=${searchCategory}&country=${searchCountry}`, { headers: authHeader() })
 
     }
