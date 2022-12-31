@@ -106,7 +106,7 @@ function BookDetails() {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  style={{ marginRight: "20px", marginTop: "20px", width: "160px" }}
+                  style={{ marginRight: "20px", marginTop: "20px",width:"160px" }}
                   onClick={() => {
                     localStorage.setItem("idToAddFav", book?._id);
                     if (mode === 0) { notify(); addToFavorite(); }
@@ -162,8 +162,7 @@ function BookDetails() {
                     if (arrayLibrary == null) {
                       arrayLibrary = [];
                     }
-                    let a = {"name": book?.name, "image": book?.image, "id": book?._id}
-                    arrayLibrary.push(a);
+                    arrayLibrary.push(book?._id);
                     window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
                   }}
                 >
@@ -243,8 +242,6 @@ const upComment = async () => {
     return
   }
   let content = $("#CommentRead").val();
-  if (content == "") return
-
   $("#CommentRead").val("");
 
   let jwts = jwt();
