@@ -225,11 +225,11 @@ function SignIn() {
                 let user = $("#inputLoginName").val();
                 let pass = $("#inputLoginPass").val();
                 if (user === "") {
-                  notify1();
+                  notify2();
                   return;
                 }
                 else if (pass === "") {
-                  notify2();
+                  notify3();
                   return;  
                 }else{                login();
                 }

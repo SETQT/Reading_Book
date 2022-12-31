@@ -82,8 +82,11 @@ function ManagerBook() {
 }
 
 function AllBook() {
+  
+
   return (
     <div>
+
       <div className="mainTittle">
         <div className="mainTitleMgb">Book Management </div>
         <Title title={"Admin > Book Management"} />
@@ -757,9 +760,8 @@ function ContentBan(props) {
                 notify1();
                 return;
               } else {
-                submitBook();
-                handleOnClick();
                 notify2();
+                submitBook();
               }
             }}
             style={{ cursor: "pointer" }}
@@ -1054,7 +1056,6 @@ function ContentAddChapter(props) {
                 notify3();
 
                 submitNewChapter();
-                handleOnClick2();;
               }
 
             }}
