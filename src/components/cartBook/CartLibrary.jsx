@@ -26,25 +26,25 @@ class Main extends React.Component {
   }
 
   fetchData = async () => {
-    let array = [];
-    for (var i = 0; i < arrayLibrary.length; i++) {
-      await bookService
-        .getBookById(arrayLibrary[i])
-        .then((response) => {
-          console.log(response.data.data.book);
-          array.push(response.data.data.book);
+    // let array = [];
+    // for (var i = 0; i < arrayLibrary.length; i++) {
+    //   await bookService
+    //     .getBookById(arrayLibrary[i])
+    //     .then((response) => {
+    //       console.log(response.data.data.book);
+    //       array.push(response.data.data.book);
           
 
           
-        })
-        .catch((err) => {});
-    }
-    console.log(array);
+    //     })
+    //     .catch((err) => {});
+    // }
+    // console.log(array);
 
-    let arr = array;
-    console.log(arr);
-        var clean = arr.filter((arr, index, self) =>
-        index === self.findIndex((t) => (t._id === arr._id )))
+    // let arr = array;
+    // console.log(arr);
+        var clean = arrayLibrary.filter((arr, index, self) =>
+        index === self.findIndex((t) => (t.id === arr.id )))
         console.log(clean);
 
         this.setState({

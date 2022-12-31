@@ -162,7 +162,8 @@ function BookDetails() {
                     if (arrayLibrary == null) {
                       arrayLibrary = [];
                     }
-                    arrayLibrary.push(book?._id);
+                    let a = {name: book?.name, image: book?.image, id: book?._id}
+                    arrayLibrary.push(a);
                     window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
                   }}
                 >
