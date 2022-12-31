@@ -1,4 +1,3 @@
-
 .formBook .descriptionFormBook {
     grid-column: 1 /3;
     display: flex;
@@ -189,7 +188,7 @@ table.paleBlueRows th {
 
 .optionAdmin {
     display: flex;
-   
+    justify-content: center;
 }
 
 

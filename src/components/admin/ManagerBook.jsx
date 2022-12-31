@@ -108,7 +108,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function AddBook() {
   return (
     <div>
-            <ToastContainer />
+      <ToastContainer />
 
       <div className="mainTittle">
         <div className="mainTitleMgb">Add new book</div>
@@ -124,7 +124,7 @@ function AddBook() {
 function AddChapter() {
   return (
     <div>
-                  <ToastContainer />
+      <ToastContainer />
 
       <div className="mainTittle">
         <div className="mainTitleMgb">Add new chapter</div>
@@ -202,7 +202,7 @@ function Content(props) {
       .then((response) => {
         setList(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   const navigate = useNavigate();
@@ -344,7 +344,7 @@ function ContentSearch(props) {
       .then((response) => {
         setList(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, [name]);
 
   const navigate = useNavigate();
@@ -491,7 +491,7 @@ function ContentComment(props) {
         setList(response.data.data.comments);
 
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   const navigate = useNavigate();
@@ -556,7 +556,7 @@ function ContentPreview() {
       .then((response) => {
         setList(response.data.data.book);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   useEffect(() => {
@@ -631,7 +631,7 @@ function ContentBan(props) {
       .then((response) => {
         setCountry(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   const [selectedFile, setSelectedFile] = useState();
@@ -642,7 +642,7 @@ function ContentBan(props) {
     setIsFilePicked(true);
   };
 
-  const handleSubmission = () => {};
+  const handleSubmission = () => { };
   const animatedComponents = makeAnimated();
 
   const navigate = useNavigate();
@@ -707,28 +707,35 @@ function ContentBan(props) {
         <div className="submitFormBook">
           <span
             id="submitBook"
-            onClick={()=>{
+            onClick={() => {
               let name = $("#nameBook").val();
-                let category = $("#category").val();
-                let country = $("#country").val();
-                let author = $("#author").val();
-                let description = $("#descriptionFormBook").val();
-                let image = $("#contentPDF").val();
+              let category = $("#category").val();
+              let country = $("#country").val();
+              let author = $("#author").val();
+              let description = $("#descriptionFormBook").val();
+              let image = $("#contentPDF").val();
+              let ek = []
+              $(".react-select__multi-value__label").each(function () {
+                let labels = $(this).html();
 
-                if (
-                  name === "" ||
-                  category === "" ||
-                  country === "" ||
-                  author === "" ||
-                  description === "" ||
-                  image === ""
-                ) {
-                  notify1();
-                  return;
-                } else {
-                  submitBook();
-                  handleOnClick();
-                }
+                const result = getByValue(CategoryListFromSV, labels);
+
+                ek.push(result.value);
+              });
+              if (
+                name === "" ||
+                ek.length == 0 ||
+                country === "" ||
+                author === "" ||
+                description === ""
+                || !image
+              ) {
+                notify1();
+                return;
+              } else {
+                submitBook();
+                handleOnClick();
+              }
             }}
             style={{ cursor: "pointer" }}
           >
@@ -812,7 +819,7 @@ function ContentUpdate(props) {
       .then((response) => {
         setCountry(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   const [selectedFile, setSelectedFile] = useState();
@@ -823,7 +830,7 @@ function ContentUpdate(props) {
     setIsFilePicked(true);
   };
 
-  const handleSubmission = () => {};
+  const handleSubmission = () => { };
   const animatedComponents = makeAnimated();
 
   const navigate = useNavigate();
@@ -930,8 +937,8 @@ const submitUpdateBook = async () => {
       Authorization: jwts,
     },
   })
-    .then((result) => {})
-    .catch((error) => {});
+    .then((result) => { })
+    .catch((error) => { });
 };
 
 const submitNewChapter = async () => {
@@ -950,13 +957,13 @@ const submitNewChapter = async () => {
       Authorization: jwts,
     },
   })
-    .then((result) => {})
-    .catch((error) => {});
+    .then((result) => { })
+    .catch((error) => { });
 };
 
 function ContentAddChapter(props) {
   const id = localStorage.getItem("bookUpdate");
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
@@ -966,7 +973,7 @@ function ContentAddChapter(props) {
     setIsFilePicked(true);
   };
 
-  const handleSubmission = () => {};
+  const handleSubmission = () => { };
   const animatedComponents = makeAnimated();
 
   const navigate = useNavigate();
@@ -1006,17 +1013,17 @@ function ContentAddChapter(props) {
             onClick={() => {
               let name = $("#nameChapter").val();
               let descript = $("#descriptionFormChapter").val();
-                if (
-                  name === "" ||
-                  descript === ""
-) {
-                  notify1();
-                  return;
-                } else {
-                  submitNewChapter();
-                  handleOnClick2();;
-                }
-              
+              if (
+                name === "" ||
+                descript === ""
+              ) {
+                notify1();
+                return;
+              } else {
+                submitNewChapter();
+                handleOnClick2();;
+              }
+
             }}
             style={{ cursor: "pointer" }}
           >
@@ -1068,7 +1075,7 @@ const submitBook = async () => {
     .then((result) => {
       window.location.reload(false);
     })
-    .catch((error) => {});
+    .catch((error) => { });
 };
 
 export default ManagerBook;

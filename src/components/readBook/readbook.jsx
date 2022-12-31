@@ -59,6 +59,18 @@ const upComment = async () => {
     })
     .catch((error) => { });
 };
+const paint = (id) => {
+  // alert(id)
+  let idCur = `#chapter${id}`
+  console.log(idCur);
+  let a = $(id);
+  console.log(a);
+  // var element = document.getElementById(idCur);
+  // console.log(element);
+  // element.classList.add("current");
+  $(id).addClass("current")
+
+}
 const ReadBook = () => {
   const [chapter, setChapter] = useState(null);
   const [book, setbook] = useState([]);
@@ -67,7 +79,6 @@ const ReadBook = () => {
   if (!a) a = 0;
   const [currentChapter, setCurrentChapter] = useState(parseInt(a));
   let ids = window.localStorage.getItem("idBookForRead");
-  // $("#chapter" + currentChapter).addClass("current")
   // console.log(currentChapter)
   // console.log("currentChapter")
   $("#chapter" + currentChapter).addClass("current")
@@ -94,7 +105,11 @@ const ReadBook = () => {
         .catch((err) => { });
     };
     fetch();
-  }, []);
+    // alert(idCur)
+    // $("#chapter" + currentChapter).addClass("current")
+    // $(idCur).addClass("current")
+    // paint(idCur)
+  }, [currentChapter]);
 
   return (
     <>
@@ -126,6 +141,7 @@ const ReadBook = () => {
                       window.localStorage.setItem("currentChapter", count);
                       window.location.reload(false);
                     }}
+                  // {...currentChapter === count && paint(count)}
                   >
                     {" "}
                     Chapter {count + 1}
@@ -193,8 +209,8 @@ const ReadBook = () => {
 function ContentRead(props) {
   // const [currentChapter, setCurrenChapter] = useState([]);
 
-  console.log("---");
-  console.log(props);
+  // console.log("---");
+  // console.log(props);
   return (
     <div className="outContent">
       {/* {dataChapter.data.name} */}
