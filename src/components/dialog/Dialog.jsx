@@ -35,7 +35,7 @@ const agree = (type, user) => {
         .catch((error) => { });
 
       break;
-    case "reuse":
+    case "unbanned":
       UserService.unbanAccount(user)
         .then((result) => {
           window.location.reload(false);
@@ -50,14 +50,14 @@ const agree = (type, user) => {
         })
         .catch((error) => { });
       break;
-    case "deleteComment":
+    case "delete comment":
 
       bookService
         .deleteComment(user)
         .then((result) => {
         })
         .catch((error) => { });
-        window.location.reload(false);
+      window.location.reload(false);
 
       break;
 
@@ -90,7 +90,7 @@ export default function AlertDialogSlide(props) {
           <DialogTitle>{"Comfirm Dialog"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              Are you sure to {props.type} this account ?
+              Are you sure to {props.type}  ?
             </DialogContentText>
           </DialogContent>
           <DialogActions className="dialog">

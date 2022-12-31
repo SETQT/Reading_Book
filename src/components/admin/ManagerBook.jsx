@@ -530,7 +530,7 @@ function ContentComment(props) {
                   <td className="optionAdmin">
                     <AlertDialogSlide
                       icon={del}
-                      type={"deleteComment"}
+                      type={"delete comment"}
                       user={item._id}
                     />{" "}
                     {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Page)} /> */}
