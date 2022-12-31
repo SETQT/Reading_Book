@@ -82,15 +82,7 @@ function Dashboard() {
           ],
           borderColor: "black",
           borderWidth: 2,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  precision: 0
-                }
-              }]
-            }
-          }
+          
         },
       ],
     };
