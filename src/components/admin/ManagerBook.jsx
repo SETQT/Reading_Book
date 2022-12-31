@@ -65,7 +65,7 @@ const notify3 = () =>
     theme: "light",
   });
 
-  const notify4 = () =>
+const notify4 = () =>
   toast("This book is updated!!!", {
     position: "top-center",
     autoClose: 5000,
@@ -94,7 +94,7 @@ function ManagerBook() {
 }
 
 function AllBook() {
-  
+
 
   return (
     <div>
@@ -179,7 +179,7 @@ function AddChapter() {
 function UpdateBook() {
   return (
     <div>
-            <ToastContainer />
+      <ToastContainer />
 
       <div className="mainTittle">
         <div className="mainTitleMgb">Update Book</div>
@@ -909,7 +909,7 @@ function ContentUpdate(props) {
             </select>
           </div>
           <div className="descriptionFormBook">
-            <label htmlFor="descriptionFormBook">Content:</label>
+            <label htmlFor="descriptionFormBook">Description:</label>
             <textarea
               id="descriptionFormBook2"
               type="text"
@@ -961,10 +961,10 @@ const submitUpdateBook = async () => {
   if (name == "" || author == "" || ek.length == 0 || descript == "" || country == "") {
     notify1();
     return
-  }else{
+  } else {
     notify4();
   }
-  
+
   const formData = new FormData();
 
   formData.append("file", content);
