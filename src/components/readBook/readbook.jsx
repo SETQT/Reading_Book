@@ -14,7 +14,7 @@ import bookService from "../../service/bookService";
 import UserService from "../../service/UserService";
 import { jwt } from "../../service/authHeader";
 import $ from "jquery";
-
+import Footer from "../footer/Footer"
 function ContentAB(props) {
   if (props.chapter)
     return (
@@ -28,6 +28,11 @@ function ContentAB(props) {
 const upComment = async () => {
   let ids = window.localStorage.getItem("idBookForRead");
 
+  let check = jwt()
+  if (check == "{}") {
+    alert("not sign")
+    return
+  }
   let content = $("#CommentRead").val();
   $("#CommentRead").val("");
 
@@ -199,6 +204,8 @@ const ReadBook = () => {
           ))}
         </div>
       </div>
+      <div style={{ "marginTop": "80px" }}></div>
+      <Footer />
     </>
   );
 

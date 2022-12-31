@@ -13,13 +13,14 @@ import telephone from "../../assets/imgs/telephone.png";
 
 // import { Dropdown } from "bootstrap";
 import "./footer.css";
+import { jwt } from "../../service/authHeader";
 
 function Footer() {
   return (
     <>
       <div
         className="text-center text-lg-start text-white"
-        style={{ backgroundColor: "#929fba" }}
+        style={{ backgroundColor: "#227C70" }}
       >
         <div className="container p-4 pb-0">
           <section className="">
@@ -47,9 +48,12 @@ function Footer() {
                   </a>
                 </p>
                 <p>
-                  <a className="text-white" href="/user">
+                  <span className="text-white" onClick={profile} style={{
+                    "cursor": "pointer", "fontWeight": "600",
+                    "fontFamily": 'Inter'
+                  }}>
                     Your Account
-                  </a>
+                  </span>
                 </p>
                 <p>
                   <a className="text-white" href="/aboutus">
@@ -122,9 +126,9 @@ function Footer() {
           className="text-center p-3"
           style={{ backgroundColor: " rgba(0, 0, 0, 0.2)" }}
         >
-          © 2020 Copyright:
-          <a className="text-white" href="https://mdbootstrap.com/">
-            MDBootstrap.com
+          © 2022 Copyright:
+          <a className="text-white" href="https://ebooks4u.netlify.app/" style={{ "marginLeft": "10px" }}>
+            Ebooks4u.netlify.app
           </a>
         </div>
       </div>
@@ -132,4 +136,10 @@ function Footer() {
   );
 }
 
+const profile = () => {
+  // logout()
+  let jwts = jwt()
+  if (jwts == "{}") window.location.href = "/login"
+  else window.location.href = "/user"
+}
 export default Footer;

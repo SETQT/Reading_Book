@@ -1,6 +1,7 @@
 import React from 'react'
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { jwt } from '../../service/authHeader'
 import style from "../../style/header.css"
 
 function header() {
@@ -21,7 +22,7 @@ function header() {
                         <div className=" collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav ms-auto ">
                                 <li className="nav-item">
-                                    <Link to={"/user/favorite"}> My Favorite Book</Link>
+                                    <Link onClick={profile} > My Favorite Book</Link>
 
                                 </li>
 
@@ -36,5 +37,10 @@ function header() {
         </>
     )
 }
-
+const profile = () => {
+    // logout()
+    let jwts = jwt()
+    if (jwts == "{}") window.location.href = "/login"
+    else window.location.href = "/user/favorite"
+}
 export default header

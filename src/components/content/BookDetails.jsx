@@ -13,7 +13,7 @@ import UserService from "../../service/UserService";
 import { jwt } from "../../service/authHeader";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
-
+import Footer from "../footer/Footer"
 const notify = () => toast('This book is added to favorite books!', {
   position: "top-center",
   autoClose: 5000,
@@ -98,9 +98,9 @@ function BookDetails() {
                   style={{ marginRight: "20px", marginTop: "20px" }}
                   onClick={() => {
                     localStorage.setItem("idToAddFav", book?._id);
-                    if(mode===0){notify();addToFavorite();}
-                    
-                    
+                    if (mode === 0) { notify(); addToFavorite(); }
+
+
                     setMode(1);
                   }}
                 >
@@ -218,13 +218,18 @@ function BookDetails() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
 
 const upComment = async () => {
   let ids = window.localStorage.getItem("idBookForRead");
-
+  let check = jwt()
+  if (check == "{}") {
+    alert("not sign")
+    return
+  }
   let content = $("#CommentRead").val();
   $("#CommentRead").val("");
 

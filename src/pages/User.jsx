@@ -8,8 +8,8 @@ import { BrowserRouter, Navigate, Route, Routes, useRoutes } from 'react-router-
 import HomeUser from '../components/sidebar/HomeUser'
 import Style from '../style/content.module.css'
 function User() {
-  return (
 
+  return (
 
     <Routes>
 
