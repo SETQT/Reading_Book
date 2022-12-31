@@ -46,9 +46,10 @@ const upComment = async () => {
   let check = jwt()
   if (check == "{}") {
     notify();
-        return
+    return
   }
   let content = $("#CommentRead").val();
+  if (content == "") return
   $("#CommentRead").val("");
 
   let jwts = jwt();

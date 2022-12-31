@@ -106,7 +106,7 @@ function BookDetails() {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  style={{ marginRight: "20px", marginTop: "20px",width:"160px" }}
+                  style={{ marginRight: "20px", marginTop: "20px", width: "160px" }}
                   onClick={() => {
                     localStorage.setItem("idToAddFav", book?._id);
                     if (mode === 0) { notify(); addToFavorite(); }
@@ -242,6 +242,8 @@ const upComment = async () => {
     return
   }
   let content = $("#CommentRead").val();
+  if (content == "") return
+
   $("#CommentRead").val("");
 
   let jwts = jwt();
