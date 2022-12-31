@@ -87,7 +87,7 @@ function SearchBook() {
               htmlFor="category"
               style={{ marginBottom: "10px", marginTop: "10px" }}
             >
-              Thể loại:
+              Category:
             </label>
             <br />
             <select name="category" id="categorySearch" defaultValue="">
@@ -107,7 +107,7 @@ function SearchBook() {
               htmlFor="country"
               style={{ marginBottom: "10px", marginTop: "10px" }}
             >
-              Đất nước:
+              Country:
             </label>
             <br />
             <select name="country" id="countrySearch" defaultValue={""}>
