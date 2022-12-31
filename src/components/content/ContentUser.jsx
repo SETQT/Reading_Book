@@ -13,7 +13,7 @@ function Content(props) {
         setLoading(true)
         setTimeout(()=>{
                 setLoading(false)
-        },3000)
+        },4000)
     },[])
   return (
     <>
