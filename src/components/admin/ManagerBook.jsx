@@ -65,6 +65,18 @@ const notify3 = () =>
     theme: "light",
   });
 
+  const notify4 = () =>
+  toast("This book is updated!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
 function ManagerBook() {
   return (
     <>
@@ -167,6 +179,8 @@ function AddChapter() {
 function UpdateBook() {
   return (
     <div>
+            <ToastContainer />
+
       <div className="mainTittle">
         <div className="mainTitleMgb">Update Book</div>
         <Title title={"Admin > Book Management > Update Book "} />
@@ -945,9 +959,12 @@ const submitUpdateBook = async () => {
   let descript = $("#descriptionFormBook2").val();
   let content = $("#contentPDF").prop("files")[0];
   if (name == "" || author == "" || ek.length == 0 || descript == "" || country == "") {
-    alert("asd")
+    notify1();
     return
+  }else{
+    notify4();
   }
+  
   const formData = new FormData();
 
   formData.append("file", content);
