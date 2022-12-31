@@ -29,6 +29,7 @@ const notify = () => toast('This book is added to favorite books!', {
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const [mode, setMode] = useState(0);
 
   const [comment, setComment] = useState([]);
   let ids = window.localStorage.getItem("idBookForRead");
@@ -97,8 +98,10 @@ function BookDetails() {
                   style={{ marginRight: "20px", marginTop: "20px" }}
                   onClick={() => {
                     localStorage.setItem("idToAddFav", book?._id);
-                    notify();
-                    addToFavorite();
+                    if(mode===0){notify();addToFavorite();}
+                    
+                    
+                    setMode(1);
                   }}
                 >
                   Add to favorite
