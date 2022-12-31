@@ -69,7 +69,7 @@ function Dashboard() {
       labels: labels,
       datasets: [
         {
-          label: "Number of readers",
+          label: "Number of views",
           data: data,
           backgroundColor: [
             "rgba(100,236,179,255)",
