@@ -226,7 +226,7 @@
 }
 
 .containFav::-webkit-scrollbar{
-    width: 8px;
+    width: 0px;
 }
 .containFav::-webkit-scrollbar-track{
     border-radius: 8px;
