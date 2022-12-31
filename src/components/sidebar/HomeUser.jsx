@@ -88,7 +88,7 @@ function HomeUser() {
 
                     < UserPage/>
                 </div>
-                <div className="contentUser" style={{backgroundImage:{background}}}>
+                <div className="contentUser">
                     <Outlet />
                     
                 </div>
