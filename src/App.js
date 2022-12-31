@@ -17,7 +17,6 @@ import 'bootstrap/dist/js/bootstrap.js';
 import Login from './pages/Login';
 
 function App() {
-  localStorage.setItem("currentPage", 1);
 
   return (
 
