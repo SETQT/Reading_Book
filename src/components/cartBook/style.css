@@ -170,9 +170,8 @@
 
 .app-card-list2 {
     display: grid;
-    margin-left: 10%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 10px;
 }
 
@@ -220,4 +219,23 @@
     border-color: #101010;
     background: rgb(0, 195, 255);
     color: #101010;
+}
+
+.containFav{
+    overflow-y: scroll;
+}
+
+.containFav::-webkit-scrollbar{
+    width: 8px;
+}
+.containFav::-webkit-scrollbar-track{
+    border-radius: 8px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+}
+.containFav::-webkit-scrollbar-thumb{
+    background-color: var(--purple-color);
+    outline: -1px solid slategray;
+    border-radius: 8px;
+
 }
