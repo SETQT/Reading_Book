@@ -162,7 +162,6 @@
 
 .app-card-list1 {
     display: grid;
-    margin-left: 5%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 10px;
@@ -170,9 +169,8 @@
 
 .app-card-list2 {
     display: grid;
-    margin-left: 10%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 10px;
 }
 
@@ -221,3 +219,29 @@
     background: rgb(0, 195, 255);
     color: #101010;
 }
+
+.containFav{
+    overflow-y: scroll;
+    height: 430px;
+}
+
+.containFav::-webkit-scrollbar{
+    width: 8px;
+}
+.containFav::-webkit-scrollbar-track{
+    border-radius: 8px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+}
+.containFav::-webkit-scrollbar-thumb{
+    background: #888; 
+    outline: -1px solid rgb(100, 165, 229);
+    border-radius: 8px;
+
+}
+
+.containFav::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    outline: -1px solid rgb(100, 165, 229);
+    border-radius: 8px;
+  }

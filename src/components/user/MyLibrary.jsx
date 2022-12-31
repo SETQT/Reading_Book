@@ -14,9 +14,14 @@ import { Outlet } from 'react-router-dom'
 
 function MyLibrary() {
     const [book, setBook] = useState(10);
+    
     return (
          
             <div>
+                <div className={style.libraryheader1}>
+                           <div className={style.title1}>My history</div>
+
+                        </div>
                     <ContentUser style={{ flex: 1 }} setBook={setBook} />         
             </div>
                     
