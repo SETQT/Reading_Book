@@ -13,7 +13,7 @@ function Content(props) {
         setLoading(true)
         setTimeout(()=>{
                 setLoading(false)
-        },2000)
+        },500)
     },[])
   return (
     <>
@@ -23,7 +23,7 @@ function Content(props) {
           <div className={Style.contentForYou1}>
             {
               loading?
-              <ClipLoader color={"D0021B"} loading={loading}  size={10}/>
+              <ClipLoader color={"D0021B"} loading={loading}  size={60}/>
               :
               <div>
               <Main />
