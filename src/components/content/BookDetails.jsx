@@ -95,7 +95,7 @@ function BookDetails() {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  style={{ marginRight: "20px", marginTop: "20px" }}
+                  style={{ marginRight: "20px", marginTop: "20px",width:"160px" }}
                   onClick={() => {
                     localStorage.setItem("idToAddFav", book?._id);
                     if(mode===0){notify();addToFavorite();}
