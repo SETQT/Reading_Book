@@ -7,7 +7,8 @@ import { Outlet } from 'react-router-dom'
 function HomeAdmin() {
     return (
         <div className='homeAdminAll'>
-            <HeaderUser />
+            {/* <HeaderUser /> */}
+            <HeaderAdmin />
             <div className='homeAdmin'>
 
 

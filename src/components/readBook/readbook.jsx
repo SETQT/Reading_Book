@@ -128,10 +128,7 @@ const ReadBook = () => {
         .catch((err) => { });
     };
     fetch();
-    // alert(idCur)
-    // $("#chapter" + currentChapter).addClass("current")
-    // $(idCur).addClass("current")
-    // paint(idCur)
+
   }, [currentChapter]);
 
   return (
@@ -166,7 +163,7 @@ const ReadBook = () => {
                       window.localStorage.setItem("currentChapter", count);
                       window.location.reload(false);
                     }}
-                  // {...currentChapter === count && paint(count)}
+
                   >
                     {" "}
                     Chapter {count + 1}
@@ -260,10 +257,10 @@ function ContentRead(props) {
           />
         </div>
         <div className="midTittle">
-          <img src={heart} alt="" />
+          {/* <img src={heart} alt="" />
           <img src={star} alt="" />
           <img src={redirect} alt="" />
-          <img src={volume} alt="" />
+          <img src={volume} alt="" /> */}
         </div>
         <div className="nextTittle">
           <img
