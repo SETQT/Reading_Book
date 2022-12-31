@@ -6,6 +6,19 @@ import { Main, StoreContext } from "../cartBook/CartSearch";
 import Header from "../header/HeaderDetailBook";
 import "./searchbook.css";
 import $ from "jquery";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
+const notify = () => toast('Please enter at least one field!!!', {
+  position: "top-center",
+  autoClose: 1500,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+});
 
 function Search() {
   return (
@@ -47,6 +60,7 @@ function SearchBook() {
   return (
     <>
       <Header />
+      <ToastContainer />
 
       <div className="container-Search">
         <div className="search-content" style={{ marginTop: "20px" }}>
@@ -75,9 +89,12 @@ function SearchBook() {
                   localStorage.setItem("searchName", result);
                   localStorage.setItem("searchCategoryPage", category);
                   localStorage.setItem("searchCountryPage", country);
-                  if(name !== "" || category !== "" || result !== ""){
+                  if(name !== "" || category !== "" || country !== ""){
                     window.location.reload(false);
 
+                  }
+                  else{
+                    notify();
                   }
                 }}
               >
