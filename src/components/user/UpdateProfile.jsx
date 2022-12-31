@@ -11,8 +11,23 @@ import HeaderUser from "../../components/header/HeaderUser";
 import AlertDialogSlide from "../dialog/DialogUser";
 import $ from "jquery";
 import { Outlet } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const user = localStorage.getItem("user");
+
+
+
+const notify4 = () =>
+  toast("Your profile is updated!!!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
 function Content() {
   const [avatar, setAvatar] = useState();
@@ -90,6 +105,8 @@ function UpdateProfile() {
   }, []);
   return (
     <div>
+                  <ToastContainer />
+
       <div className="cardInfo">
         <div className="mainContentUser1">
           <p
@@ -242,6 +259,8 @@ const submitUpdateUser = async () => {
   let dob = $("#dobUser").val();
   let phone = $("#phoneUser").val();
   let content = $("#avatarProfile").prop("files")[0];
+
+
   let formData = new FormData();
 
   formData.append("fullname", un);
@@ -264,6 +283,8 @@ const submitUpdateUser = async () => {
       window.location.href = "https://ebooks4u.netlify.app/user/profile";
     })
     .catch((error) => { });
+    notify4();
+
 };
 
 export default UpdateProfile;
