@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Component } from "react";
 import style from "../../style/header.css";
@@ -13,6 +14,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHref, useNavigate } from "react-router-dom";
 
+function notify(str) {
+  toast(str, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  })
+}
 const notify1 = () =>
   toast("Please enter all fields!!!", {
     position: "top-center",
@@ -25,15 +38,26 @@ const notify1 = () =>
     theme: "light",
   });
 
+
+var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+function isEmailAddress(str) {
+
+
+  console.log(str.match(pattern));
+  return str.match(pattern);
+
+}
+
 function Signup() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
-
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPass, setConfPass] = useState("");
   const [birthday, setBirthday] = useState("");
+
+
 
   async function register() {
     let item = {
@@ -54,15 +78,27 @@ function Signup() {
       body: JSON.stringify(item),
     })
       .then((Response) => Response.json())
-      .then((result) => {
-        if (result.success) navigate("/login");
-      });
+
+      .then(async (result) => {
+        //console.log(result);
+        if (result.success) navigate("/login")
+        else {
+          notify(result.message);
+        }
+
+
+
+      })
+
+      .catch((error) => { })
+
+      ;
   }
 
   return (
     <>
       <div className="bg_image">
-      <ToastContainer />
+        <ToastContainer />
 
         <nav className="navbar navbar-expand-lg navbar-dark p-3 ">
           <div className="container-fluid">
@@ -139,13 +175,14 @@ function Signup() {
                 />
               </div>
               <div className="col_half">
-                <label for="birthday">Birthday:</label>
+                <label style={{ marginRight: "15px" }} for="birthday">Birthday:</label>
                 <input
                   type="date"
                   style={{
-                    width: "130px",
+                    width: "120px",
                     borderRadius: "5%",
                     height: "40px",
+
                   }}
                   id="registerFormDate"
                   name="name"
@@ -209,7 +246,16 @@ function Signup() {
                 ) {
                   notify1();
                   return;
-                } else {
+                }
+                else if (pass !== pass2) {
+                  notify("Confirm password does not match password!!!");
+                  return;
+                }
+                else if (!isEmailAddress(email)) {
+                  notify("Invalid email!!!");
+                  return;
+                }
+                else {
                   register();
                 }
               }}
