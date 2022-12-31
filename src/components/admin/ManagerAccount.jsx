@@ -98,7 +98,7 @@ function Content(props) {
       .then((response) => {
         setList(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
   const navigate = useNavigate();
   const handleOnClick4 = useCallback(
@@ -158,7 +158,7 @@ function Content(props) {
                     <AlertDialogSlide
                       icon={reuse}
                       user={item._id}
-                      type={"reuse"}
+                      type={"unbanned"}
                     />
                   </td>
                 </tr>
@@ -180,7 +180,7 @@ function ContentSearch(props) {
       .then((response) => {
         setList(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, [name]);
 
   const navigate = useNavigate();
@@ -242,7 +242,7 @@ function ContentSearch(props) {
                     <AlertDialogSlide
                       icon={reuse}
                       user={item._id}
-                      type={"reuse"}
+                      type={"unbanned"}
                     />{" "}
                     {/* <img className='icon' src={del} alt="" onClick={() => deleteAccount(item.Username)} /> */}
                   </td>
@@ -263,7 +263,7 @@ function TableBannedAccount(props) {
       .then((response) => {
         setList(response.data.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   const navigate = useNavigate();
