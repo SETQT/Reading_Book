@@ -55,7 +55,7 @@ function SearchBook() {
               type="text"
               className="form-control"
               aria-label="Text input with segmented dropdown button"
-              placeholder="Nhập tên truyện"
+              placeholder="Enter the name of book"
               defaultValue={`${searchContent}`}
               id="searchBookPage"
             />
@@ -69,13 +69,16 @@ function SearchBook() {
                   console.log(category);
                   let country = $("#countrySearch option:selected").val();
                   console.log(country);
-
+                  
                   let result = name.toLowerCase();
+                  
                   localStorage.setItem("searchName", result);
                   localStorage.setItem("searchCategoryPage", category);
                   localStorage.setItem("searchCountryPage", country);
+                  if(name !== "" || category !== "" || result !== ""){
+                    window.location.reload(false);
 
-                  window.location.reload(false);
+                  }
                 }}
               >
                 Search

@@ -120,11 +120,11 @@ function BookDetails() {
               </div>
 
               <div className={Style.bookDetailsItem}>
-                <span className="fw-6 fs-24">Tác giả: {book?.author}</span>
+                <span className="fw-6 fs-24">Author: {book?.author}</span>
               </div>
               <div className={Style.bookDetailsItem}>
                 <span className="fw-6 fs-24">
-                  Thể loại:{" "}
+                  Category:{" "}
                   {book?.category?.map((item, index) => {
                     return <span key={index + 1}>{item.name},</span>;
                   })}
@@ -139,16 +139,16 @@ function BookDetails() {
               </div>
 
               <div className={Style.bookDetailsItem}>
-                <span>Nước sản xuất: {book?.country?.name}</span>
+                <span>Country: {book?.country?.name}</span>
               </div>
               <div className={Style.bookDetailsItem}>
                 <span>
-                  Lần cuối cập nhật:{" "}
+                  Last updated:{" "}
                   {moment.utc(book?.updateAt).format("DD/MM/YYYY")}
                 </span>
               </div>
               <div className={Style.bookDetailsItem}>
-                <span>Lượt xem: {book?.view}</span>
+                <span>View: {book?.view}</span>
               </div>
               <Link to={"/read"}>
                 <button
@@ -166,7 +166,7 @@ function BookDetails() {
                     window.localStorage.setItem("arrayLibrary", JSON.stringify(arrayLibrary));
                   }}
                 >
-                  Đọc sách
+                  Read book
                 </button>
               </Link>
 
