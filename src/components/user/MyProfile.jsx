@@ -41,9 +41,9 @@ function Content(props) {
             </p>
             <div className="contentUserMain">
               <div>
-                <img src={listAccount.avatar} alt="" height="250" width="200" style={{ marginTop: "5px", marginLeft: "50px", marginRight: "100px" }} />
+                <img src={listAccount.avatar} alt="" height="250" width="200" style={{ marginTop: "5px", marginLeft: "50px", marginRight: "50px" }} />
               </div>
-              <div>
+              <div style={{ marginTop: "20px" }}>
                 <h5 className="font-weight-bolder mb-0" style={{ paddingBottom: "15px" }}>
                   <span className=" text-sm font-weight-bolder .text-dark" >
                     Username: {listAccount.fullname}
