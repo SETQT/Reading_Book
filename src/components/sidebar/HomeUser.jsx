@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SidebarAdmin from './SidebarAdmin'
 import UserPage from '../userPage/UserPage';
-import background from "../../assets/imgs/profileBackground.png";
 
 import "./homeUser.css"
 import HeaderUser from '../../components/header/HeaderUser'
