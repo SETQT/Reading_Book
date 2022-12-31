@@ -25,11 +25,22 @@ const notify = () => toast('This book is added to favorite books!', {
   theme: "light",
 });
 
+const notify1 = () => toast('You need to login to comment!!!', {
+  position: "top-center",
+  autoClose: 1500,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+});
 
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [mode, setMode] = useState(0);
+
 
   const [comment, setComment] = useState([]);
   let ids = window.localStorage.getItem("idBookForRead");
@@ -227,7 +238,7 @@ const upComment = async () => {
   let ids = window.localStorage.getItem("idBookForRead");
   let check = jwt()
   if (check == "{}") {
-    alert("not sign")
+    notify1();
     return
   }
   let content = $("#CommentRead").val();

@@ -15,6 +15,21 @@ import UserService from "../../service/UserService";
 import { jwt } from "../../service/authHeader";
 import $ from "jquery";
 import Footer from "../footer/Footer"
+
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
+const notify = () => toast('You need to login to comment!!!', {
+  position: "top-center",
+  autoClose: 1500,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+});
+
 function ContentAB(props) {
   if (props.chapter)
     return (
@@ -30,8 +45,8 @@ const upComment = async () => {
 
   let check = jwt()
   if (check == "{}") {
-    alert("not sign")
-    return
+    notify();
+        return
   }
   let content = $("#CommentRead").val();
   $("#CommentRead").val("");
@@ -77,6 +92,8 @@ const paint = (id) => {
 
 }
 const ReadBook = () => {
+  const [mode, setMode] = useState(0);
+
   const [chapter, setChapter] = useState(null);
   const [book, setbook] = useState([]);
   const [comment, setComment] = useState([]);
@@ -120,6 +137,8 @@ const ReadBook = () => {
     <>
       <div>
         <HeaderUser />
+        <ToastContainer />
+
         <div className="mainRead">
           <div className="beforeMain">
             <img src={book.image} alt="" />
