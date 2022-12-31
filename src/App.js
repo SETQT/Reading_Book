@@ -15,9 +15,11 @@ import AboutUs from './components/content/aboutus';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import Login from './pages/Login';
+import UserService from './service/UserService';
 
 function App() {
 
+  UserService.addView()
   return (
 
 

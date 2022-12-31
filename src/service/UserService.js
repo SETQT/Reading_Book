@@ -74,6 +74,11 @@ class UserService {
 
     }
 
+    addView() {
+        return axios.post(API + 'api/view', { headers: authHeader() })
+
+    }
+
 
 }
 

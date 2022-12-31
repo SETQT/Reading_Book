@@ -41,7 +41,7 @@ const notify1 = () =>
     theme: "light",
   });
 
-  const notify2 = () =>
+const notify2 = () =>
   toast("New book is added!!!", {
     position: "top-center",
     autoClose: 5000,
@@ -51,9 +51,9 @@ const notify1 = () =>
     draggable: true,
     progress: undefined,
     theme: "light",
-  });  
+  });
 
-  const notify3 = () =>
+const notify3 = () =>
   toast("New chapter is added!!!", {
     position: "top-center",
     autoClose: 5000,
@@ -63,7 +63,7 @@ const notify1 = () =>
     draggable: true,
     progress: undefined,
     theme: "light",
-  }); 
+  });
 
 function ManagerBook() {
   return (
@@ -912,7 +912,7 @@ function ContentUpdate(props) {
             id="submitBook"
             onClick={() => {
               submitUpdateBook();
-              handleOnClick();
+              // handleOnClick();
             }}
             style={{ cursor: "pointer" }}
           >
@@ -928,7 +928,7 @@ const submitUpdateBook = async () => {
   let name = $("#nameBook2").val();
   let author = $("#author2").val();
 
-  let category = $("#category2").val();
+  // let category = $("#category2").val();
   var ek = [];
   $(".react-select__multi-value__label").each(function () {
     let labels = $(this).html();
@@ -942,6 +942,10 @@ const submitUpdateBook = async () => {
 
   let descript = $("#descriptionFormBook2").val();
   let content = $("#contentPDF").prop("files")[0];
+  if (name == "" || author == "" || ek.length == 0 || descript == "" || country == "") {
+    alert("asd")
+    return
+  }
   const formData = new FormData();
 
   formData.append("file", content);
@@ -964,6 +968,8 @@ const submitUpdateBook = async () => {
   })
     .then((result) => { })
     .catch((error) => { });
+
+  window.location.href = "/admin/book/"
 };
 
 const submitNewChapter = async () => {
