@@ -82,20 +82,10 @@ function ManagerBook() {
 }
 
 function AllBook() {
-  let a = localStorage.getItem("addBookSuccess");
-  let b = localStorage.getItem("addChapterSuccess");
-  if(a !== null){
-    notify2();
-    localStorage.setItem("addBookSuccess", 0);
-  }
-  if(b !== null){
-    notify3();
-    localStorage.setItem("addChapterSuccess", 0);
-  }
+  
 
   return (
     <div>
-            <ToastContainer />
 
       <div className="mainTittle">
         <div className="mainTitleMgb">Book Management </div>
@@ -770,10 +760,8 @@ function ContentBan(props) {
                 notify1();
                 return;
               } else {
-                localStorage.setItem("addBookSuccess", 1);
-
+                notify2();
                 submitBook();
-                handleOnClick();
               }
             }}
             style={{ cursor: "pointer" }}
@@ -1059,10 +1047,9 @@ function ContentAddChapter(props) {
                 notify1();
                 return;
               } else {
-                localStorage.setItem("addChapterSuccess", 1);
+                notify3();
 
                 submitNewChapter();
-                handleOnClick2();;
               }
 
             }}
