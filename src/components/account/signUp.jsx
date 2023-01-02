@@ -57,7 +57,9 @@ function Signup() {
   const [confPass, setConfPass] = useState("");
   const [birthday, setBirthday] = useState("");
 
-
+  var curr = new Date();
+  curr.setDate(curr.getDate() + 3);
+  var date = curr.toISOString().substring(0,10);
 
   async function register() {
     let item = {
@@ -187,6 +189,7 @@ function Signup() {
                   id="registerFormDate"
                   name="name"
                   placeholder="Day of birth"
+                  defaultValue={date}
                   onChange={(e) => setBirthday(e.target.value)}
                 />
               </div>
