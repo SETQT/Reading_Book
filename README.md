@@ -8,6 +8,6 @@
 
 
 The project is carried out in an introductory course in software engineering.
-Web site link: https://ebooks4u.netlify.app
 
-You have to wait a little while for the backend server to start.
+Web site link: https://ebooks4u.netlify.app
+**(You have to wait a little while for the backend server to start)**
